@@ -14,30 +14,54 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) =
       remarkPlugins={[remarkGfm]}
       rehypePlugins={[rehypeRaw, rehypeHighlight]}
       components={{
-        h1: ({ node, ...props }) => (
-          <h1
-            className="text-4xl font-bold mb-6 pb-2 border-b border-white/10 bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent"
-            {...props}
-          />
-        ),
-        h2: ({ node, ...props }) => (
-          <h2
-            className="text-3xl font-bold mt-12 mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent"
-            {...props}
-          />
-        ),
-        h3: ({ node, ...props }) => (
-          <h3
-            className="text-2xl font-semibold mt-8 mb-3 text-white/90"
-            {...props}
-          />
-        ),
-        h4: ({ node, ...props }) => (
-          <h4
-            className="text-xl font-semibold mt-6 mb-2 text-white/80"
-            {...props}
-          />
-        ),
+        h1: ({ node, children, ...props }) => {
+          const id = children?.toString().toLowerCase().replace(/[^\w\s]/g, '').replace(/\s+/g, '-');
+          return (
+            <h1
+              id={id}
+              className="text-4xl font-bold mb-6 pb-2 border-b border-white/10 bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent scroll-mt-20"
+              {...props}
+            >
+              {children}
+            </h1>
+          );
+        },
+        h2: ({ node, children, ...props }) => {
+          const id = children?.toString().toLowerCase().replace(/[^\w\s]/g, '').replace(/\s+/g, '-');
+          return (
+            <h2
+              id={id}
+              className="text-3xl font-bold mt-12 mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent scroll-mt-20"
+              {...props}
+            >
+              {children}
+            </h2>
+          );
+        },
+        h3: ({ node, children, ...props }) => {
+          const id = children?.toString().toLowerCase().replace(/[^\w\s]/g, '').replace(/\s+/g, '-');
+          return (
+            <h3
+              id={id}
+              className="text-2xl font-semibold mt-8 mb-3 text-white/90 scroll-mt-20"
+              {...props}
+            >
+              {children}
+            </h3>
+          );
+        },
+        h4: ({ node, children, ...props }) => {
+          const id = children?.toString().toLowerCase().replace(/[^\w\s]/g, '').replace(/\s+/g, '-');
+          return (
+            <h4
+              id={id}
+              className="text-xl font-semibold mt-6 mb-2 text-white/80 scroll-mt-20"
+              {...props}
+            >
+              {children}
+            </h4>
+          );
+        },
         p: ({ node, ...props }) => (
           <p
             className="my-4 text-gray-300 leading-relaxed"
