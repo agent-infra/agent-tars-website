@@ -1,0 +1,85 @@
+import React from "react";
+import { motion } from "framer-motion";
+import { Card, Button } from "@nextui-org/react";
+import { ShowcaseItem } from "../../data/showcaseData";
+import { FiPlay, FiShare2 } from "react-icons/fi";
+
+interface ShowcaseCardProps {
+  item: ShowcaseItem;
+  index: number;
+  onOpenPreview: (item: ShowcaseItem) => void;
+  onShareItem?: (item: ShowcaseItem) => void;
+}
+
+export const ShowcaseCard: React.FC<ShowcaseCardProps> = ({ 
+  item, 
+  index, 
+  onOpenPreview,
+  onShareItem 
+}) => {
+  const handleShare = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (onShareItem) {
+      onShareItem(item);
+    }
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      whileHover={{ y: -5, scale: 1.02 }}
+      className="h-full"
+    >
+      <Card
+        isPressable
+        className="h-full border border-white/10 bg-white/5 hover:bg-white/10 transition-all duration-300 overflow-hidden"
+        onPress={() => onOpenPreview(item)}
+      >
+        <div className="relative aspect-video overflow-hidden group">
+          <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-transparent z-10" />
+          
+          {/* Share button */}
+          <Button
+            isIconOnly
+            size="sm"
+            className="absolute top-2 right-2 bg-black/40 backdrop-blur-sm border border-white/20 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            onClick={handleShare}
+          >
+            <FiShare2 className="text-white" />
+          </Button>
+          
+          {/* Play button overlay */}
+          <div className="absolute inset-0 flex items-center justify-center z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <div className="w-12 h-12 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center border border-white/30">
+              <FiPlay className="text-white text-xl ml-1" />
+            </div>
+          </div>
+          
+          <motion.img
+            src={item.imageUrl}
+            alt={item.title}
+            className="w-full h-full object-cover"
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.5 }}
+          />
+        </div>
+        
+        <div className="p-4">
+          <div className="flex items-center mb-2">
+            <span className="text-xs px-2 py-1 rounded-full bg-white/10 text-purple-300">
+              {item.category.charAt(0).toUpperCase() + item.category.slice(1)}
+            </span>
+            {item.date && (
+              <span className="ml-2 text-xs text-gray-400">{item.date}</span>
+            )}
+          </div>
+          
+          <h3 className="text-lg font-semibold text-white mb-1 line-clamp-2">{item.title}</h3>
+          <p className="text-sm text-gray-400 line-clamp-2">{item.description}</p>
+        </div>
+      </Card>
+    </motion.div>
+  );
+};
