@@ -12,137 +12,89 @@ export type Category = {
   id: string;
   name: string;
   description?: string;
-}
+};
 
 export const categories: Category[] = [
-  { id: "finance", name: "Finance", description: "Financial analysis and reports" },
-  { id: "technology", name: "Technology", description: "Tech innovations and solutions" },
-  { id: "science", name: "Science", description: "Scientific research and discoveries" },
-  { id: "general", name: "General", description: "General purpose applications" }
+  {
+    id: "finance",
+    name: "Finance",
+    description: "Financial analysis and reports",
+  },
+  {
+    id: "technology",
+    name: "Technology",
+    description: "Tech innovations and solutions",
+  },
+  {
+    id: "science",
+    name: "Science",
+    description: "Scientific research and discoveries",
+  },
+  {
+    id: "general",
+    name: "General",
+    description: "General purpose applications",
+  },
 ];
 
 export const showcaseItems: ShowcaseItem[] = [
   {
-    id: "financial-report-q1",
-    title: "Q1 Financial Analysis",
-    description: "Comprehensive financial analysis for Q1 2025",
+    id: "tesla-stock-decline-reasons",
+    title: "Reasons behind Tesla's recent stock price decline",
+    description: "Why has Tesla's stock price recently fallen?",
     category: "finance",
-    imageUrl: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=1000&auto=format&fit=crop",
-    link: "https://cdn-tos-cn.bytedance.net/obj/aipa-tos/a6310bde-11b8-41ae-b7bb-f459018376b7-report.html",
-    date: "2025-04-15"
+    imageUrl:
+      "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=1000&auto=format&fit=crop",
+    link: "https://sf16-sg.tiktokcdn.com/obj/eden-sg/psvhouloj/agent-tars/tesla-stock-decline-reasons.html",
+    date: "2025-03-18",
   },
   {
-    id: "ai-breakthrough",
-    title: "AI Research Breakthrough",
-    description: "Latest advancements in artificial intelligence research",
-    category: "technology",
-    imageUrl: "https://images.unsplash.com/photo-1677442135136-760c813170d6?q=80&w=1000&auto=format&fit=crop",
-    link: "https://cdn-tos-cn.bytedance.net/obj/aipa-tos/a6310bde-11b8-41ae-b7bb-f459018376b7-report.html",
-    date: "2025-03-22"
-  },
-  {
-    id: "quantum-computing",
-    title: "Quantum Computing Advances",
-    description: "Exploring the latest developments in quantum computing",
+    id: "kipchoge-marathon-moon",
+    title:
+      "Time for Eliud Kipchoge to run Earth-Moon distance at marathon pace",
+    description:
+      "If Eliud Kipchoge could maintain his record-making marathon pace indefinitely, how many thousand hours would it take him to run the distance between the Earth and the Moon its closest approach? Please use the minimum perigee value on the Wikipedia page for the Moon when carrying out your calculation. Round your result to the nearest 1000 hours and do not use any comma separators if necessary.",
     category: "science",
-    imageUrl: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=1000&auto=format&fit=crop",
-    link: "https://cdn-tos-cn.bytedance.net/obj/aipa-tos/a6310bde-11b8-41ae-b7bb-f459018376b7-report.html",
-    date: "2025-02-10"
+    imageUrl:
+      "https://cdn.mos.cms.futurecdn.net/p7rWPJoYDKZ4wwoXHGmzPL-1200-80.jpg",
+    link: "https://sf16-sg.tiktokcdn.com/obj/eden-sg/psvhouloj/agent-tars/kipchoge-marathon-moon.html",
+    date: "2025-03-18",
   },
   {
-    id: "market-trends",
-    title: "2025 Market Trends",
-    description: "Analysis of emerging market trends for 2025",
-    category: "finance",
-    imageUrl: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?q=80&w=1000&auto=format&fit=crop",
-    link: "https://cdn-tos-cn.bytedance.net/obj/aipa-tos/a6310bde-11b8-41ae-b7bb-f459018376b7-report.html",
-    date: "2025-01-05"
-  },
-  {
-    id: "renewable-energy",
-    title: "Renewable Energy Solutions",
-    description: "Innovative approaches to renewable energy implementation",
-    category: "technology",
-    imageUrl: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?q=80&w=1000&auto=format&fit=crop",
-    link: "https://cdn-tos-cn.bytedance.net/obj/aipa-tos/a6310bde-11b8-41ae-b7bb-f459018376b7-report.html",
-    date: "2024-12-18"
-  },
-  {
-    id: "climate-research",
-    title: "Climate Change Research",
-    description: "Latest findings in climate science and environmental impact",
-    category: "science",
-    imageUrl: "https://images.unsplash.com/photo-1569163139599-0f4517e36f31?q=80&w=1000&auto=format&fit=crop",
-    link: "https://cdn-tos-cn.bytedance.net/obj/aipa-tos/a6310bde-11b8-41ae-b7bb-f459018376b7-report.html",
-    date: "2024-11-30"
-  },
-  {
-    id: "productivity-tools",
-    title: "Productivity Tools",
-    description: "Essential tools to boost your productivity",
+    id: "7-day-trip-plan-to-mexico-city",
+    title: "7-day trip plan to Mexico City from NYC",
+    description:
+      "I need a 7-day trip to Mexico City from NYC for April 15-23, with a budget of $2500-5000 for my fiancee and I. We love historical sites, hidden gems, and Mexican culture (Mexican art, architecture, food). We want to visit the pyramids of Teotihuacan and explore the city on foot. I plan to propose during this trip and need suggestions for a special venue. Please provide a detailed itinerary and a simple HTML travel brochure with maps, descriptions of attractions, essential basic Spanish phrases, and travel tips that we can refer to throughout our trip.",
     category: "general",
-    imageUrl: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?q=80&w=1000&auto=format&fit=crop",
-    link: "https://cdn-tos-cn.bytedance.net/obj/aipa-tos/a6310bde-11b8-41ae-b7bb-f459018376b7-report.html",
-    date: "2024-10-25"
+    imageUrl:
+      "https://www.cataloniahotels.com/en/blog/wp-content/uploads/2017/09/cataloniahotels-mexico2.jpg",
+    link: "https://sf16-sg.tiktokcdn.com/obj/eden-sg/psvhouloj/agent-tars/7-day-trip-plan-to-mexico-city.html",
+    date: "2025-03-18",
   },
   {
-    id: "data-visualization",
-    title: "Data Visualization Techniques",
-    description: "Modern approaches to visualizing complex data sets",
+    id: "lynx-repository-issues-report",
+    title: "Analyse issues in the Lynx repository",
+    description:
+      "Summarize the issues in this repository: https://github.com/lynx-family/lynx and generate a detailed report page contains good data visualization.",
     category: "technology",
-    imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop",
-    link: "https://cdn-tos-cn.bytedance.net/obj/aipa-tos/a6310bde-11b8-41ae-b7bb-f459018376b7-report.html",
-    date: "2024-09-14"
+    imageUrl:
+      "https://private-user-images.githubusercontent.com/9161085/418362045-23e35f90-1506-4b1d-8114-6bb2b8b643e7.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDI0MTQ3NjQsIm5iZiI6MTc0MjQxNDQ2NCwicGF0aCI6Ii85MTYxMDg1LzQxODM2MjA0NS0yM2UzNWY5MC0xNTA2LTRiMWQtODExNC02YmIyYjhiNjQzZTcucG5nP1gtQW16LUFsZ29yaXRobT1BV1M0LUhNQUMtU0hBMjU2JlgtQW16LUNyZWRlbnRpYWw9QUtJQVZDT0RZTFNBNTNQUUs0WkElMkYyMDI1MDMxOSUyRnVzLWVhc3QtMSUyRnMzJTJGYXdzNF9yZXF1ZXN0JlgtQW16LURhdGU9MjAyNTAzMTlUMjAwMTA0WiZYLUFtei1FeHBpcmVzPTMwMCZYLUFtei1TaWduYXR1cmU9YjhjZjcxMmZiYmNhMjU1ZmQ5ZTYxYTlhMjUzOTc1N2Q0ZDEzZWQyZTZhZDFkZjEwMTQ3MDg0NTIyNjk4ZmRhOCZYLUFtei1TaWduZWRIZWFkZXJzPWhvc3QifQ.ESRy_pXMjKAA5Trj12Ha6DbhxPAEDaMWQ7tnshGa-w4",
+    link: "https://sf16-sg.tiktokcdn.com/obj/eden-sg/psvhouloj/agent-tars/lynx-repository-issues-report.html",
+    date: "2025-03-18",
   },
-  {
-    id: "investment-strategies",
-    title: "Investment Strategies",
-    description: "Expert insights on investment approaches for 2025",
-    category: "finance",
-    imageUrl: "https://images.unsplash.com/photo-1604594849809-dfedbc827105?q=80&w=1000&auto=format&fit=crop",
-    link: "https://cdn-tos-cn.bytedance.net/obj/aipa-tos/a6310bde-11b8-41ae-b7bb-f459018376b7-report.html",
-    date: "2024-08-22"
-  },
-  {
-    id: "genomics-research",
-    title: "Genomics Research",
-    description: "Breakthrough discoveries in genomics and gene therapy",
-    category: "science",
-    imageUrl: "https://images.unsplash.com/photo-1530026405186-ed1f139313f8?q=80&w=1000&auto=format&fit=crop",
-    link: "https://cdn-tos-cn.bytedance.net/obj/aipa-tos/a6310bde-11b8-41ae-b7bb-f459018376b7-report.html",
-    date: "2024-07-11"
-  },
-  {
-    id: "digital-marketing",
-    title: "Digital Marketing Trends",
-    description: "Emerging trends in digital marketing and consumer engagement",
-    category: "general",
-    imageUrl: "https://images.unsplash.com/photo-1557838923-2985c318be48?q=80&w=1000&auto=format&fit=crop",
-    link: "https://cdn-tos-cn.bytedance.net/obj/aipa-tos/a6310bde-11b8-41ae-b7bb-f459018376b7-report.html",
-    date: "2024-06-05"
-  },
-  {
-    id: "cybersecurity",
-    title: "Cybersecurity Best Practices",
-    description: "Essential security measures for digital protection",
-    category: "technology",
-    imageUrl: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?q=80&w=1000&auto=format&fit=crop",
-    link: "https://cdn-tos-cn.bytedance.net/obj/aipa-tos/a6310bde-11b8-41ae-b7bb-f459018376b7-report.html",
-    date: "2024-05-19"
-  }
 ];
 
 // Helper function to get items by category
 export const getItemsByCategory = (categoryId: string): ShowcaseItem[] => {
-  return categoryId === "all" 
-    ? showcaseItems 
-    : showcaseItems.filter(item => item.category === categoryId);
+  return categoryId === "all"
+    ? showcaseItems
+    : showcaseItems.filter((item) => item.category === categoryId);
 };
 
 // Helper function to get all categories with counts
 export const getCategoriesWithCounts = (): (Category & { count: number })[] => {
-  return categories.map(category => ({
+  return categories.map((category) => ({
     ...category,
-    count: showcaseItems.filter(item => item.category === category.id).length
+    count: showcaseItems.filter((item) => item.category === category.id).length,
   }));
 };

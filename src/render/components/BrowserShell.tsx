@@ -1,19 +1,6 @@
 import styled from "@emotion/styled";
-import {
-  CircularProgress,
-  IconButton,
-  TextField,
-  Tooltip,
-} from "@mui/material";
-import {
-  ArrowBack,
-  ArrowForward,
-  Refresh,
-  Security,
-  Close,
-  OpenInNew,
-  Share,
-} from "@mui/icons-material";
+import { CircularProgress, IconButton, Tooltip } from "@mui/material";
+import { Refresh, Security, Close, Share } from "@mui/icons-material";
 
 const Shell = styled.div`
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -158,24 +145,13 @@ export function BrowserShell({
 
         <AddressBar>
           <NavigationControls>
-            <Tooltip title="Back">
-              <IconButton
-                size="small"
-                onClick={() => onNavigate?.("back")}
-                sx={{ color: "rgba(255, 255, 255, 0.7)" }}
-              >
-                <ArrowBack fontSize="small" />
-              </IconButton>
-            </Tooltip>
-            <Tooltip title="Forward">
-              <IconButton
-                size="small"
-                onClick={() => onNavigate?.("forward")}
-                sx={{ color: "rgba(255, 255, 255, 0.7)" }}
-              >
-                <ArrowForward fontSize="small" />
-              </IconButton>
-            </Tooltip>
+            {isSecure && (
+              <SecureIndicator>
+                <Security fontSize="small" />
+                Secure
+              </SecureIndicator>
+            )}
+            
             <Tooltip title="Refresh">
               <IconButton
                 size="small"
@@ -186,13 +162,6 @@ export function BrowserShell({
               </IconButton>
             </Tooltip>
           </NavigationControls>
-
-          {isSecure && (
-            <SecureIndicator>
-              <Security fontSize="small" />
-              Secure
-            </SecureIndicator>
-          )}
 
           <TitleDisplay>{title || "Secure Content"}</TitleDisplay>
 
