@@ -18,7 +18,7 @@ export const blogPosts: BlogPost[] = [
     date: "2025-03-18",
     author: "Agent TARS Team",
     excerpt:
-      "We're excited to announce the release of Agent TARS, an open-source multimodal agent designed to revolutionize GUI interaction.",
+      "We're excited to announce the preview release of Agent TARS, an open-source multimodal agent designed to revolutionize GUI interaction.",
     tags: ["announcement", "release"],
   },
 ];
