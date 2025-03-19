@@ -4,6 +4,7 @@ import { Navbar } from "./components/Navbar";
 import Home from "./pages/Home";
 import Blog from "./pages/Blog";
 import Showcase from "./pages/Showcase";
+import Docs from "./pages/Docs";
 import { PasswordProtection } from "./components/PasswordProtection";
 
 const App: React.FC = () => {
@@ -25,6 +26,7 @@ const App: React.FC = () => {
           <Route path="/" element={<Home />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/showcase" element={<Showcase />} />
+          <Route path="/docs" element={<Docs />} />
         </Routes>
     </HashRouter>
   );
