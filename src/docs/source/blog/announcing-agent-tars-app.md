@@ -1,8 +1,22 @@
-# Announcing Agent TARS (Preview)
+# Announcing Agent TARS App (Preview)
 
 ## Introduction
 
-**Agent TARS** is an open-source multimodal agent designed to revolutionize GUI interaction by visually interpreting web pages and seamlessly integrating with command lines and file systems.
+**Agent TARS** is an open-source multimodal AI agent that leverages browser operations by visually interpreting web pages and seamlessly integrating with command lines and file systems.
+
+<div className="bg-gray-900 w-full h-500 rounded-lg overflow-hidden">
+  <video
+    autoPlay
+    loop
+    controls
+    playsInline
+    className="w-full h-full bg-gray-200">
+    <source
+      src="https://github.com/user-attachments/assets/5bfed86f-7201-4fe2-b33b-d93a591c35c8"
+      type="video/mp4"
+    />
+  </video>
+</div>
 
 ## Install
 
@@ -75,7 +89,6 @@ Then the server will return an object including the `url` parameter, which is th
 
 When you finish the shared process, you can preview the bundle and experience the wonderful replay process! That's really cool!
 
-
-### Feedback
+## Feedback
 
 Follow us on [X](https://x.com/AgentTars) to learn about our latest releases, and join our Discord to share your findings on Agent TARS.

@@ -125,7 +125,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
           if (!className) {
             return (
               <code
-                className="bg-white/10 text-purple-300 px-1.5 py-0.5 rounded text-sm font-mono"
+                className="bg-white/10 text-purple-500 px-1.5 py-0.5 rounded text-sm font-mono"
                 {...props}
               >
                 {children}

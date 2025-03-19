@@ -142,7 +142,7 @@ const LandingPage: React.FC = () => {
             <div className="flex gap-4 justify-center mb-12">
               <Button
                 as="a"
-                href="https://github.com/bytedance/UI-TARS-desktop/blob/feat/agent-tars/apps/omega/README.md"
+                href="https://github.com/bytedance/UI-TARS-desktop/blob/main/apps/agent-tars/README.md"
                 target="_blank"
                 className="bg-white text-black hover:bg-gray-200"
                 startContent={<SiGithub />}
@@ -354,17 +354,19 @@ const LandingPage: React.FC = () => {
         <ModalContent>
           <ModalBody>
             <div className="flex items-center justify-center min-h-screen">
-              <video
-                autoPlay
-                controls
-                className="w-auto max-w-[90%] max-h-[90vh] object-contain"
-                onLoadedData={handleVideoLoad}
-              >
-                <source
-                  src="https://github.com/user-attachments/assets/5bfed86f-7201-4fe2-b33b-d93a591c35c8"
-                  type="video/mp4"
-                />
-              </video>
+              <div className="bg-gray-900 w-[90%] h-[90%] h-400 rounded-lg overflow-hidden">
+                <video
+                  autoPlay
+                  controls
+                  className="w-full h-full bg-gray-200"
+                  onLoadedData={handleVideoLoad}
+                >
+                  <source
+                    src="https://github.com/user-attachments/assets/5bfed86f-7201-4fe2-b33b-d93a591c35c8"
+                    type="video/mp4"
+                  />
+                </video>
+              </div>
             </div>
           </ModalBody>
         </ModalContent>

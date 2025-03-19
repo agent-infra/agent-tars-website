@@ -12,9 +12,9 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
-    id: "announcing-agent-tars-preview",
-    title: "Announcing Agent TARS (Preview)",
-    slug: "announcing-agent-tars-preview",
+    id: "announcing-agent-tars-app",
+    title: "Announcing Agent TARS App (Preview)",
+    slug: "announcing-agent-tars-app",
     date: "2025-03-18",
     author: "Agent TARS Team",
     excerpt:

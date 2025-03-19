@@ -1,8 +1,8 @@
-import announcingAgentTarsPreview from "./announcing-agent-tars-preview.md";
+import announcingAgentTarsApp from "./announcing-agent-tars-app.md";
 
 // Map of local markdown imports
 const localBlogPosts: Record<string, string> = {
-  "announcing-agent-tars-preview": announcingAgentTarsPreview,
+  "announcing-agent-tars-app": announcingAgentTarsApp,
 };
 
 /**

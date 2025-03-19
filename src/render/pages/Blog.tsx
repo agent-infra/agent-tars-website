@@ -171,9 +171,22 @@ const BlogPostCard: React.FC<{ post: BlogPost; index: number }> = ({
           <Button
             as={Link}
             to={getBlogPermalink(post)}
-            color="secondary"
-            variant="flat"
+            color="primary"
+            variant="ghost"
             size="sm"
+            className="
+              bg-gradient-to-r from-[#6D28D9] to-[#7C3AED]
+              hover:from-[#5B21B6] hover:to-[#6D28D9]
+              text-white font-medium px-3 py-2 rounded-full
+              shadow-[0_0_15px_rgba(124,58,237,0.2)]
+              border border-white/10
+              backdrop-blur-sm
+              transition-all duration-300
+              hover:shadow-[0_0_20px_rgba(124,58,237,0.25)]
+              hover:scale-105
+              active:scale-95
+              group
+            "
           >
             Read more
           </Button>
