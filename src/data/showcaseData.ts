@@ -78,7 +78,7 @@ export const showcaseItems: ShowcaseItem[] = [
       "Summarize the issues in this repository: https://github.com/lynx-family/lynx and generate a detailed report page contains good data visualization.",
     category: "technology",
     imageUrl:
-      "https://private-user-images.githubusercontent.com/9161085/418362045-23e35f90-1506-4b1d-8114-6bb2b8b643e7.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDI0MTQ3NjQsIm5iZiI6MTc0MjQxNDQ2NCwicGF0aCI6Ii85MTYxMDg1LzQxODM2MjA0NS0yM2UzNWY5MC0xNTA2LTRiMWQtODExNC02YmIyYjhiNjQzZTcucG5nP1gtQW16LUFsZ29yaXRobT1BV1M0LUhNQUMtU0hBMjU2JlgtQW16LUNyZWRlbnRpYWw9QUtJQVZDT0RZTFNBNTNQUUs0WkElMkYyMDI1MDMxOSUyRnVzLWVhc3QtMSUyRnMzJTJGYXdzNF9yZXF1ZXN0JlgtQW16LURhdGU9MjAyNTAzMTlUMjAwMTA0WiZYLUFtei1FeHBpcmVzPTMwMCZYLUFtei1TaWduYXR1cmU9YjhjZjcxMmZiYmNhMjU1ZmQ5ZTYxYTlhMjUzOTc1N2Q0ZDEzZWQyZTZhZDFkZjEwMTQ3MDg0NTIyNjk4ZmRhOCZYLUFtei1TaWduZWRIZWFkZXJzPWhvc3QifQ.ESRy_pXMjKAA5Trj12Ha6DbhxPAEDaMWQ7tnshGa-w4",
+      "https://sf16-sg.tiktokcdn.com/obj/eden-sg/psvhouloj/images/lynx.png",
     link: "https://sf16-sg.tiktokcdn.com/obj/eden-sg/psvhouloj/agent-tars/lynx-repository-issues-report.html",
     date: "2025-03-18",
   },
