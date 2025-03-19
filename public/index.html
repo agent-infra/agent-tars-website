@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agent TARS</title>
+    <script type="text/javascript">
+      // SPA (Single Page Application) Redirect Handler Script
+      // This script works in conjunction with the 404.html redirect mechanism
+      // to properly handle client-side routing for GitHub Pages or similar static hosts
+      (function () {
+        // Check if there's a redirect URL stored in sessionStorage from a previous navigation
+        var redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect !== location.href) {
+          // Restore the URL that was originally requested before the 404 redirect
+          history.replaceState(null, null, redirect);
+        }
+
+        // Process URL parameters from 404.html redirect
+        var l = window.location;
+        if (l.search) {
+          // Parse all query parameters into an object
+          var q = {};
+          l.search
+            .slice(1)
+            .split("&")
+            .forEach(function (v) {
+              var a = v.split("=");
+              q[a[0]] = a.length > 1 ? decodeURIComponent(a[1]) : "";
+            });
+          
+          // Check if this is a redirect from 404.html (contains 'p' parameter)
+          if (q.p !== undefined) {
+            // Reconstruct the original URL:
+            // - Base path from current location
+            // - Path segments from 'p' parameter
+            // - Original query string from 'q' parameter
+            // - Hash fragment preserved as-is
+            var path = q.p;
+            var newPath =
+              l.pathname.split("?")[0] +
+              (path ? "/" + path : "") +
+              (q.q ? "?" + q.q : "") +
+              l.hash;
+            
+            // Store the reconstructed path in sessionStorage for later use
+            sessionStorage.redirect = newPath;
+            
+            // Perform the actual redirect to the reconstructed URL
+            window.location.href = newPath;
+          }
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="<%= mountId %>"></div>
+  </body>
+</html>
