@@ -1,12 +1,11 @@
 import { defineConfig } from "@rsbuild/core";
 import { pluginReact } from "@rsbuild/plugin-react";
-import { pluginHtmlGenerator } from "./src/rsbuild-plugins/htmlGeneratorPlugin";
+import { pluginHtmlGenerator } from "./src/build/htmlGeneratorPlugin";
 
 export default defineConfig({
   plugins: [
     pluginReact(),
     pluginHtmlGenerator({
-      // additionalRoutes: ['/about', '/contact'],
       verbose: true,
     }),
   ],
@@ -21,7 +20,7 @@ export default defineConfig({
   },
   source: {
     entry: {
-      index: "./src/entry.tsx",
+      index: "./src/render/entry.tsx",
     },
   },
   server: {

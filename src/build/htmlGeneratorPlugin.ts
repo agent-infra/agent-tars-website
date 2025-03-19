@@ -1,8 +1,7 @@
 import fs from "fs";
 import path from "path";
 import type { RsbuildPlugin } from "@rsbuild/core";
-import { availableDocs } from "../config/docsConfig";
-import { blogPosts, getBlogPermalink } from "../config/blogConfig";
+import { availableDocs, blogPosts, getBlogPermalink } from "../docs/config";
 
 export interface HtmlGeneratorOptions {
   /**
@@ -102,12 +101,14 @@ export const pluginHtmlGenerator = (
           // Remove leading slash and create filename
           const routeId = route.startsWith("/") ? route.substring(1) : route;
           const htmlPath = path.join(outputDir, `${routeId}.html`);
-          
+
           // Write HTML file
           fs.writeFileSync(htmlPath, indexContent);
 
           if (options.verbose !== false) {
-            console.log(`[html-generator] Generated HTML for doc: ${route} as ${routeId}.html`);
+            console.log(
+              `[html-generator] Generated HTML for doc: ${route} as ${routeId}.html`
+            );
           }
         }
 
@@ -115,17 +116,17 @@ export const pluginHtmlGenerator = (
         for (const route of blogRoutes) {
           // Remove leading slash
           const routePath = route.startsWith("/") ? route.substring(1) : route;
-          
+
           // Create directory structure
           const dirPath = path.join(outputDir, routePath);
           if (!fs.existsSync(dirPath)) {
             fs.mkdirSync(dirPath, { recursive: true });
           }
-          
+
           // Write HTML file
           const htmlPath = path.join(dirPath, "index.html");
           fs.writeFileSync(htmlPath, indexContent);
-          
+
           if (options.verbose !== false) {
             console.log(`[html-generator] Generated HTML for blog: ${route}`);
           }

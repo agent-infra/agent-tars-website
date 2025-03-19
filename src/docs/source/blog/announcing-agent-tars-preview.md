@@ -4,21 +4,25 @@
 
 **Agent TARS** is an open-source multimodal agent designed to revolutionize GUI interaction by visually interpreting web pages and seamlessly integrating with command lines and file systems.
 
-## Necessary Configuration
+## Install
 
-Before you begin, you will need to set some necessary configuration.
+Please visit [Releases](https://github.com/bytedance/UI-TARS-desktop/releases?q=Agent+Tars&expanded=true) to download the latest Agent-TARS desktop application package.
 
-You can click the left-bottom button to open the configuration page:
+## Configuration
+
+### LLM
+
+Before you begin, you will need to set some necessary configuration, You can click the left-bottom button to open the `setting` page:
 
 ![setting-icon.png](https://lf3-static.bytednsdoc.com/obj/eden-cn/uhbfnupenuhf/agent-tars/setting-icon.jpeg)
 
-Then you can set the model config and the search config.
+Then you can set the model config and the search config. For model config, you can set the model provider and `API Key`:
 
-For model config, you can set the model provider and api key:
+![model-config.png](https://lf3-static.bytednsdoc.com/obj/eden-cn/uhbfnupenuhf/agent-tars/model-setting.jpeg)
 
-![model-config.png](https://lf3-static.bytednsdoc.com/obj/eden-cn/uhbfnupenuhf/agent-tars/search-setting.jpeg)
+> For Azure OpenAI, you can set more params, including `apiVersion`, `deploymentName` and `endpoint`.
 
-> For Azure OpenAI, you can set more params, including apiVersion, deploymentName and endpoint.
+### Search
 
 For search config, you can set the search provider and api key:
 
@@ -26,9 +30,7 @@ For search config, you can set the search provider and api key:
 
 ## Start Your First Journey
 
-Now you can start your first journey in Agent TARS!
-
-You can input your first question in the input box, and then press Enter to send your question. Here is an example:
+Now you can start your first journey in Agent TARS! You can input your first question in the input box, and then press Enter to send your question. Here is an example:
 
 ![first-journey.jpeg](https://lf3-static.bytednsdoc.com/obj/eden-cn/uhbfnupenuhf/agent-tars/start-journey.jpeg)
 
@@ -61,14 +63,19 @@ For the remote share mode, you need to set the remote server url in the share mo
 
 Then Agent TARS will post a request to the remote server to upload the html bundle, and then you can share the url with others. The specific request information is as follows:
 
-- Method: POST
-- Body:
-  - file: the html bundle file(type: multipart/form-data)
-- Response:
-  - data: { url: string }
+> - Method: POST
+> - Body:
+>   - file: the html bundle file(type: multipart/form-data)
+> - Response:
+>   - data: { url: string }
 
 Then the server will return an object including the `url` parameter, which is the url to share your thread.
 
-### Enjoy the replay experience!
+### Enjoy
 
 When you finish the shared process, you can preview the bundle and experience the wonderful replay process! That's really cool!
+
+
+### Feedback
+
+Follow us on [X](https://x.com/AgentTars) to learn about our latest releases, and join our Discord to share your findings on Agent TARS.

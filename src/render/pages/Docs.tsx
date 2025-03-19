@@ -4,10 +4,9 @@ import { Spinner, Button } from "@nextui-org/react";
 import { FaBug } from "react-icons/fa";
 import { MarkdownRenderer } from "../components/MarkdownRenderer";
 import { useParams } from "react-router-dom";
-import { availableDocs } from "../config/docsConfig";
+import { availableDocs, getLocalDoc } from "../../docs";
 import { DocsSidebar } from "../components/DocsSidebar";
 import { TableOfContents } from "../components/TableOfContents";
-import { getLocalMarkdown } from "../utils/markdownLoader";
 
 const Docs: React.FC = () => {
   const [markdown, setMarkdown] = useState<string>("");
@@ -21,25 +20,27 @@ const Docs: React.FC = () => {
   useEffect(() => {
     const fetchMarkdown = async () => {
       setIsLoading(true);
-      
+
       try {
         // Check if we have a local version first
         if (currentDoc.localPath) {
-          const localContent = getLocalMarkdown(currentDoc.localPath);
+          const localContent = getLocalDoc(currentDoc.localPath);
           if (localContent) {
             setMarkdown(localContent);
             setIsLoading(false);
             return;
           }
         }
-        
+
         // Otherwise fetch from GitHub
         if (currentDoc.githubPath) {
           const response = await fetch(currentDoc.githubPath);
           const text = await response.text();
           setMarkdown(text);
         } else {
-          setMarkdown("# Document Not Found\nThe requested document could not be loaded.");
+          setMarkdown(
+            "# Document Not Found\nThe requested document could not be loaded."
+          );
         }
       } catch (error) {
         console.error("Failed to fetch markdown:", error);
@@ -93,8 +94,8 @@ const Docs: React.FC = () => {
                 transition={{ duration: 0.5 }}
                 className="markdown-body bg-transparent text-white mb-16"
               >
-                <MarkdownRenderer 
-                  content={markdown} 
+                <MarkdownRenderer
+                  content={markdown}
                   publishDate={currentDoc.publishDate}
                   author={currentDoc.author}
                 />

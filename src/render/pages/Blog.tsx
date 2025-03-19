@@ -1,28 +1,33 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, Link, useLocation } from 'react-router-dom';
-import { getBlogContent } from '../utils/blogLoader';
-import { getSortedBlogPosts, getBlogPostByPermalink, getBlogPermalink, BlogPost } from '../config/blogConfig';
-import { MarkdownRenderer } from '../components/MarkdownRenderer';
-import { motion } from 'framer-motion';
-import { Button, Card, Spinner, Divider } from '@nextui-org/react';
-import { FiArrowLeft, FiCalendar, FiUser } from 'react-icons/fi';
-import { TableOfContents } from '../components/TableOfContents';
+import React, { useState, useEffect } from "react";
+import { useParams, Link, useLocation } from "react-router-dom";
+import { getBlogContent } from "../../docs";
+import {
+  getSortedBlogPosts,
+  getBlogPostByPermalink,
+  getBlogPermalink,
+  BlogPost,
+} from "../../docs";
+import { MarkdownRenderer } from "../components/MarkdownRenderer";
+import { motion } from "framer-motion";
+import { Button, Card, Spinner, Divider } from "@nextui-org/react";
+import { FiArrowLeft, FiCalendar, FiUser } from "react-icons/fi";
+import { TableOfContents } from "../components/TableOfContents";
 
 const Blog: React.FC = () => {
   const { year, month, day, slug } = useParams();
   const location = useLocation();
   const [content, setContent] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  
+
   // Check if we're on a specific blog post page
   const isPostPage = year && month && day && slug;
-  const currentPost = isPostPage 
+  const currentPost = isPostPage
     ? getBlogPostByPermalink(`/${year}/${month}/${day}/${slug}`)
     : undefined;
-  
+
   // Get all blog posts for the listing page
   const allPosts = getSortedBlogPosts();
-  
+
   useEffect(() => {
     const loadContent = async () => {
       if (!currentPost) {
@@ -31,19 +36,11 @@ const Blog: React.FC = () => {
       }
 
       try {
-        // Try to get content from local files
         const localContent = getBlogContent(currentPost.id);
         if (localContent) {
           setContent(localContent);
         } else {
-          // Fallback to dynamic import
-          try {
-            const module = await import(`../blog/${currentPost.id}.md`);
-            setContent(module.default);
-          } catch (err) {
-            console.error("Failed to load blog content:", err);
-            setContent("# Error\nFailed to load blog content.");
-          }
+          throw new Error(`Failed to load blog: ${currentPost.id}`);
         }
       } catch (error) {
         console.error("Failed to load blog content:", error);
@@ -57,23 +54,22 @@ const Blog: React.FC = () => {
     loadContent();
   }, [currentPost]);
 
-  // Render blog post detail page
   if (isPostPage) {
     return (
-      <div className="min-h-screen pt-24 px-4 bg-black text-white">
+      <div className="min-h-screen pt-24 px-4 pb-24 bg-black text-white">
         <div className="max-w-4xl mx-auto">
           <div className="mb-8">
-            <Button 
+            <Button
               as={Link}
               to="/blog"
-              variant="light" 
-              color="default" 
+              variant="light"
+              color="default"
               startContent={<FiArrowLeft />}
               className="mb-6"
             >
               Back to Blog
             </Button>
-            
+
             {isLoading ? (
               <div className="flex justify-center items-center h-64">
                 <Spinner size="lg" color="white" />
@@ -89,8 +85,8 @@ const Blog: React.FC = () => {
                   <div></div>
                   <TableOfContents markdown={content} />
                 </div>
-                <MarkdownRenderer 
-                  content={content} 
+                <MarkdownRenderer
+                  content={content}
                   publishDate={currentPost?.date}
                   author={currentPost?.author}
                 />
@@ -131,7 +127,10 @@ const Blog: React.FC = () => {
 };
 
 // Blog post card component for the listing page
-const BlogPostCard: React.FC<{ post: BlogPost; index: number }> = ({ post, index }) => {
+const BlogPostCard: React.FC<{ post: BlogPost; index: number }> = ({
+  post,
+  index,
+}) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -150,17 +149,17 @@ const BlogPostCard: React.FC<{ post: BlogPost; index: number }> = ({ post, index
               <span>{post.author}</span>
             </div>
           </div>
-          
+
           <Link to={getBlogPermalink(post)} className="block group">
             <h2 className="text-2xl font-bold mb-2 text-white group-hover:text-purple-400 transition-colors">
               {post.title}
             </h2>
             <p className="text-gray-400 mb-4">{post.excerpt}</p>
           </Link>
-          
+
           <div className="flex flex-wrap gap-2 mb-4">
-            {post.tags?.map(tag => (
-              <span 
+            {post.tags?.map((tag) => (
+              <span
                 key={tag}
                 className="px-3 py-1 bg-white/10 text-white/70 text-xs rounded-full"
               >
@@ -168,12 +167,12 @@ const BlogPostCard: React.FC<{ post: BlogPost; index: number }> = ({ post, index
               </span>
             ))}
           </div>
-          
+
           <Button
             as={Link}
             to={getBlogPermalink(post)}
-            color="secondary" 
-            variant="flat" 
+            color="secondary"
+            variant="flat"
             size="sm"
           >
             Read more
