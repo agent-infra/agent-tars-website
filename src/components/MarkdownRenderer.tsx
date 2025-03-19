@@ -6,28 +6,55 @@ import rehypeHighlight from "rehype-highlight";
 
 interface MarkdownRendererProps {
   content: string;
+  publishDate?: string;
+  author?: string;
 }
 
-export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) => {
+export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
+  content,
+  publishDate,
+  author,
+}) => {
   return (
     <ReactMarkdown
       remarkPlugins={[remarkGfm]}
       rehypePlugins={[rehypeRaw, rehypeHighlight]}
       components={{
         h1: ({ node, children, ...props }) => {
-          const id = children?.toString().toLowerCase().replace(/[^\w\s]/g, '').replace(/\s+/g, '-');
+          const id = children
+            ?.toString()
+            .toLowerCase()
+            .replace(/[^\w\s]/g, "")
+            .replace(/\s+/g, "-");
           return (
-            <h1
-              id={id}
-              className="text-4xl font-bold mb-6 pb-2 border-b border-white/10 bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent scroll-mt-20"
-              {...props}
-            >
-              {children}
-            </h1>
+            <>
+              <h1
+                id={id}
+                className="text-4xl font-bold mb-2 pb-2 border-b border-white/10 bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent scroll-mt-20"
+                {...props}
+              >
+                {children}
+              </h1>
+              {(publishDate || author) && (
+                <div className="flex items-center gap-3 mb-6 text-sm text-gray-400 mb-10">
+                  {publishDate && <span>{publishDate}</span>}
+                  {author && (
+                    <>
+                      {publishDate && <span>•</span>}
+                      <span>{author}</span>
+                    </>
+                  )}
+                </div>
+              )}
+            </>
           );
         },
         h2: ({ node, children, ...props }) => {
-          const id = children?.toString().toLowerCase().replace(/[^\w\s]/g, '').replace(/\s+/g, '-');
+          const id = children
+            ?.toString()
+            .toLowerCase()
+            .replace(/[^\w\s]/g, "")
+            .replace(/\s+/g, "-");
           return (
             <h2
               id={id}
@@ -39,7 +66,11 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) =
           );
         },
         h3: ({ node, children, ...props }) => {
-          const id = children?.toString().toLowerCase().replace(/[^\w\s]/g, '').replace(/\s+/g, '-');
+          const id = children
+            ?.toString()
+            .toLowerCase()
+            .replace(/[^\w\s]/g, "")
+            .replace(/\s+/g, "-");
           return (
             <h3
               id={id}
@@ -51,7 +82,11 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) =
           );
         },
         h4: ({ node, children, ...props }) => {
-          const id = children?.toString().toLowerCase().replace(/[^\w\s]/g, '').replace(/\s+/g, '-');
+          const id = children
+            ?.toString()
+            .toLowerCase()
+            .replace(/[^\w\s]/g, "")
+            .replace(/\s+/g, "-");
           return (
             <h4
               id={id}
@@ -63,10 +98,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) =
           );
         },
         p: ({ node, ...props }) => (
-          <p
-            className="my-4 text-gray-300 leading-relaxed"
-            {...props}
-          />
+          <p className="my-4 text-gray-300 leading-relaxed" {...props} />
         ),
         a: ({ node, ...props }) => (
           <a
@@ -77,16 +109,10 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) =
           />
         ),
         ul: ({ node, ...props }) => (
-          <ul
-            className="my-4 list-disc pl-6 text-gray-300"
-            {...props}
-          />
+          <ul className="my-4 list-disc pl-6 text-gray-300" {...props} />
         ),
         ol: ({ node, ...props }) => (
-          <ol
-            className="my-4 list-decimal pl-6 text-gray-300"
-            {...props}
-          />
+          <ol className="my-4 list-decimal pl-6 text-gray-300" {...props} />
         ),
         li: ({ node, ...props }) => <li className="my-1" {...props} />,
         blockquote: ({ node, ...props }) => (
@@ -98,8 +124,8 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) =
         code: ({ node, className, children, ...props }) => {
           if (!className) {
             return (
-              <code 
-                className="bg-white/10 text-purple-300 px-1.5 py-0.5 rounded text-sm font-mono" 
+              <code
+                className="bg-white/10 text-purple-300 px-1.5 py-0.5 rounded text-sm font-mono"
                 {...props}
               >
                 {children}
@@ -139,10 +165,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) =
           <tbody className="divide-y divide-white/10" {...props} />
         ),
         tr: ({ node, ...props }) => (
-          <tr
-            className="hover:bg-white/5 transition-colors"
-            {...props}
-          />
+          <tr className="hover:bg-white/5 transition-colors" {...props} />
         ),
         th: ({ node, ...props }) => (
           <th

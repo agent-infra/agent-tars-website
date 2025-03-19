@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Spinner, Button } from "@nextui-org/react";
 import { FaBug } from "react-icons/fa";
 import { MarkdownRenderer } from "../components/MarkdownRenderer";
-import { useSearchParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { availableDocs } from "../config/docsConfig";
 import { DocsSidebar } from "../components/DocsSidebar";
 import { TableOfContents } from "../components/TableOfContents";
@@ -11,8 +11,8 @@ import { TableOfContents } from "../components/TableOfContents";
 const Docs: React.FC = () => {
   const [markdown, setMarkdown] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [searchParams] = useSearchParams();
-  const currentDocId = searchParams.get("doc") || "quick-start";
+  const { docId } = useParams();
+  const currentDocId = docId || "quick-start";
 
   const currentDoc =
     availableDocs.find((doc) => doc.id === currentDocId) || availableDocs[0];
@@ -76,7 +76,11 @@ const Docs: React.FC = () => {
                 transition={{ duration: 0.5 }}
                 className="markdown-body bg-transparent text-white mb-16"
               >
-                <MarkdownRenderer content={markdown} />
+                <MarkdownRenderer 
+                  content={markdown} 
+                  publishDate={currentDoc.publishDate}
+                  author={currentDoc.author}
+                />
               </motion.div>
             )}
           </div>

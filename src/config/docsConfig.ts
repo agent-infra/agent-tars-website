@@ -4,6 +4,8 @@ export interface DocItem {
   path: string;
   githubPath: string;
   category?: string;
+  publishDate?: string;
+  author?: string;
 }
 
 export const availableDocs: DocItem[] = [
@@ -13,7 +15,9 @@ export const availableDocs: DocItem[] = [
     path: "quick-start",
     githubPath:
       "https://raw.githubusercontent.com/bytedance/UI-TARS-desktop/refs/heads/main/apps/agent-tars/docs/quick-start.md",
-    category: "Getting Started"
+    category: "Getting Started",
+    publishDate: "2025-03-18",
+    author: "Agent TARS Team"
   },
   // {
   //   id: "installation",

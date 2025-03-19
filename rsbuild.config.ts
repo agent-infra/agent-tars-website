@@ -8,6 +8,9 @@ export default defineConfig({
       index: "./src/entry.tsx",
     },
   },
+  server: {
+    historyApiFallback: true,
+  },
   html: {
     title: "Agent TARS",
     favicon: 'https://github.com/bytedance/UI-TARS-desktop/blob/main/apps/ui-tars/resources/favicon-32x32.png?raw=true',

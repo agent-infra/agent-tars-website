@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { availableDocs, getDocsByCategory } from "../config/docsConfig";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@nextui-org/react";
 import { FiMenu, FiX, FiChevronRight, FiChevronDown } from "react-icons/fi";
 
 export const DocsSidebar: React.FC = () => {
-  const [searchParams] = useSearchParams();
+  const { docId } = useParams();
   const [isOpen, setIsOpen] = useState(false);
   const [expandedCategories, setExpandedCategories] = useState<
     Record<string, boolean>
   >({});
   const [isMobile, setIsMobile] = useState(false);
-  const currentDocId = searchParams.get("doc") || "quick-start";
+  const currentDocId = docId || "quick-start";
   const docsByCategory = getDocsByCategory();
 
   // Check if mobile view
@@ -152,7 +152,7 @@ export const DocsSidebar: React.FC = () => {
                             {docs.map((doc) => (
                               <li key={doc.id}>
                                 <Link
-                                  to={`/docs?doc=${doc.id}`}
+                                  to={`/${doc.id}`}
                                   className={`
                                     block px-3 py-2 rounded-md transition-colors text-sm
                                     ${

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { HashRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Navbar } from "./components/Navbar";
 import Home from "./pages/Home";
 import Blog from "./pages/Blog";
@@ -20,15 +20,17 @@ const App: React.FC = () => {
   }
 
   return (
-    <HashRouter>
+    <BrowserRouter>
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/showcase" element={<Showcase />} />
           <Route path="/docs" element={<Docs />} />
+          {/* 添加文档路径直接访问路由 */}
+          <Route path="/:docId" element={<Docs />} />
         </Routes>
-    </HashRouter>
+    </BrowserRouter>
   );
 };
 
