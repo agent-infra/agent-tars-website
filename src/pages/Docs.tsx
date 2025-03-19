@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 import { availableDocs } from "../config/docsConfig";
 import { DocsSidebar } from "../components/DocsSidebar";
 import { TableOfContents } from "../components/TableOfContents";
+import { getLocalMarkdown } from "../utils/markdownLoader";
 
 const Docs: React.FC = () => {
   const [markdown, setMarkdown] = useState<string>("");
@@ -20,10 +21,26 @@ const Docs: React.FC = () => {
   useEffect(() => {
     const fetchMarkdown = async () => {
       setIsLoading(true);
+      
       try {
-        const response = await fetch(currentDoc.githubPath);
-        const text = await response.text();
-        setMarkdown(text);
+        // Check if we have a local version first
+        if (currentDoc.localPath) {
+          const localContent = getLocalMarkdown(currentDoc.localPath);
+          if (localContent) {
+            setMarkdown(localContent);
+            setIsLoading(false);
+            return;
+          }
+        }
+        
+        // Otherwise fetch from GitHub
+        if (currentDoc.githubPath) {
+          const response = await fetch(currentDoc.githubPath);
+          const text = await response.text();
+          setMarkdown(text);
+        } else {
+          setMarkdown("# Document Not Found\nThe requested document could not be loaded.");
+        }
       } catch (error) {
         console.error("Failed to fetch markdown:", error);
         setMarkdown("# Error\nFailed to load documentation.");

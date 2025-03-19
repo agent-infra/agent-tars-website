@@ -36,7 +36,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
                 {children}
               </h1>
               {(publishDate || author) && (
-                <div className="flex items-center gap-3 mb-6 text-sm text-gray-400 mb-10">
+                <div className="flex items-center gap-1 mb-6 text-sm text-gray-400 mb-10">
                   {publishDate && <span>{publishDate}</span>}
                   {author && (
                     <>

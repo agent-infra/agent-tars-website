@@ -10,6 +10,15 @@ export default defineConfig({
       verbose: true,
     }),
   ],
+  tools: {
+    rspack: (config) => {
+      config.module!.rules!.push({
+        test: /\.md$/,
+        type: "asset/source",
+      });
+      return config;
+    },
+  },
   source: {
     entry: {
       index: "./src/entry.tsx",
