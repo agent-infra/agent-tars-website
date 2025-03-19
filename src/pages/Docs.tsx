@@ -42,11 +42,11 @@ const Docs: React.FC = () => {
         <DocsSidebar />
 
         {/* Main content */}
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto p-6 mt-10">
           <div className="max-w-4xl mx-auto">
             <div className="flex justify-between items-center mb-8">
               <h1 className="text-3xl font-bold bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
-                {currentDoc.title}
+                {/* {currentDoc.title} */}
               </h1>
 
               <div className="flex items-center gap-4">
