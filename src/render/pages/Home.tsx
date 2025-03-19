@@ -3,13 +3,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Button, Card, CardBody } from "@nextui-org/react";
 import { HiOutlineLightBulb, HiCode } from "react-icons/hi";
 import { SiGithub } from "react-icons/si";
-import { FaTools, FaDesktop, FaDiagramProject } from "react-icons/fa";
+import { FaTools, FaDesktop } from "react-icons/fa";
 import { MdWorkspaces } from "react-icons/md";
 import { Modal, ModalContent, ModalBody } from "@nextui-org/react";
 import { FiDownload } from "react-icons/fi";
 import { Spinner } from "@nextui-org/react";
 import { FaPlay } from "react-icons/fa";
-import { WorkflowNodes } from "./WorkflowNodes";
+import { WorkflowNodes } from "../components/WorkflowNodes";
 import { Octokit } from "@octokit/rest";
 import { AiOutlineStar } from "react-icons/ai";
 

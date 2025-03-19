@@ -5,7 +5,7 @@ import { NextUIProvider } from "@nextui-org/react";
 
 import "./entry.css";
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const root = ReactDOM.createRoot(document.getElementById("root")!);
 root.render(
   <NextUIProvider>
     <App />

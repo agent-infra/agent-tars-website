@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import type { RsbuildPlugin } from "@rsbuild/core";
-import { availableDocs } from "../config/docsConfig";
+import { availableDocs, blogPosts, getBlogPermalink } from "../docs/config";
 
 export interface HtmlGeneratorOptions {
   /**
@@ -15,6 +15,12 @@ export interface HtmlGeneratorOptions {
    * @default true
    */
   generateDocRoutes?: boolean;
+
+  /**
+   * Whether to generate HTML files for blog routes
+   * @default true
+   */
+  generateBlogRoutes?: boolean;
 
   /**
    * Whether to output generation info to console
@@ -56,8 +62,11 @@ export const pluginHtmlGenerator = (
             ? availableDocs.map((doc) => `/${doc.id}`)
             : [];
 
-
-
+        // Get blog permalinks
+        const blogRoutes =
+          options.generateBlogRoutes !== false
+            ? blogPosts.map((post) => getBlogPermalink(post))
+            : [];
 
         // Read original index.html content
         const indexPath = path.join(outputDir, "index.html");
@@ -68,7 +77,6 @@ export const pluginHtmlGenerator = (
         const indexContent = fs.readFileSync(indexPath, "utf-8");
 
         // Create corresponding HTML files for each route
-
         for (const route of staticRoutes) {
           // Remove leading slash
           const routePath = route.startsWith("/") ? route.substring(1) : route;
@@ -93,19 +101,42 @@ export const pluginHtmlGenerator = (
           // Remove leading slash and create filename
           const routeId = route.startsWith("/") ? route.substring(1) : route;
           const htmlPath = path.join(outputDir, `${routeId}.html`);
-          
+
           // Write HTML file
           fs.writeFileSync(htmlPath, indexContent);
 
           if (options.verbose !== false) {
-            console.log(`[html-generator] Generated HTML for doc: ${route} as ${routeId}.html`);
+            console.log(
+              `[html-generator] Generated HTML for doc: ${route} as ${routeId}.html`
+            );
+          }
+        }
+
+        // Handle blog permalinks - create directory structure for each permalink
+        for (const route of blogRoutes) {
+          // Remove leading slash
+          const routePath = route.startsWith("/") ? route.substring(1) : route;
+
+          // Create directory structure
+          const dirPath = path.join(outputDir, routePath);
+          if (!fs.existsSync(dirPath)) {
+            fs.mkdirSync(dirPath, { recursive: true });
+          }
+
+          // Write HTML file
+          const htmlPath = path.join(dirPath, "index.html");
+          fs.writeFileSync(htmlPath, indexContent);
+
+          if (options.verbose !== false) {
+            console.log(`[html-generator] Generated HTML for blog: ${route}`);
           }
         }
 
         if (options.verbose !== false) {
           console.log(
-
-            `[html-generator] Successfully generated ${staticRoutes.length + docRoutes.length} HTML files`
+            `[html-generator] Successfully generated ${
+              staticRoutes.length + docRoutes.length + blogRoutes.length
+            } HTML files`
           );
         }
       } catch (error) {

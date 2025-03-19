@@ -25,9 +25,9 @@ const App: React.FC = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/:year/:month/:day/:slug" element={<Blog />} />
           <Route path="/showcase" element={<Showcase />} />
           <Route path="/docs" element={<Docs />} />
-          {/* 添加文档路径直接访问路由 */}
           <Route path="/:docId" element={<Docs />} />
         </Routes>
     </BrowserRouter>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import { availableDocs, getDocsByCategory } from "../config/docsConfig";
+import { availableDocs, getDocsByCategory } from "../../docs";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@nextui-org/react";
 import { FiMenu, FiX, FiChevronRight, FiChevronDown } from "react-icons/fi";
