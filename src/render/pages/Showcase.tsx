@@ -12,6 +12,7 @@ import {
   getCategoriesWithCounts,
   ShowcaseItem
 } from '../../data/showcaseData';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Showcase: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState("all");
@@ -22,6 +23,23 @@ const Showcase: React.FC = () => {
   const [shareItem, setShareItem] = useState<ShowcaseItem | null>(null);
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
   const categoriesWithCounts = getCategoriesWithCounts();
+  
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  // Check for item ID in URL query params
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const itemId = params.get('id');
+    
+    if (itemId) {
+      const item = showcaseItems.find(item => item.id === itemId);
+      if (item) {
+        setPreviewItem(item);
+        setIsPreviewOpen(true);
+      }
+    }
+  }, [location]);
 
   useEffect(() => {
     // Simulate loading data
@@ -37,11 +55,15 @@ const Showcase: React.FC = () => {
   };
 
   const handleOpenPreview = (item: ShowcaseItem) => {
+    // Update URL with item ID
+    navigate(`/showcase?id=${item.id}`, { replace: true });
     setPreviewItem(item);
     setIsPreviewOpen(true);
   };
 
   const handleClosePreview = () => {
+    // Remove item ID from URL
+    navigate('/showcase', { replace: true });
     setIsPreviewOpen(false);
   };
   
