@@ -56,8 +56,8 @@ export const pluginHtmlGenerator = (
             ? availableDocs.map((doc) => `/${doc.id}`)
             : [];
 
-        // Merge all routes that need HTML generation
-        const allRoutes = [...staticRoutes, ...docRoutes];
+
+
 
         // Read original index.html content
         const indexPath = path.join(outputDir, "index.html");
@@ -68,7 +68,8 @@ export const pluginHtmlGenerator = (
         const indexContent = fs.readFileSync(indexPath, "utf-8");
 
         // Create corresponding HTML files for each route
-        for (const route of allRoutes) {
+
+        for (const route of staticRoutes) {
           // Remove leading slash
           const routePath = route.startsWith("/") ? route.substring(1) : route;
 
@@ -87,9 +88,24 @@ export const pluginHtmlGenerator = (
           }
         }
 
+        // Handle doc routes differently - generate id.html files directly in output directory
+        for (const route of docRoutes) {
+          // Remove leading slash and create filename
+          const routeId = route.startsWith("/") ? route.substring(1) : route;
+          const htmlPath = path.join(outputDir, `${routeId}.html`);
+          
+          // Write HTML file
+          fs.writeFileSync(htmlPath, indexContent);
+
+          if (options.verbose !== false) {
+            console.log(`[html-generator] Generated HTML for doc: ${route} as ${routeId}.html`);
+          }
+        }
+
         if (options.verbose !== false) {
           console.log(
-            `[html-generator] Successfully generated ${allRoutes.length} HTML files`
+
+            `[html-generator] Successfully generated ${staticRoutes.length + docRoutes.length} HTML files`
           );
         }
       } catch (error) {
