@@ -6,17 +6,16 @@
     <title>Agent TARS</title>
     <script type="text/javascript">
       // SPA (Single Page Application) Redirect Handler Script
-      // This script works in conjunction with the 404.html redirect mechanism
-      // to properly handle client-side routing for GitHub Pages or similar static hosts
       (function () {
-        // Check if there's a redirect URL stored in sessionStorage from a previous navigation
+        // First, try to restore any redirected route from sessionStorage
         var redirect = sessionStorage.redirect;
         delete sessionStorage.redirect;
+        
         if (redirect && redirect !== location.href) {
-          // Restore the URL that was originally requested before the 404 redirect
           history.replaceState(null, null, redirect);
+          return; // Exit early if we've restored from session
         }
-
+        
         // Process URL parameters from 404.html redirect
         var l = window.location;
         if (l.search) {
@@ -32,23 +31,22 @@
           
           // Check if this is a redirect from 404.html (contains 'p' parameter)
           if (q.p !== undefined) {
-            // Reconstruct the original URL:
-            // - Base path from current location
-            // - Path segments from 'p' parameter
-            // - Original query string from 'q' parameter
-            // - Hash fragment preserved as-is
-            var path = q.p;
-            var newPath =
-              l.pathname.split("?")[0] +
-              (path ? "/" + path : "") +
-              (q.q ? "?" + q.q : "") +
-              l.hash;
+            // Reconstruct the original URL correctly
+            var path = q.p || '';
+            var newPath = path ? '/' + path : '/';
             
-            // Store the reconstructed path in sessionStorage for later use
-            sessionStorage.redirect = newPath;
+            // Add back any query parameters from the original request
+            if (q.q) {
+              newPath += '?' + q.q;
+            }
             
-            // Perform the actual redirect to the reconstructed URL
-            window.location.href = newPath;
+            // Add back any hash fragment
+            if (l.hash) {
+              newPath += l.hash;
+            }
+            
+            // Replace the current URL with the reconstructed one without storing in session
+            history.replaceState(null, null, newPath);
           }
         }
       })();

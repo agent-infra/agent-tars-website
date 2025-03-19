@@ -5,9 +5,6 @@
   <title>Agent TARS</title>
   <script type="text/javascript">
     // GitHub Pages SPA (Single Page Application) Redirect Script
-    // This script handles client-side routing for SPAs hosted on GitHub Pages
-    // It captures the current URL when a 404 occurs and redirects back to the index.html
-    // with the original path information preserved in query parameters
     (function() {
       // Define how many segments of the URL path to preserve
       // For root-level deployment, keep this as 0
@@ -16,31 +13,32 @@
       // Store location object for easier reference
       var l = window.location;
       
-      // Extract repository name from the path (first segment after domain)
-      var repo = l.pathname.split('/')[1];
+      // Construct the base URL correctly
+      var baseUrl = l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '');
       
-      // Construct the repository path based on segments to keep
-      var repoPath = l.pathname.slice(1).split('/').slice(0, pathSegmentsToKeep).join('/');
-      repoPath = repoPath ? '/' + repoPath : '';
+      // Extract path segments to keep (for subdirectory deployments)
+      var pathPrefix = '';
+      if (pathSegmentsToKeep > 0) {
+        pathPrefix = l.pathname.split('/').slice(0, pathSegmentsToKeep + 1).join('/');
+      }
       
-      // Redirect to index.html with the original path encoded as query parameters:
-      // - 'p' parameter contains the original path
-      // - 'q' parameter preserves any original query string
-      // - hash fragment (#) is preserved as-is
+      // Extract the path that needs to be preserved as a parameter
+      var remainingPath = l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/');
+      
+      // Handle query parameters properly
+      var queryParams = l.search ? ('&q=' + encodeURIComponent(l.search.slice(1))) : '';
+      
+      // Redirect to the index page with path information as query parameters
       l.replace(
-        l.protocol + '//' + l.hostname + 
-        (l.port ? ':' + l.port : '') + 
-        repoPath + '/?p=' + 
-        encodeURIComponent(
-          l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/')
-        ) + 
-        (l.search ? '&q=' + encodeURIComponent(l.search.slice(1)) : '') + 
-        l.hash
+        baseUrl + pathPrefix + '/?p=' + encodeURIComponent(remainingPath) + 
+        queryParams +
+        (l.hash || '')
       );
     }());
   </script>
 </head>
 <body>
-  Redirecting to homepage...
+  <h2>Redirecting...</h2>
+  <p>If you are not redirected automatically, please click <a href="/">here</a>.</p>
 </body>
 </html>
