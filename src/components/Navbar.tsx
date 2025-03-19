@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@nextui-org/react";
 import { FiDownload } from "react-icons/fi";
 import { FaTwitter } from "react-icons/fa";
+import Icon from "./icon.png";
 
 export const Navbar: React.FC = () => {
   return (
@@ -10,11 +11,7 @@ export const Navbar: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
         <div className="flex items-center gap-6">
           <Link to="/" className="flex items-center">
-            <img
-              src="https://github.com/bytedance/UI-TARS-desktop/blob/main/apps/ui-tars/resources/icon.png?raw=true"
-              alt="TARS Logo"
-              className="h-8 w-8 mr-0"
-            />
+            <img src={Icon} alt="TARS Logo" className="h-8 w-8 mr-0" />
             {/* <span className="text-white font-medium">TARS</span> */}
           </Link>
 
