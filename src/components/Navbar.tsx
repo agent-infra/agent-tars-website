@@ -17,12 +17,6 @@ export const Navbar: React.FC = () => {
 
           <div className="flex items-center gap-6">
             <Link
-              to="/quick-start"
-              className="text-gray-300 hover:text-white transition-colors"
-            >
-              Docs
-            </Link>
-            <Link
               to="/blog"
               className="text-gray-300 hover:text-white transition-colors"
             >

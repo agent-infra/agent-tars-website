@@ -1,4 +1,4 @@
-# Getting started with Agent TARS
+# Announcing Agent TARS (Preview)
 
 ## Introduction
 
