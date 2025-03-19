@@ -127,7 +127,7 @@ export const ShareModal: React.FC<ShareModalProps> = ({ isOpen, onClose, item })
                     readOnly
                     className="flex-1"
                     classNames={{
-                      inputWrapper: "bg-white/5 border border-white/10",
+                      // inputWrapper: "bg-white/5 border border-white/10",
                       input: "text-white",
                     }}
                   />

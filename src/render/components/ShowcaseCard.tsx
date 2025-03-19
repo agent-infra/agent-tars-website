@@ -82,7 +82,21 @@ export const ShowcaseCard: React.FC<ShowcaseCardProps> = ({
           </div>
           
           <h3 className="text-lg font-semibold text-white mb-1 line-clamp-2">{item.title}</h3>
-          <p className="text-sm text-gray-400 line-clamp-2">{item.description}</p>
+          <p className="text-sm text-gray-400 line-clamp-2 mb-3">{item.description}</p>
+          
+          {/* Tags */}
+          {item.tags && item.tags.length > 0 && (
+            <div className="flex flex-wrap gap-1 mt-2 mb-1">
+              {item.tags.map((tag, i) => (
+                <span 
+                  key={i} 
+                  className="text-[10px] px-1.5 py-0.5 rounded-full bg-white/5 text-gray-400 border border-white/10"
+                >
+                  #{tag}
+                </span>
+              ))}
+            </div>
+          )}
         </div>
       </Card>
     </motion.div>

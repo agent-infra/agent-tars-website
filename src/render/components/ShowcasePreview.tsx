@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Modal, ModalContent } from "@nextui-org/react";
+import { Modal, ModalContent, Button, Chip } from "@nextui-org/react";
 import { ShowcaseItem } from "../../data/showcaseData";
 import { BrowserShell } from "./BrowserShell";
 
