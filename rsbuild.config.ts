@@ -1,14 +1,10 @@
 import { defineConfig } from "@rsbuild/core";
 import { pluginReact } from "@rsbuild/plugin-react";
 import { pluginHtmlGenerator } from "./src/build/htmlGeneratorPlugin";
-import { pluginMdx } from "@rsbuild/plugin-mdx";
 
 export default defineConfig({
   plugins: [
     pluginReact(),
-    pluginMdx({
-      extensions: [".mdx"],
-    }),
     pluginHtmlGenerator({
       verbose: true,
     }),
