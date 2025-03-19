@@ -3,15 +3,15 @@
   "version": "1.0.0",
   "dependencies": {
     "@nextui-org/button": "^2.0.26",
-    "@nextui-org/theme": "2.4.5",
     "@nextui-org/react": "2.4.8",
-    "framer-motion": "^10.16.4",
-    "react-icons": "^4.11.0",
+    "@nextui-org/theme": "2.4.5",
     "@octokit/rest": "^20.0.1",
-    "react-router-dom": "^6.16.0",
+    "framer-motion": "^10.16.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.11.0",
     "react-markdown": "^9.0.1",
+    "react-router-dom": "^6.16.0",
     "rehype-highlight": "^7.0.0",
     "rehype-raw": "^7.0.0",
     "remark-gfm": "^4.0.0"
@@ -19,6 +19,7 @@
   "devDependencies": {
     "@rsbuild/core": "1.2.19",
     "@rsbuild/plugin-react": "1.1.1",
+    "@types/node": "^22.13.10",
     "@types/react": "^18.2.75",
     "@types/react-dom": "^18.2.24",
     "autoprefixer": "^10.4.20",
