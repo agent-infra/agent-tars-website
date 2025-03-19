@@ -1,7 +1,7 @@
-import React from "react";
-import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, Spinner } from "@nextui-org/react";
+import React, { useState } from "react";
+import { Modal, ModalContent } from "@nextui-org/react";
 import { ShowcaseItem } from "../../data/showcaseData";
-import { FiExternalLink, FiX, FiShare2 } from "react-icons/fi";
+import { BrowserShell } from "./BrowserShell";
 
 interface ShowcasePreviewProps {
   isOpen: boolean;
@@ -17,11 +17,14 @@ export const ShowcasePreview: React.FC<ShowcasePreviewProps> = ({
   onShare 
 }) => {
   const [isLoading, setIsLoading] = React.useState(true);
+  const [currentUrl, setCurrentUrl] = useState("");
+  const iframeRef = React.useRef<HTMLIFrameElement>(null);
 
   // Reset loading state when modal opens with new item
   React.useEffect(() => {
-    if (isOpen) {
+    if (isOpen && item) {
       setIsLoading(true);
+      setCurrentUrl(item.link);
     }
   }, [isOpen, item?.id]);
 
@@ -34,77 +37,55 @@ export const ShowcasePreview: React.FC<ShowcasePreviewProps> = ({
     }
   };
 
+  const handleUrlChange = (newUrl: string) => {
+    setCurrentUrl(newUrl);
+  };
+
+  const handleNavigate = (type: 'back' | 'forward' | 'refresh') => {
+    if (!iframeRef.current) return;
+
+    if (type === 'back' && iframeRef.current.contentWindow) {
+      iframeRef.current.contentWindow.history.back();
+    } else if (type === 'forward' && iframeRef.current.contentWindow) {
+      iframeRef.current.contentWindow.history.forward();
+    } else if (type === 'refresh') {
+      setIsLoading(true);
+      iframeRef.current.src = currentUrl;
+    }
+  };
+
   return (
     <Modal 
       isOpen={isOpen} 
       onClose={onClose}
       size="5xl"
       classNames={{
-        base: "bg-black/95 backdrop-blur-xl",
-        header: "border-b border-white/10",
+        base: "mx-auto my-auto max-w-[90%] max-h-[90%]",
+        wrapper: "items-center justify-center",
         body: "p-0",
-        footer: "border-t border-white/10",
-        wrapper: "max-w-[90%]"
       }}
     >
       <ModalContent>
-        <ModalHeader className="flex justify-between items-center">
-          <div>
-            <h3 className="text-xl font-semibold">{item.title}</h3>
-            <p className="text-sm text-gray-400">{item.description}</p>
-          </div>
-          <div className="flex gap-2">
-            <Button 
-              isIconOnly 
-              variant="flat" 
-              className="bg-white/10 hover:bg-white/20"
-              onClick={handleShare}
-            >
-              <FiShare2 />
-            </Button>
-            <Button isIconOnly variant="light" onPress={onClose}>
-              <FiX />
-            </Button>
-          </div>
-        </ModalHeader>
-        
-        <ModalBody className="relative w-full h-full">
-          {isLoading && (
-            <div className="absolute inset-0 flex items-center justify-center bg-black/50 z-10">
-              <Spinner size="lg" color="white" />
-            </div>
-          )}
-          
-          <div className="w-full h-full flex justify-center left-0 top-0">
-            <div className="w-[100%]">
-              <iframe 
-                src={item.link}
-                className="w-full h-[90vh]"
-                onLoad={() => setIsLoading(false)}
-                title={item.title}
-                frameBorder="0"
-              />
-            </div>
-          </div>
-        </ModalBody>
-        
-        <ModalFooter>
-          <Button 
-            as="a"
-            href={item.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            color="primary"
-            endContent={<FiExternalLink />}
-            className="
-              bg-gradient-to-r from-[#6D28D9] to-[#7C3AED]
-              hover:from-[#5B21B6] hover:to-[#6D28D9]
-              text-white
-            "
+        <div className="w-full h-[90vh] bg-background">
+          <BrowserShell
+            url={currentUrl}
+            loading={isLoading}
+            onUrlChange={handleUrlChange}
+            onNavigate={handleNavigate}
+            onClose={onClose}
+            onShare={handleShare}
+            title={`${item.title} - ${item.description}`}
           >
-            Open in New Tab
-          </Button>
-        </ModalFooter>
+            <iframe 
+              ref={iframeRef}
+              src={item.link}
+              className="w-full h-full"
+              onLoad={() => setIsLoading(false)}
+              title={item.title}
+              frameBorder="0"
+            />
+          </BrowserShell>
+        </div>
       </ModalContent>
     </Modal>
   );
