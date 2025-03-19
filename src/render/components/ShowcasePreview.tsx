@@ -37,10 +37,6 @@ export const ShowcasePreview: React.FC<ShowcasePreviewProps> = ({
     }
   };
 
-  const handleUrlChange = (newUrl: string) => {
-    setCurrentUrl(newUrl);
-  };
-
   const handleNavigate = (type: 'back' | 'forward' | 'refresh') => {
     if (!iframeRef.current) return;
 
@@ -70,11 +66,10 @@ export const ShowcasePreview: React.FC<ShowcasePreviewProps> = ({
           <BrowserShell
             url={currentUrl}
             loading={isLoading}
-            onUrlChange={handleUrlChange}
             onNavigate={handleNavigate}
             onClose={onClose}
             onShare={handleShare}
-            title={`${item.title} - ${item.description}`}
+            title={item.title}
           >
             <iframe 
               ref={iframeRef}
@@ -83,6 +78,10 @@ export const ShowcasePreview: React.FC<ShowcasePreviewProps> = ({
               onLoad={() => setIsLoading(false)}
               title={item.title}
               frameBorder="0"
+              style={{ 
+                borderRadius: '0 0 12px 12px',
+                backgroundColor: '#fff'
+              }}
             />
           </BrowserShell>
         </div>

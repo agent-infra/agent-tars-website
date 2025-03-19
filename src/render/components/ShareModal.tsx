@@ -10,7 +10,7 @@ import {
   Tabs,
   Tab
 } from "@nextui-org/react";
-import { FiCopy, FiCheck, FiDownload, FiLink } from "react-icons/fi";
+import { FiCopy, FiCheck, FiDownload, FiLink, FiX } from "react-icons/fi";
 import { ShowcaseItem } from "../../data/showcaseData";
 
 interface ShareModalProps {
@@ -86,19 +86,38 @@ export const ShareModal: React.FC<ShareModalProps> = ({ isOpen, onClose, item })
       classNames={{
         base: "bg-black/95 backdrop-blur-xl",
         header: "border-b border-white/10",
-        footer: "border-t border-white/10",
+        backdrop: "bg-black/70 backdrop-blur-md",
+        wrapper: "backdrop-blur-md"
       }}
+      hideCloseButton
     >
       <ModalContent>
-        <ModalHeader>
-          <h3 className="text-xl font-semibold">Share "{item.title}"</h3>
+        <ModalHeader className="flex flex-row justify-between items-center">
+          <h3 className="text-xl font-semibold text-white">Share "{item.title}"</h3>
+          <Button
+            isIconOnly
+            size="sm"
+            variant="light"
+            onPress={onClose}
+            className="text-white/70 hover:text-white bg-white/10 hover:bg-white/20"
+          >
+            <FiX size={18} />
+          </Button>
         </ModalHeader>
         
         <ModalBody>
-          <Tabs aria-label="Share options">
+          <Tabs 
+            aria-label="Share options"
+            classNames={{
+              tabList: "bg-white/5 border border-white/10",
+              cursor: "bg-white/20",
+              tab: "text-white",
+              tabContent: "text-white/90 group-data-[selected=true]:text-white"
+            }}
+          >
             <Tab key="link" title="Share Link">
               <div className="py-4">
-                <p className="text-sm text-gray-400 mb-4">
+                <p className="text-sm text-white/80 mb-4">
                   Share this showcase item with a direct link
                 </p>
                 
@@ -109,6 +128,7 @@ export const ShareModal: React.FC<ShareModalProps> = ({ isOpen, onClose, item })
                     className="flex-1"
                     classNames={{
                       inputWrapper: "bg-white/5 border border-white/10",
+                      input: "text-white",
                     }}
                   />
                   <Button
@@ -125,7 +145,7 @@ export const ShareModal: React.FC<ShareModalProps> = ({ isOpen, onClose, item })
             
             <Tab key="local" title="Local HTML">
               <div className="py-4">
-                <p className="text-sm text-gray-400 mb-4">
+                <p className="text-sm text-white/80 mb-4">
                   Download this showcase as a standalone HTML file
                 </p>
                 
@@ -142,7 +162,7 @@ export const ShareModal: React.FC<ShareModalProps> = ({ isOpen, onClose, item })
             
             <Tab key="remote" title="Remote Server">
               <div className="py-4">
-                <p className="text-sm text-gray-400 mb-4">
+                <p className="text-sm text-white/80 mb-4">
                   Upload to a remote server and get a shareable link
                 </p>
                 
@@ -154,6 +174,8 @@ export const ShareModal: React.FC<ShareModalProps> = ({ isOpen, onClose, item })
                   className="mb-4"
                   classNames={{
                     inputWrapper: "bg-white/5 border border-white/10",
+                    input: "text-white",
+                    label: "text-white/80",
                   }}
                 />
                 
@@ -170,8 +192,8 @@ export const ShareModal: React.FC<ShareModalProps> = ({ isOpen, onClose, item })
                 ) : (
                   <div className="space-y-4">
                     <div className="flex items-center gap-2 p-2 bg-green-500/20 border border-green-500/30 rounded-md">
-                      <FiCheck className="text-green-500" />
-                      <p className="text-sm text-green-500">Upload successful!</p>
+                      <FiCheck className="text-green-400" />
+                      <p className="text-sm text-green-400">Upload successful!</p>
                     </div>
                     
                     <div className="flex gap-2">
@@ -181,8 +203,9 @@ export const ShareModal: React.FC<ShareModalProps> = ({ isOpen, onClose, item })
                         className="flex-1"
                         classNames={{
                           inputWrapper: "bg-white/5 border border-white/10",
+                          input: "text-white",
                         }}
-                        startContent={<FiLink className="text-gray-400" />}
+                        startContent={<FiLink className="text-white/70" />}
                       />
                       <Button
                         color="primary"
@@ -203,12 +226,6 @@ export const ShareModal: React.FC<ShareModalProps> = ({ isOpen, onClose, item })
             </Tab>
           </Tabs>
         </ModalBody>
-        
-        <ModalFooter>
-          <Button variant="light" onPress={onClose}>
-            Close
-          </Button>
-        </ModalFooter>
       </ModalContent>
     </Modal>
   );
