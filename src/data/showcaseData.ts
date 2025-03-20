@@ -1,18 +1,23 @@
-export type CategoryType = "finance" | "technology" | "science" | "general";
+export type CategoryType =
+  | "finance"
+  | "technology"
+  | "science"
+  | "research"
+  | "general";
 
 export interface ShowcaseItem {
-  id: string;                  // Unique identifier for the showcase item
-  title: string;               // Title of the showcase item
-  description: string;         // Brief description of the showcase item
-  category: CategoryType;      // Category the item belongs to
-  imageUrl: string;            // URL for the item's preview image
-  link: string;                // Link to the full showcase content
-  date?: string;               // Optional publication date
-  languages?: string[];        // Optional list of languages used in the showcase
-  tags?: string[];             // Optional tags for filtering and categorization
+  id: string; // Unique identifier for the showcase item
+  title: string; // Title of the showcase item
+  description: string; // Brief description of the showcase item
+  category: CategoryType; // Category the item belongs to
+  imageUrl: string; // URL for the item's preview image
+  link: string; // Link to the full showcase content
+  date?: string; // Optional publication date
+  languages?: string[]; // Optional list of languages used in the showcase
+  tags?: string[]; // Optional tags for filtering and categorization
   author?: {
-    github: string;            // Author's GitHub username
-    name: string;              // Author's display name
+    github: string; // Author's GitHub username
+    name: string; // Author's display name
   };
 }
 
@@ -139,6 +144,22 @@ export const showcaseItems: ShowcaseItem[] = [
     author: {
       github: "sanyuan0704",
       name: "yangxingyuan",
+    },
+  },
+  {
+    id: "producthunt-top-projects-analysis",
+    title: "Top 5 most popular ProductHunt projects analysis report",
+    description:
+      "Tell me the top 5 most popular projects on ProductHunt today, analyze them in depth, and output a report to me",
+    category: "research",
+    imageUrl:
+      "https://images.ctfassets.net/72n9zqcdnf4y/33Bvg09ZWCRIuq8dtJSBaI/2a927c19b494bd895da84fe9a1b5c0a9/product-hunt.jpg",
+    link: "https://sf16-sg.tiktokcdn.com/obj/eden-sg/psvhouloj/agent-tars/producthunt-top-projects-analysis.html",
+    date: "2025-03-20",
+    languages: ["English"],
+    author: {
+      github: "ulivz",
+      name: "ULIVZ",
     },
   },
 ];

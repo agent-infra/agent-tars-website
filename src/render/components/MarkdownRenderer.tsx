@@ -3,6 +3,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import rehypeHighlight from "rehype-highlight";
+import { Link } from "react-router-dom";
 
 interface MarkdownRendererProps {
   content: string;
@@ -100,14 +101,31 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
         p: ({ node, ...props }) => (
           <p className="my-4 text-gray-300 leading-relaxed" {...props} />
         ),
-        a: ({ node, ...props }) => (
-          <a
-            className="text-blue-400 hover:text-blue-300 transition-colors underline underline-offset-2"
-            target="_blank"
-            rel="noopener noreferrer"
-            {...props}
-          />
-        ),
+        a: ({ node, href, ...props }) => {
+          // 检查是否为站内链接（不以 http:// 或 https:// 开头，且以 / 开头）
+          const isInternalLink = href && !href.match(/^(https?:)?\/\//) && href.startsWith('/');
+          
+          if (isInternalLink) {
+            return (
+              <Link
+                to={href}
+                className="text-blue-400 hover:text-blue-300 transition-colors underline underline-offset-2"
+                {...props}
+              />
+            );
+          }
+          
+          // 外部链接保持不变
+          return (
+            <a
+              href={href}
+              className="text-blue-400 hover:text-blue-300 transition-colors underline underline-offset-2"
+              target="_blank"
+              rel="noopener noreferrer"
+              {...props}
+            />
+          );
+        },
         ul: ({ node, ...props }) => (
           <ul className="my-4 list-disc pl-6 text-gray-300" {...props} />
         ),
