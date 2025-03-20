@@ -13,9 +13,9 @@ import {
   FiArrowLeft,
   FiShare2,
   FiX,
-  FiMaximize2,
   FiInfo,
   FiGithub,
+  FiMaximize2,
 } from "react-icons/fi";
 import { FaCode } from "react-icons/fa";
 import { showcaseItems, ShowcaseItem } from "../../data/showcaseData";
@@ -72,7 +72,7 @@ const ShowcaseDetail: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.2 }}
             className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
           >
             <motion.div
@@ -150,6 +150,7 @@ const ShowcaseDetail: React.FC = () => {
               loading={isLoading}
               title={item.title}
               onShare={() => setIsShareModalOpen(true)}
+              onExpand={handleExpandView}
             >
               <iframe
                 src={item.link}
@@ -242,7 +243,7 @@ const ShowcaseDetail: React.FC = () => {
                 )}
 
                 <div className="pt-4 flex gap-2">
-                  <Tooltip content="Focus View">
+                  {/* <Tooltip content="Focus View">
                     <Button
                       isIconOnly
                       variant="flat"
@@ -252,7 +253,7 @@ const ShowcaseDetail: React.FC = () => {
                     >
                       <FiMaximize2 />
                     </Button>
-                  </Tooltip>
+                  </Tooltip> */}
                   <Button
                     startContent={<FiShare2 />}
                     className="bg-gradient-to-r from-[#6D28D9] to-[#7C3AED] text-white w-full mb-3"

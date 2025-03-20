@@ -2,7 +2,9 @@
 
 ## Introduction
 
-**Agent TARS** is an open-source multimodal AI agent that leverages browser operations by visually interpreting web pages and seamlessly integrating with command lines and file systems.
+Hello everyone, we would like to introduce a new friend to you —— **Agent TARS**.
+
+**Agent TARS** is an open-source multimodal AI agent that leverages browser operations by visually interpreting web pages and seamlessly integrating with command lines and file systems. Here is a demonstration video as follows:
 
 <div className="bg-gray-900 w-full h-500 rounded-lg overflow-hidden">
   <video

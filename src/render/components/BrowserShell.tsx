@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { CircularProgress, IconButton, Tooltip } from "@mui/material";
-import { Refresh, Security, Close, Share } from "@mui/icons-material";
+import { Refresh, Security, Close, Share, Fullscreen } from "@mui/icons-material";
+import React from "react";
 
 const Shell = styled.div`
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -117,6 +118,7 @@ interface BrowserShellProps {
   onNavigate?: (type: "back" | "forward" | "refresh") => void;
   onClose?: () => void;
   onShare?: () => void;
+  onExpand?: () => void;  // 新增 onExpand 回调
   title?: string;
 }
 
@@ -128,6 +130,7 @@ export function BrowserShell({
   onNavigate,
   onClose,
   onShare,
+  onExpand,  // 新增 onExpand 参数
   title,
 }: BrowserShellProps) {
   const isSecure = url.startsWith("https://");
@@ -166,7 +169,19 @@ export function BrowserShell({
           <TitleDisplay>{title || "Secure Content"}</TitleDisplay>
 
           <ActionControls>
-            {onShare && (
+            {onExpand && (
+              <Tooltip title="Expand">
+                <IconButton
+                  size="small"
+                  onClick={onExpand}
+                  sx={{ color: "rgba(255, 255, 255, 0.7)" }}
+                >
+                  <Fullscreen fontSize="small" />
+                </IconButton>
+              </Tooltip>
+            )}
+            
+            {/* {onShare && (
               <Tooltip title="Share">
                 <IconButton
                   size="small"
@@ -176,7 +191,7 @@ export function BrowserShell({
                   <Share fontSize="small" />
                 </IconButton>
               </Tooltip>
-            )}
+            )} */}
 
             {onClose && (
               <Tooltip title="Close">

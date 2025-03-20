@@ -8,13 +8,15 @@ interface ShowcasePreviewProps {
   onClose: () => void;
   item: ShowcaseItem | null;
   onShare?: (item: ShowcaseItem) => void;
+  onExpand?: (item: ShowcaseItem) => void;
 }
 
 export const ShowcasePreview: React.FC<ShowcasePreviewProps> = ({ 
   isOpen, 
   onClose, 
   item,
-  onShare 
+  onShare,
+  onExpand
 }) => {
   const [isLoading, setIsLoading] = React.useState(true);
   const [currentUrl, setCurrentUrl] = useState("");
@@ -34,6 +36,13 @@ export const ShowcasePreview: React.FC<ShowcasePreviewProps> = ({
     if (onShare && item) {
       onClose(); // 先关闭预览
       onShare(item); // 然后打开分享模态框
+    }
+  };
+
+  const handleExpand = () => {
+    if (onExpand && item) {
+      onClose(); // 先关闭预览
+      onExpand(item); // 然后展开
     }
   };
 
@@ -69,6 +78,7 @@ export const ShowcasePreview: React.FC<ShowcasePreviewProps> = ({
             onNavigate={handleNavigate}
             onClose={onClose}
             onShare={handleShare}
+            onExpand={onExpand ? handleExpand : undefined}
             title={item.title}
           >
             <iframe 
