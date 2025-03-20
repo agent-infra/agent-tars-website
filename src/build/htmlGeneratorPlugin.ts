@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import type { RsbuildPlugin } from "@rsbuild/core";
 import { availableDocs, blogPosts, getBlogPermalink } from "../docs/config";
+import { showcaseItems } from "../data/showcaseData";
 
 export interface HtmlGeneratorOptions {
   /**
@@ -21,6 +22,12 @@ export interface HtmlGeneratorOptions {
    * @default true
    */
   generateBlogRoutes?: boolean;
+
+  /**
+   * Whether to generate HTML files for showcase routes
+   * @default true
+   */
+  generateShowcaseRoutes?: boolean;
 
   /**
    * Whether to output generation info to console
@@ -97,6 +104,12 @@ export const pluginHtmlGenerator = (
             ? blogPosts.map((post) => getBlogPermalink(post))
             : [];
 
+        // Get showcase routes
+        const showcaseRoutes =
+          options.generateShowcaseRoutes !== false
+            ? showcaseItems.map((item) => `/showcase/${item.id}`)
+            : [];
+
         // Read original index.html content
         const indexPath = path.join(outputDir, "index.html");
         if (!fs.existsSync(indexPath)) {
@@ -146,10 +159,24 @@ export const pluginHtmlGenerator = (
           });
         }
 
+        // Handle showcase routes
+        for (const route of showcaseRoutes) {
+          // Remove leading slash and create filename
+          const routeId = route.startsWith("/") ? route.substring(1) : route;
+          const htmlPath = path.join(outputDir, `${routeId}.html`);
+
+          writeHtmlFile({
+            outputPath: htmlPath,
+            content: indexContent,
+            logMessage: `Generated HTML for showcase: ${route} as ${routeId}.html`,
+            verbose: isVerbose,
+          });
+        }
+
         if (isVerbose) {
           console.log(
             `[html-generator] Successfully generated ${
-              staticRoutes.length + docRoutes.length + blogRoutes.length
+              staticRoutes.length + docRoutes.length + blogRoutes.length + showcaseRoutes.length
             } HTML files`
           );
         }
