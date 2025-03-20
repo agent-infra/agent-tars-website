@@ -241,39 +241,25 @@ const ShowcaseDetail: React.FC = () => {
                   </div>
                 )}
 
-                <div className="pt-4">
+                <div className="pt-4 flex gap-2">
+                  <Tooltip content="Focus View">
+                    <Button
+                      isIconOnly
+                      variant="flat"
+                      color="default"
+                      onClick={handleExpandView}
+                      className="bg-white/10 text-white hover:bg-white/20 flex-1"
+                    >
+                      <FiMaximize2 />
+                    </Button>
+                  </Tooltip>
                   <Button
-                    startContent={<FiMaximize2 />}
+                    startContent={<FiShare2 />}
                     className="bg-gradient-to-r from-[#6D28D9] to-[#7C3AED] text-white w-full mb-3"
-                    onClick={handleExpandView}
+                    onClick={() => setIsShareModalOpen(true)}
                   >
-                    Focus View
+                    Share
                   </Button>
-
-                  <div className="flex gap-2">
-                    <Tooltip content="Share">
-                      <Button
-                        isIconOnly
-                        variant="flat"
-                        color="default"
-                        onClick={() => setIsShareModalOpen(true)}
-                        className="bg-white/10 text-white hover:bg-white/20 flex-1"
-                      >
-                        <FiShare2 />
-                      </Button>
-                    </Tooltip>
-
-                    <Tooltip content="More Info">
-                      <Button
-                        isIconOnly
-                        variant="flat"
-                        color="default"
-                        className="bg-white/10 text-white hover:bg-white/20 flex-1"
-                      >
-                        <FiInfo />
-                      </Button>
-                    </Tooltip>
-                  </div>
                 </div>
               </div>
 
