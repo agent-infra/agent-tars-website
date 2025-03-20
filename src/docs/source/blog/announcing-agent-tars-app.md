@@ -1,10 +1,11 @@
+
 # Announcing Agent TARS App (Preview)
 
 ## Introduction
 
-Hello everyone, we would like to introduce a new friend to you —— **Agent TARS**.
+Hello everyone! We’re excited to introduce you to an friend — **Agent TARS**.  
 
-**Agent TARS** is an open-source multimodal AI agent that leverages browser operations by visually interpreting web pages and seamlessly integrating with command lines and file systems. Here is a demonstration video as follows:
+**Agent TARS** is an open-source multimodal AI agent that offers streamlined browser operations by interpreting web pages visually. It also effortlessly integrates with command lines and file systems. For a quick overview, check out the demo video below:  
 
 <div className="bg-gray-900 w-full h-500 rounded-lg overflow-hidden">
   <video
@@ -18,15 +19,27 @@ Hello everyone, we would like to introduce a new friend to you —— **Agent TA
       type="video/mp4"
     />
   </video>
-</div>
+</div>  
 
-## Install
+You can find more examples in our [Showcase](https://agent-tars.com/showcase) page.
 
-Please visit [Releases](https://github.com/bytedance/UI-TARS-desktop/releases?q=Agent+Tars&expanded=true) to download the latest Agent-TARS desktop application package.
+---
 
-## Configuration
+## Quick Start
 
-### LLM
+### Install  
+
+Visit [Releases](https://github.com/bytedance/UI-TARS-desktop/releases?q=Agent+Tars&expanded=true) page to download the latest desktop package of Agent TARS.
+
+![Github Releases](https://sf16-sg.tiktokcdn.com/obj/eden-sg/psvhouloj/images/releases.png)
+
+Currently, Agent TARS supports only macOS, but don’t worry — support for other platforms is on the way!
+
+---
+
+### Configuration
+
+When you open the app, you need to first open the lower-left corner to access the `Settings` page and  adjust the necessary settings:
 
 Before you begin, you will need to set some necessary configuration, You can click the left-bottom button to open the `setting` page:
 
@@ -44,7 +57,7 @@ For search config, you can set the search provider and api key:
 
 ![search-settings.png](https://lf3-static.bytednsdoc.com/obj/eden-cn/uhbfnupenuhf/agent-tars/search-setting.jpeg)
 
-## Start Your First Journey
+### Start Your First Journey
 
 Now you can start your first journey in Agent TARS! You can input your first question in the input box, and then press Enter to send your question. Here is an example:
 
@@ -56,7 +69,7 @@ We also support **Human In the Loop**, that means you can interact with the agen
 
 ![human-in-the-loop.jpeg](https://lf3-static.bytednsdoc.com/obj/eden-cn/uhbfnupenuhf/agent-tars/human-in-the-loop.jpeg)
 
-## Share Your Thead
+### Share Your Thead
 
 You can share your thread with others by the share button on the top menu.
 
@@ -65,13 +78,13 @@ There are two modes to share your thread:
 - **Local Html**: Agent TARS will bundle your thread into a html file, and you can share it with others.
 - **Remote Server Url**: Agent TARS will generate a url for you to share your thread with others, Agent TARS will upload the html bundle to a remote server.
 
-### Local Mode
+#### Local Mode
 
 You can click the share button to open the share modal, and then click the **Local Html** button to share your thread.
 
 ![local-share](https://lf3-static.bytednsdoc.com/obj/eden-cn/uhbfnupenuhf/agent-tars/local-share.jpeg)
 
-### Remote Mode
+#### Remote Mode
 
 For the remote share mode, you need to set the remote server url in the share modal:
 
@@ -85,12 +98,22 @@ Then Agent TARS will post a request to the remote server to upload the html bund
 > - Response:
 >   - data: { url: string }
 
-Then the server will return an object including the `url` parameter, which is the url to share your thread.
+Preview, share, and enjoy the awesome replay process!  
 
-### Enjoy
+---
 
-When you finish the shared process, you can preview the bundle and experience the wonderful replay process! That's really cool!
 
-## Feedback
+## What’s Next? 
 
-Follow us on [X](https://x.com/AgentTars) to learn about our latest releases, and join our Discord to share your findings on Agent TARS.
+This app marks the exciting first step in Agent TARS's journey, Next, we’ll share its inner workings and unique design with the community.  
+
+Stay updated by following us on X ([@AgentTars](https://x.com/AgentTars)) and join our Discord to share your experiences!  
+
+
+--- 
+
+## Links
+
+- X: https://x.com/AgentTars
+- Github: https://github.com/bytedance/UI-TARS-desktop
+- Showcase: https://agent-tars.com/showcase
