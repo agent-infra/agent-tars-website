@@ -173,7 +173,6 @@ const ShowcaseDetail: React.FC = () => {
                   )}
                 </div>
                 
-                {/* Author information */}
                 {item.author && (
                   <div className="flex items-center gap-3 py-2">
                     <Avatar
@@ -229,26 +228,26 @@ const ShowcaseDetail: React.FC = () => {
                 
                 <div className="pt-4">
                   <Button
-                    as="a"
-                    href={item.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    startContent={<FiExternalLink />}
+                    startContent={<FiMaximize2 />}
                     className="bg-gradient-to-r from-[#6D28D9] to-[#7C3AED] text-white w-full mb-3"
+                    onClick={handleExpandView}
                   >
-                    Open in New Tab
+                    Focus View
                   </Button>
                   
                   <div className="flex gap-2">
-                    <Tooltip content="Focus View">
+                    <Tooltip content="Open in New Tab">
                       <Button
+                        as="a"
+                        href={item.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         isIconOnly
                         variant="flat"
                         color="default"
-                        onClick={handleExpandView}
                         className="bg-white/10 text-white hover:bg-white/20 flex-1"
                       >
-                        <FiMaximize2 />
+                        <FiExternalLink />
                       </Button>
                     </Tooltip>
                     

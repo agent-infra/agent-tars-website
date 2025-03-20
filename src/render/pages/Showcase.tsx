@@ -78,26 +78,30 @@ const Showcase: React.FC = () => {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
             >
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                {filteredItems.map((item, index) => (
-                  <ShowcaseCard 
-                    key={item.id} 
-                    item={item} 
-                    index={index} 
-                    onOpenPreview={handleOpenPreview}
-                    onShareItem={handleShareItem}
-                  />
-                ))}
-              </div>
-              
-              {filteredItems.length === 0 && (
+              {filteredItems.length > 0 ? (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 auto-rows-fr">
+                  {filteredItems.map((item, index) => (
+                    <ShowcaseCard 
+                      key={item.id} 
+                      item={item} 
+                      index={index} 
+                      onOpenPreview={handleOpenPreview}
+                      onShareItem={handleShareItem}
+                    />
+                  ))}
+                </div>
+              ) : (
                 <motion.div 
-                  className="text-center py-16"
+                  className="flex flex-col items-center justify-center py-20 px-4 text-center bg-white/5 border border-white/10 rounded-xl"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.5 }}
                 >
-                  <p className="text-gray-400 text-lg">No items found in this category.</p>
+                  <div className="text-5xl mb-4 text-gray-500">🔍</div>
+                  <p className="text-gray-400 text-lg mb-2">No items found in this category</p>
+                  <p className="text-gray-500 text-sm max-w-md">
+                    Try selecting a different category or check back later for new additions
+                  </p>
                 </motion.div>
               )}
             </motion.div>

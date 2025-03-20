@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Card, Button, Avatar } from "@nextui-org/react";
+import { Card, Button } from "@nextui-org/react";
 import { ShowcaseItem } from "../../data/showcaseData";
 import { FiShare2, FiMonitor } from "react-icons/fi";
 
@@ -29,12 +29,11 @@ export const ShowcaseCard: React.FC<ShowcaseCardProps> = ({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      whileHover={{ y: -5, scale: 1.02 }}
       className="h-full"
     >
       <Card
         isPressable
-        className="h-full border border-white/10 bg-white/5 hover:bg-white/10 transition-all duration-300 overflow-hidden"
+        className="h-full flex flex-col border border-white/10 bg-white/5 hover:bg-white/10 transition-all duration-300 overflow-hidden"
         onPress={() => onOpenPreview(item)}
       >
         <div className="relative aspect-video overflow-hidden group">
@@ -71,7 +70,7 @@ export const ShowcaseCard: React.FC<ShowcaseCardProps> = ({
           />
         </div>
 
-        <div className="p-4">
+        <div className="p-4 flex-1 flex flex-col">
           <div className="flex items-center mb-2">
             <span className="text-xs px-2 py-1 rounded-full bg-white/10 text-purple-300">
               {item.category.charAt(0).toUpperCase() + item.category.slice(1)}
@@ -81,55 +80,43 @@ export const ShowcaseCard: React.FC<ShowcaseCardProps> = ({
             )}
           </div>
 
-          <h3 className="text-lg font-semibold text-white mb-1 line-clamp-2">
+          <h3 className="text-lg text-left font-semibold text-white mb-1 line-clamp-2">
             {item.title}
           </h3>
-          <p className="text-sm text-gray-400 line-clamp-2 mb-3">
+          <p className="text-sm text-left text-gray-400 line-clamp-2 mb-3">
             {item.description}
           </p>
 
-          {/* Author information */}
-          {item.author && (
-            <div className="flex items-center gap-2 mb-3">
-              <Avatar
-                src={`https://github.com/${item.author.github}.png`}
-                alt={item.author.name}
-                className="w-6 h-6 border border-white/20"
-              />
-              <span className="text-xs text-gray-300">
-                {item.author.name}
-              </span>
-            </div>
-          )}
+          <div className="mt-auto">
+            {item.languages && item.languages.length > 0 && (
+              <div className="flex flex-wrap gap-1 mt-2 mb-2">
+                <div className="flex items-center">
+                  {item.languages.map((language, i) => (
+                    <span
+                      key={i}
+                      className="text-xs px-1.5 py-0.5 rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/30 mr-1"
+                    >
+                      {language}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
 
-          {item.languages && item.languages.length > 0 && (
-            <div className="flex flex-wrap gap-1 mt-2 mb-2">
-              <div className="flex items-center">
-                {item.languages.map((language, i) => (
+            {/* Tags */}
+            {item.tags && item.tags.length > 0 && (
+              <div className="flex flex-wrap gap-1 mt-2 mb-1">
+                {item.tags.map((tag, i) => (
                   <span
                     key={i}
-                    className="text-xs px-1.5 py-0.5 rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/30 mr-1"
+                    className="text-[10px] px-1.5 py-0.5 rounded-full bg-white/5 text-gray-400 border border-white/10"
                   >
-                    {language}
+                    #{tag}
                   </span>
                 ))}
               </div>
-            </div>
-          )}
-
-          {/* Tags */}
-          {item.tags && item.tags.length > 0 && (
-            <div className="flex flex-wrap gap-1 mt-2 mb-1">
-              {item.tags.map((tag, i) => (
-                <span
-                  key={i}
-                  className="text-[10px] px-1.5 py-0.5 rounded-full bg-white/5 text-gray-400 border border-white/10"
-                >
-                  #{tag}
-                </span>
-              ))}
-            </div>
-          )}
+            )}
+          </div>
         </div>
       </Card>
     </motion.div>
