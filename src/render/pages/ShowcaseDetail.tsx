@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Button, Spinner, Chip, Tooltip, Avatar } from "@nextui-org/react";
-import { FiArrowLeft, FiShare2, FiX, FiMaximize2, FiExternalLink, FiInfo } from "react-icons/fi";
+import { Button, Spinner, Chip, Tooltip, Avatar, Link } from "@nextui-org/react";
+import { FiArrowLeft, FiShare2, FiX, FiMaximize2, FiInfo, FiGithub } from "react-icons/fi";
+import { FaCode } from "react-icons/fa";
 import { showcaseItems, ShowcaseItem } from '../../data/showcaseData';
 import { BrowserShell } from '../components/BrowserShell';
 import { ShareModal } from '../components/ShareModal';
@@ -155,12 +156,41 @@ const ShowcaseDetail: React.FC = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="lg:w-1/4 lg:sticky lg:top-24 lg:self-start"
           >
-            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6">
-              <h1 className="text-2xl font-bold mb-3 bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
-                {item.title}
-              </h1>
-              
-              <p className="text-gray-400 mb-5 text-sm">{item.description}</p>
+            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 space-y-6">
+              {/* Author section - Now prominently displayed at the top */}
+              {item.author && (
+                <div className="border-b border-white/10 pb-5">
+                  <h3 className="text-xs uppercase text-gray-500 mb-3">Created by</h3>
+                  <div className="flex items-center gap-4">
+                    <Avatar
+                      src={`https://github.com/${item.author.github}.png`}
+                      alt={item.author.name}
+                      className="w-16 h-16 border-2 border-white/20"
+                      showFallback
+                    />
+                    <div>
+                      <p className="text-white text-lg font-medium">{item.author.name}</p>
+                      <a 
+                        href={`https://github.com/${item.author.github}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm text-blue-400 hover:underline flex items-center gap-1 mt-1"
+                      >
+                        <FiGithub size={14} />
+                        @{item.author.github}
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              <div>
+                <h1 className="text-2xl font-bold mb-3 bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
+                  {item.title}
+                </h1>
+                
+                <p className="text-gray-400 mb-5 text-sm">{item.description}</p>
+              </div>
               
               <div className="space-y-5">
                 <div className="flex flex-wrap gap-2 items-center">
@@ -172,43 +202,6 @@ const ShowcaseDetail: React.FC = () => {
                     <span className="text-xs text-gray-400">{item.date}</span>
                   )}
                 </div>
-                
-                {item.author && (
-                  <div className="flex items-center gap-3 py-2">
-                    <Avatar
-                      src={`https://github.com/${item.author.github}.png`}
-                      alt={item.author.name}
-                      className="w-10 h-10 border-2 border-white/20"
-                    />
-                    <div>
-                      <p className="text-white text-sm font-medium">{item.author.name}</p>
-                      <a 
-                        href={`https://github.com/${item.author.github}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-xs text-blue-400 hover:underline"
-                      >
-                        @{item.author.github}
-                      </a>
-                    </div>
-                  </div>
-                )}
-                
-                {item.languages && item.languages.length > 0 && (
-                  <div>
-                    <h3 className="text-xs uppercase text-gray-500 mb-2">Languages</h3>
-                    <div className="flex flex-wrap gap-2">
-                      {item.languages.map((language, i) => (
-                        <span
-                          key={i}
-                          className="text-xs px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/30"
-                        >
-                          {language}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                )}
                 
                 {item.tags && item.tags.length > 0 && (
                   <div>
@@ -236,21 +229,6 @@ const ShowcaseDetail: React.FC = () => {
                   </Button>
                   
                   <div className="flex gap-2">
-                    <Tooltip content="Open in New Tab">
-                      <Button
-                        as="a"
-                        href={item.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        isIconOnly
-                        variant="flat"
-                        color="default"
-                        className="bg-white/10 text-white hover:bg-white/20 flex-1"
-                      >
-                        <FiExternalLink />
-                      </Button>
-                    </Tooltip>
-                    
                     <Tooltip content="Share">
                       <Button
                         isIconOnly
@@ -274,6 +252,28 @@ const ShowcaseDetail: React.FC = () => {
                       </Button>
                     </Tooltip>
                   </div>
+                </div>
+              </div>
+
+              {/* Contribute your own section */}
+              <div className="mt-8 pt-5 border-t border-white/10">
+                <div className="bg-gradient-to-r from-purple-900/30 to-indigo-900/30 border border-purple-500/20 rounded-lg p-4">
+                  <h3 className="font-medium text-purple-300 mb-2 flex items-center gap-2">
+                    <FaCode />
+                    Contribute Your Own
+                  </h3>
+                  <p className="text-sm text-gray-300 mb-3">
+                    Have an interesting project to showcase? We'd love to feature your work in our gallery!
+                  </p>
+                  <Button
+                    as={Link}
+                    href="https://github.com/bytedance/UI-TARS-desktop/issues/new?template=showcase_submission.md"
+                    target="_blank"
+                    className="bg-purple-600/80 hover:bg-purple-600 text-white text-sm w-full"
+                    size="sm"
+                  >
+                    Submit Your Project
+                  </Button>
                 </div>
               </div>
             </div>
