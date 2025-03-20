@@ -5,9 +5,9 @@ import { pluginHtmlGenerator } from "./src/build/htmlGeneratorPlugin";
 export default defineConfig({
   plugins: [
     pluginReact(),
-    // pluginHtmlGenerator({
-    //   verbose: true,
-    // }),
+    pluginHtmlGenerator({
+      verbose: true,
+    }),
   ],
   tools: {
     rspack: (config) => {
