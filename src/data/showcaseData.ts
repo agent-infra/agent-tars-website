@@ -111,7 +111,7 @@ export const showcaseItems: ShowcaseItem[] = [
     },
   },
   {
-    id: "lynx-repository-issues-report",
+    id: "tesla-stock-technical-analysis",
     title: "Technical analysis of Tesla's future stock price trends",
     description: "从技术面分析下特斯拉未来的股价走势",
     category: "finance",
