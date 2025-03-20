@@ -25,6 +25,25 @@ You can find more examples in our [Showcase](https://agent-tars.com/showcase) pa
 
 ---
 
+## Features
+
+Agent TARS brings a suite of powerful features to enhance your AI-driven workflows:
+
+- **🌐 Browser Operations:** Agent TARS leverages a sophisticated agent framework to execute complex tasks such as Deep Research and Operator functions. This enables comprehensive planning and execution of web-based operations.
+
+- **🛠️ Comprehensive Tool Support:** The system integrates seamlessly with a variety of tools including search engines, file editing capabilities, command line interfaces, and the [Model Context Protocol](https://www.anthropic.com/news/model-context-protocol) (MCP). This extensive toolset allows Agent TARS to handle intricate workflows with ease.
+
+- **💻️ Enhanced Desktop App:** Agent TARS comes with a revamped user interface that includes displays for browsers, multimodal elements, and session management. It also features model configuration options, dialogue flow visualization, and real-time tracking of browser and search statuses.
+
+- **🔄 Workflow Orchestration:** At its core, Agent TARS excels in connecting various GUI Agent tools. It smoothly orchestrates tasks such as searching, browsing, exploring links, and synthesizing information to produce final outputs.
+
+- **⚙️ Developer-Friendly Framework:** For developers, Agent TARS offers a simplified integration process with UI-TARS. It also provides a flexible framework for creating custom workflows in GUI Agent projects, making it an ideal choice for those looking to extend and customize their AI-driven applications.
+
+These features combine to make Agent TARS a powerful and versatile tool for AI-assisted browsing, research, and task execution.
+
+
+---
+
 ## Quick Start
 
 ### Install  
