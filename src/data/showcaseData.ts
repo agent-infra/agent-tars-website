@@ -1,11 +1,15 @@
+export type CategoryType = "finance" | "technology" | "science" | "general";
+
 export interface ShowcaseItem {
   id: string;
   title: string;
   description: string;
-  category: string;
+  category: CategoryType;
   imageUrl: string;
   link: string;
   date?: string;
+  languages?: string[];
+  tags?: string[];
 }
 
 export type Category = {
@@ -47,6 +51,7 @@ export const showcaseItems: ShowcaseItem[] = [
       "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=1000&auto=format&fit=crop",
     link: "https://sf16-sg.tiktokcdn.com/obj/eden-sg/psvhouloj/agent-tars/tesla-stock-decline-reasons.html",
     date: "2025-03-18",
+    languages: ["English"],
   },
   {
     id: "kipchoge-marathon-moon",
@@ -59,6 +64,7 @@ export const showcaseItems: ShowcaseItem[] = [
       "https://cdn.mos.cms.futurecdn.net/p7rWPJoYDKZ4wwoXHGmzPL-1200-80.jpg",
     link: "https://sf16-sg.tiktokcdn.com/obj/eden-sg/psvhouloj/agent-tars/kipchoge-marathon-moon.html",
     date: "2025-03-18",
+    languages: ["English"],
   },
   {
     id: "7-day-trip-plan-to-mexico-city",
@@ -70,6 +76,7 @@ export const showcaseItems: ShowcaseItem[] = [
       "https://www.cataloniahotels.com/en/blog/wp-content/uploads/2017/09/cataloniahotels-mexico2.jpg",
     link: "https://sf16-sg.tiktokcdn.com/obj/eden-sg/psvhouloj/agent-tars/7-day-trip-plan-to-mexico-city.html",
     date: "2025-03-18",
+    languages: ["English", "Spanish"],
   },
   {
     id: "lynx-repository-issues-report",
@@ -81,6 +88,30 @@ export const showcaseItems: ShowcaseItem[] = [
       "https://sf16-sg.tiktokcdn.com/obj/eden-sg/psvhouloj/images/lynx.png",
     link: "https://sf16-sg.tiktokcdn.com/obj/eden-sg/psvhouloj/agent-tars/lynx-repository-issues-report.html",
     date: "2025-03-18",
+    languages: ["English"],
+  },
+  {
+    id: "lynx-repository-issues-report",
+    title: "Technical analysis of Tesla's future stock price trends",
+    description: "从技术面分析下特斯拉未来的股价走势",
+    category: "finance",
+    imageUrl:
+      "https://sf16-sg.tiktokcdn.com/obj/eden-sg/psvhouloj/images/tesla-stock.png",
+    link: "https://sf16-sg.tiktokcdn.com/obj/eden-sg/psvhouloj/agent-tars/tesla-stock-technical-analysis.html",
+    date: "2025-03-20",
+    languages: ["Chinese"],
+  },
+  {
+    id: "hangzhou-to-weihai-travel-plan",
+    title: "Travel plan from Hangzhou to Weihai in detailed markdown format",
+    description:
+      "我想要在 2025 年清明节假期从杭州去威海旅游，给我规划旅游计划，用详细的 markdown 输出",
+    category: "general",
+    imageUrl:
+      "https://sf16-sg.tiktokcdn.com/obj/eden-sg/psvhouloj/images/weihai.jpeg",
+    link: "https://sf16-sg.tiktokcdn.com/obj/eden-sg/psvhouloj/agent-tars/hangzhou-to-weihai-travel-plan.html",
+    date: "2025-03-20",
+    languages: ["Chinese"],
   },
 ];
 
