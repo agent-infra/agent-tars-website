@@ -40,11 +40,11 @@ export default defineConfig({
       'twitter:creator': '@AgentTars',
       'twitter:title': 'Agent TARS - Open-source Multimodal AI Agent',
       'twitter:description': 'An open-source multimodal AI agent designed to revolutionize GUI interaction by visually interpreting web pages and seamlessly integrating with command lines and file systems.',
-      'twitter:image': 'https://github.com/bytedance/UI-TARS-desktop/blob/main/apps/agent-tars/public/twitter-card.png?raw=true',
+      'twitter:image': 'https://raw.githubusercontent.com/bytedance/UI-TARS-desktop/main/apps/agent-tars/static/hero.png',
       // Open Graph metadata (also used by Twitter)
       'og:title': 'Agent TARS - Open-source Multimodal AI Agent',
       'og:description': 'An open-source multimodal AI agent designed to revolutionize GUI interaction by visually interpreting web pages and seamlessly integrating with command lines and file systems.',
-      'og:image': 'https://github.com/bytedance/UI-TARS-desktop/blob/main/apps/agent-tars/public/twitter-card.png?raw=true',
+      'og:image': 'https://raw.githubusercontent.com/bytedance/UI-TARS-desktop/main/apps/agent-tars/static/hero.png',
       'og:url': 'https://agent-tars.com',
       'og:type': 'website',
     },
