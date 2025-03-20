@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Card, Button } from "@nextui-org/react";
 import { ShowcaseItem } from "../../data/showcaseData";
-import { FiPlay, FiShare2, FiMonitor } from "react-icons/fi";
+import { FiShare2, FiMonitor } from "react-icons/fi";
 
 interface ShowcaseCardProps {
   item: ShowcaseItem;
@@ -11,11 +11,11 @@ interface ShowcaseCardProps {
   onShareItem?: (item: ShowcaseItem) => void;
 }
 
-export const ShowcaseCard: React.FC<ShowcaseCardProps> = ({ 
-  item, 
-  index, 
+export const ShowcaseCard: React.FC<ShowcaseCardProps> = ({
+  item,
+  index,
   onOpenPreview,
-  onShareItem 
+  onShareItem,
 }) => {
   const handleShare = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -39,7 +39,7 @@ export const ShowcaseCard: React.FC<ShowcaseCardProps> = ({
       >
         <div className="relative aspect-video overflow-hidden group">
           <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-transparent z-10" />
-          
+
           {/* Share button */}
           <Button
             isIconOnly
@@ -49,7 +49,7 @@ export const ShowcaseCard: React.FC<ShowcaseCardProps> = ({
           >
             <FiShare2 className="text-white" />
           </Button>
-          
+
           {/* Preview button overlay */}
           <div className="absolute inset-0 flex items-center justify-center z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             <div className="flex flex-col items-center gap-2">
@@ -61,7 +61,7 @@ export const ShowcaseCard: React.FC<ShowcaseCardProps> = ({
               </span>
             </div>
           </div>
-          
+
           <motion.img
             src={item.imageUrl}
             alt={item.title}
@@ -70,7 +70,7 @@ export const ShowcaseCard: React.FC<ShowcaseCardProps> = ({
             transition={{ duration: 0.5 }}
           />
         </div>
-        
+
         <div className="p-4">
           <div className="flex items-center mb-2">
             <span className="text-xs px-2 py-1 rounded-full bg-white/10 text-purple-300">
@@ -80,16 +80,35 @@ export const ShowcaseCard: React.FC<ShowcaseCardProps> = ({
               <span className="ml-2 text-xs text-gray-400">{item.date}</span>
             )}
           </div>
-          
-          <h3 className="text-lg font-semibold text-white mb-1 line-clamp-2">{item.title}</h3>
-          <p className="text-sm text-gray-400 line-clamp-2 mb-3">{item.description}</p>
-          
+
+          <h3 className="text-lg font-semibold text-white mb-1 line-clamp-2">
+            {item.title}
+          </h3>
+          <p className="text-sm text-gray-400 line-clamp-2 mb-3">
+            {item.description}
+          </p>
+
+          {item.languages && item.languages.length > 0 && (
+            <div className="flex flex-wrap gap-1 mt-2 mb-2">
+              <div className="flex items-center">
+                {item.languages.map((language, i) => (
+                  <span
+                    key={i}
+                    className="text-xs px-1.5 py-0.5 rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/30 mr-1"
+                  >
+                    {language}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* Tags */}
           {item.tags && item.tags.length > 0 && (
             <div className="flex flex-wrap gap-1 mt-2 mb-1">
               {item.tags.map((tag, i) => (
-                <span 
-                  key={i} 
+                <span
+                  key={i}
                   className="text-[10px] px-1.5 py-0.5 rounded-full bg-white/5 text-gray-400 border border-white/10"
                 >
                   #{tag}
