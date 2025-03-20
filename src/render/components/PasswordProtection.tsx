@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Card, Input, Button } from "@nextui-org/react";
 import { motion } from "framer-motion";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import Icon from "./icon.png";
 
 interface PasswordProtectionProps {
   correctPassword: string;
@@ -66,8 +67,8 @@ export const PasswordProtection: React.FC<PasswordProtectionProps> = ({
             className="text-center mb-6"
           >
             <img
-              src="https://github.com/bytedance/UI-TARS-desktop/blob/main/apps/ui-tars/resources/icon.png?raw=true"
-              alt="TARS Logo"
+              src={Icon}
+              alt="Agent TARS Logo"
               className="h-16 w-16 mx-auto mb-4"
             />
             <h2 className="text-2xl font-bold text-white mb-2">Password Protected</h2>
