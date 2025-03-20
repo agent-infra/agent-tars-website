@@ -132,7 +132,7 @@ const LandingPage: React.FC = () => {
             transition={{ duration: 1.5 }}
             className="text-center mb-12"
           >
-            <h1 className="text-6xl sm:text-8xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-b from-white via-gray-100 to-gray-400">
+            <h1 className="text-6xl sm:text-8xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-b from-white via-gray-100 to-gray-400 pb-2">
               Agent TARS
             </h1>
             <p className="text-xl mb-8 text-gray-400">
