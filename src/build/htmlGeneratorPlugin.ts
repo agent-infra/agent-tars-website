@@ -48,10 +48,10 @@ function writeHtmlFile({
   if (!fs.existsSync(dirPath)) {
     fs.mkdirSync(dirPath, { recursive: true });
   }
-  
+
   // Write HTML file
   fs.writeFileSync(outputPath, content);
-  
+
   // Log output if verbose is enabled
   if (verbose) {
     console.log(`[html-generator] ${logMessage}`);
@@ -76,7 +76,7 @@ export const pluginHtmlGenerator = (
       try {
         const outputDir = api.context.distPath;
         const isVerbose = options.verbose !== false;
-        
+
         // Default static routes list
         const staticRoutes = ["/blog", "/showcase", "/docs"];
 
@@ -109,13 +109,12 @@ export const pluginHtmlGenerator = (
         for (const route of staticRoutes) {
           // Remove leading slash
           const routePath = route.startsWith("/") ? route.substring(1) : route;
-          const htmlPath = path.join(routePath, "index.html");
-          
+          const htmlPath = path.join(outputDir, `${routePath}.html`);
           writeHtmlFile({
             outputPath: htmlPath,
             content: indexContent,
             logMessage: `Generated HTML for route: ${route}`,
-            verbose: isVerbose
+            verbose: isVerbose,
           });
         }
 
@@ -124,12 +123,12 @@ export const pluginHtmlGenerator = (
           // Remove leading slash and create filename
           const routeId = route.startsWith("/") ? route.substring(1) : route;
           const htmlPath = path.join(outputDir, `${routeId}.html`);
-          
+
           writeHtmlFile({
             outputPath: htmlPath,
             content: indexContent,
             logMessage: `Generated HTML for doc: ${route} as ${routeId}.html`,
-            verbose: isVerbose
+            verbose: isVerbose,
           });
         }
 
@@ -138,12 +137,12 @@ export const pluginHtmlGenerator = (
           // Remove leading slash and create filename
           const routeId = route.startsWith("/") ? route.substring(1) : route;
           const htmlPath = path.join(outputDir, `${routeId}.html`);
-          
+
           writeHtmlFile({
             outputPath: htmlPath,
             content: indexContent,
             logMessage: `Generated HTML for blog: ${route} as ${routeId}.html`,
-            verbose: isVerbose
+            verbose: isVerbose,
           });
         }
 
