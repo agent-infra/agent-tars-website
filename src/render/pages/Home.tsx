@@ -136,8 +136,8 @@ const LandingPage: React.FC = () => {
               Agent TARS
             </h1>
             <p className="text-xl mb-8 text-gray-400">
-              An open-source GUI agent designed to revolutionize multimodal
-              interaction
+              An open-source <b>multimodal</b> AI agent <br/>Offering
+              seamless integration with a wide range of real-world tools.
             </p>
             <div className="flex gap-4 justify-center mb-12">
               <Button
