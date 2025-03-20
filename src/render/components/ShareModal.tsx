@@ -28,7 +28,7 @@ export const ShareModal: React.FC<ShareModalProps> = ({ isOpen, onClose, item })
   
   if (!item) return null;
   
-  const shareUrl = `${window.location.origin}/showcase?id=${item.id}`;
+  const shareUrl = `${window.location.origin}/showcase/${item.id}`;
   
   const handleCopyLink = () => {
     navigator.clipboard.writeText(shareUrl)

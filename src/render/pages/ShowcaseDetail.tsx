@@ -1,12 +1,26 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Button, Spinner, Chip, Tooltip, Avatar, Link } from "@nextui-org/react";
-import { FiArrowLeft, FiShare2, FiX, FiMaximize2, FiInfo, FiGithub } from "react-icons/fi";
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  Button,
+  Spinner,
+  Chip,
+  Tooltip,
+  Avatar,
+  Link,
+} from "@nextui-org/react";
+import {
+  FiArrowLeft,
+  FiShare2,
+  FiX,
+  FiMaximize2,
+  FiInfo,
+  FiGithub,
+} from "react-icons/fi";
 import { FaCode } from "react-icons/fa";
-import { showcaseItems, ShowcaseItem } from '../../data/showcaseData';
-import { BrowserShell } from '../components/BrowserShell';
-import { ShareModal } from '../components/ShareModal';
+import { showcaseItems, ShowcaseItem } from "../../data/showcaseData";
+import { BrowserShell } from "../components/BrowserShell";
+import { ShareModal } from "../components/ShareModal";
 
 const ShowcaseDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -15,18 +29,18 @@ const ShowcaseDetail: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
-  
+
   useEffect(() => {
     // Find the showcase item by ID
-    const showcaseItem = showcaseItems.find(item => item.id === id);
-    
+    const showcaseItem = showcaseItems.find((item) => item.id === id);
+
     if (showcaseItem) {
       setItem(showcaseItem);
     } else {
       // If item not found, redirect to showcase page
-      navigate('/showcase', { replace: true });
+      navigate("/showcase", { replace: true });
     }
-    
+
     // Simulate loading delay
     setTimeout(() => {
       setIsLoading(false);
@@ -69,7 +83,9 @@ const ShowcaseDetail: React.FC = () => {
               className="w-[90%] h-[90%] max-w-7xl"
             >
               <div className="flex justify-between items-center mb-4">
-                <h2 className="text-xl font-semibold text-white">{item.title}</h2>
+                <h2 className="text-xl font-semibold text-white">
+                  {item.title}
+                </h2>
                 <Button
                   isIconOnly
                   size="sm"
@@ -89,14 +105,14 @@ const ShowcaseDetail: React.FC = () => {
                   onShare={() => setIsShareModalOpen(true)}
                   onClose={handleClose}
                 >
-                  <iframe 
+                  <iframe
                     src={item.link}
                     className="w-full h-full"
                     title={item.title}
                     frameBorder="0"
-                    style={{ 
-                      borderRadius: '0 0 12px 12px',
-                      backgroundColor: '#fff'
+                    style={{
+                      borderRadius: "0 0 12px 12px",
+                      backgroundColor: "#fff",
                     }}
                     onLoad={() => setIsLoading(false)}
                   />
@@ -113,13 +129,13 @@ const ShowcaseDetail: React.FC = () => {
             variant="light"
             color="default"
             startContent={<FiArrowLeft />}
-            onClick={() => navigate('/showcase')}
+            onClick={() => navigate("/showcase")}
             className="text-white"
           >
             Back to Showcase
           </Button>
         </div>
-        
+
         {/* New left-right layout */}
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Left side - Browser preview */}
@@ -135,20 +151,20 @@ const ShowcaseDetail: React.FC = () => {
               title={item.title}
               onShare={() => setIsShareModalOpen(true)}
             >
-              <iframe 
+              <iframe
                 src={item.link}
                 className="w-full h-full"
                 title={item.title}
                 frameBorder="0"
-                style={{ 
-                  borderRadius: '0 0 12px 12px',
-                  backgroundColor: '#fff'
+                style={{
+                  borderRadius: "0 0 12px 12px",
+                  backgroundColor: "#fff",
                 }}
                 onLoad={() => setIsLoading(false)}
               />
             </BrowserShell>
           </motion.div>
-          
+
           {/* Right side - Details */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
@@ -160,24 +176,27 @@ const ShowcaseDetail: React.FC = () => {
               {/* Author section - Now prominently displayed at the top */}
               {item.author && (
                 <div className="border-b border-white/10 pb-5">
-                  <h3 className="text-xs uppercase text-gray-500 mb-3">Created by</h3>
+                  <h3 className="text-xs uppercase text-gray-500 mb-3">
+                    Created by
+                  </h3>
                   <div className="flex items-center gap-4">
                     <Avatar
                       src={`https://github.com/${item.author.github}.png`}
                       alt={item.author.name}
-                      className="w-16 h-16 border-2 border-white/20"
+                      className="w-14 h-14"
                       showFallback
                     />
                     <div>
-                      <p className="text-white text-lg font-medium">{item.author.name}</p>
-                      <a 
+                      <p className="text-white text-lg font-medium">
+                        {item.author.name}
+                      </p>
+                      <a
                         href={`https://github.com/${item.author.github}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-sm text-blue-400 hover:underline flex items-center gap-1 mt-1"
                       >
-                        <FiGithub size={14} />
-                        @{item.author.github}
+                        <FiGithub size={14} />@{item.author.github}
                       </a>
                     </div>
                   </div>
@@ -188,24 +207,27 @@ const ShowcaseDetail: React.FC = () => {
                 <h1 className="text-2xl font-bold mb-3 bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
                   {item.title}
                 </h1>
-                
+
                 <p className="text-gray-400 mb-5 text-sm">{item.description}</p>
               </div>
-              
+
               <div className="space-y-5">
                 <div className="flex flex-wrap gap-2 items-center">
                   <span className="text-sm px-3 py-1 rounded-full bg-white/10 text-purple-300">
-                    {item.category.charAt(0).toUpperCase() + item.category.slice(1)}
+                    {item.category.charAt(0).toUpperCase() +
+                      item.category.slice(1)}
                   </span>
-                  
+
                   {item.date && (
                     <span className="text-xs text-gray-400">{item.date}</span>
                   )}
                 </div>
-                
+
                 {item.tags && item.tags.length > 0 && (
                   <div>
-                    <h3 className="text-xs uppercase text-gray-500 mb-2">Tags</h3>
+                    <h3 className="text-xs uppercase text-gray-500 mb-2">
+                      Tags
+                    </h3>
                     <div className="flex flex-wrap gap-1">
                       {item.tags.map((tag, i) => (
                         <span
@@ -218,7 +240,7 @@ const ShowcaseDetail: React.FC = () => {
                     </div>
                   </div>
                 )}
-                
+
                 <div className="pt-4">
                   <Button
                     startContent={<FiMaximize2 />}
@@ -227,7 +249,7 @@ const ShowcaseDetail: React.FC = () => {
                   >
                     Focus View
                   </Button>
-                  
+
                   <div className="flex gap-2">
                     <Tooltip content="Share">
                       <Button
@@ -240,7 +262,7 @@ const ShowcaseDetail: React.FC = () => {
                         <FiShare2 />
                       </Button>
                     </Tooltip>
-                    
+
                     <Tooltip content="More Info">
                       <Button
                         isIconOnly
@@ -263,7 +285,8 @@ const ShowcaseDetail: React.FC = () => {
                     Contribute Your Own
                   </h3>
                   <p className="text-sm text-gray-300 mb-3">
-                    Have an interesting project to showcase? We'd love to feature your work in our gallery!
+                    Have an interesting Agent TARS report to showcase? We'd love
+                    to feature your work in our gallery!
                   </p>
                   <Button
                     as={Link}
@@ -272,7 +295,7 @@ const ShowcaseDetail: React.FC = () => {
                     className="bg-purple-600/80 hover:bg-purple-600 text-white text-sm w-full"
                     size="sm"
                   >
-                    Submit Your Project
+                    Submit Your works
                   </Button>
                 </div>
               </div>
@@ -280,7 +303,7 @@ const ShowcaseDetail: React.FC = () => {
           </motion.div>
         </div>
       </div>
-      
+
       {/* Share Modal */}
       <ShareModal
         isOpen={isShareModalOpen}
