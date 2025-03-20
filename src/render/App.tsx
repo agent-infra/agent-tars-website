@@ -6,21 +6,10 @@ import Blog from "./pages/Blog";
 import Showcase from "./pages/Showcase";
 import ShowcaseDetail from "./pages/ShowcaseDetail";
 import Docs from "./pages/Docs";
-import { PasswordProtection } from "./components/PasswordProtection";
 import { TwitterCardMeta } from "./components/TwitterCardMeta";
 import { HelmetProvider } from "react-helmet-async";
 
 const App: React.FC = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  if (!isAuthenticated) {
-    return (
-      <PasswordProtection
-        correctPassword="agentic"
-        onSuccess={() => setIsAuthenticated(true)}
-      />
-    );
-  }
 
   return (
     <HelmetProvider>
