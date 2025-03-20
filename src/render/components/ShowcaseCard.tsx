@@ -41,14 +41,14 @@ export const ShowcaseCard: React.FC<ShowcaseCardProps> = ({
           <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-transparent z-10" />
 
           {/* Share button */}
-          <Button
+          {/* <Button
             isIconOnly
             size="sm"
             className="absolute top-2 right-2 bg-black/40 backdrop-blur-sm border border-white/20 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
             onClick={handleShare}
           >
             <FiShare2 className="text-white" />
-          </Button>
+          </Button> */}
 
           {/* Preview button overlay */}
           <div className="absolute inset-0 flex items-center justify-center z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
