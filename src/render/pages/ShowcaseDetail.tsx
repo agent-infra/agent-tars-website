@@ -277,7 +277,7 @@ const ShowcaseDetail: React.FC = () => {
                   </p>
                   <Button
                     as={Link}
-                    href="https://github.com/bytedance/UI-TARS-desktop/issues/new?template=showcase_submission.md"
+                    href="https://github.com/bytedance/UI-TARS-desktop/discussions/244"
                     target="_blank"
                     className="bg-purple-600/80 hover:bg-purple-600 text-white text-sm w-full"
                     size="sm"
