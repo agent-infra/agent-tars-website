@@ -12,6 +12,7 @@ import { motion } from "framer-motion";
 import { Button, Card, Spinner, Divider } from "@nextui-org/react";
 import { FiArrowLeft, FiCalendar, FiUser } from "react-icons/fi";
 import { TableOfContents } from "../components/TableOfContents";
+import { TwitterCardMeta } from "../components/TwitterCardMeta";
 
 const Blog: React.FC = () => {
   const { year, month, day, slug } = useParams();
@@ -54,75 +55,95 @@ const Blog: React.FC = () => {
     loadContent();
   }, [currentPost]);
 
-  if (isPostPage) {
-    return (
-      <div className="min-h-screen pt-24 px-4 pb-24 bg-black text-white">
-        <div className="max-w-4xl mx-auto">
-          <div className="mb-8">
-            <Button
-              as={Link}
-              to="/blog"
-              variant="light"
-              color="default"
-              startContent={<FiArrowLeft />}
-              className="mb-6"
-            >
-              Back to Blog
-            </Button>
+  if (isPostPage && currentPost) {
+    // Generate absolute URL for the current blog post
+    const currentUrl = `${window.location.origin}${getBlogPermalink(currentPost)}`;
 
-            {isLoading ? (
-              <div className="flex justify-center items-center h-64">
-                <Spinner size="lg" color="white" />
-              </div>
-            ) : (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="markdown-body bg-transparent text-white mb-16"
+    return (
+      <>
+        <TwitterCardMeta
+          title={`${currentPost.title} | Agent TARS Blog`}
+          description={currentPost.excerpt}
+          url={currentUrl}
+          image={currentPost.coverImage || 'https://github.com/bytedance/UI-TARS-desktop/blob/main/apps/agent-tars/public/twitter-card.png?raw=true'}
+        />
+        
+        <div className="min-h-screen pt-24 px-4 pb-24 bg-black text-white">
+          <div className="max-w-4xl mx-auto">
+            <div className="mb-8">
+              <Button
+                as={Link}
+                to="/blog"
+                variant="light"
+                color="default"
+                startContent={<FiArrowLeft />}
+                className="mb-6"
               >
-                <div className="flex justify-between items-center mb-4">
-                  <div></div>
-                  <TableOfContents markdown={content} />
+                Back to Blog
+              </Button>
+
+              {isLoading ? (
+                <div className="flex justify-center items-center h-64">
+                  <Spinner size="lg" color="white" />
                 </div>
-                <MarkdownRenderer
-                  content={content}
-                  publishDate={currentPost?.date}
-                  author={currentPost?.author}
-                />
-              </motion.div>
-            )}
+              ) : (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                  className="markdown-body bg-transparent text-white mb-16"
+                >
+                  <div className="flex justify-between items-center mb-4">
+                    <div></div>
+                    <TableOfContents markdown={content} />
+                  </div>
+                  <MarkdownRenderer
+                    content={content}
+                    publishDate={currentPost?.date}
+                    author={currentPost?.author}
+                  />
+                </motion.div>
+              )}
+            </div>
           </div>
         </div>
-      </div>
+      </>
     );
   }
 
   // Render blog listing page
   return (
-    <div className="min-h-screen pt-24 px-4 bg-black text-white">
-      <div className="max-w-4xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="mb-12"
-        >
-          <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
-            Blog
-          </h1>
-          <p className="text-xl text-gray-400">
-            Latest updates and insights from the Agent TARS team
-          </p>
-        </motion.div>
+    <>
+      <TwitterCardMeta
+        title="Agent TARS Blog - Latest Updates and Insights"
+        description="Latest updates and insights from the Agent TARS team"
+        url={`${window.location.origin}/blog`}
+      />
+      
+      <div className="min-h-screen pt-24 px-4 bg-black text-white">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="mb-12"
+          >
+            <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
+              Blog
+            </h1>
+            <p className="text-xl text-gray-400">
+              Latest updates and insights from the Agent TARS team
+            </p>
+          </motion.div>
 
-        <div className="space-y-8">
-          {allPosts.map((post, index) => (
-            <BlogPostCard key={post.id} post={post} index={index} />
-          ))}
+          <div className="space-y-8">
+            {allPosts.map((post, index) => (
+              <BlogPostCard key={post.id} post={post} index={index} />
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

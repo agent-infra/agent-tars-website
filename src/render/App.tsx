@@ -7,21 +7,25 @@ import Showcase from "./pages/Showcase";
 import ShowcaseDetail from "./pages/ShowcaseDetail";
 import Docs from "./pages/Docs";
 import { PasswordProtection } from "./components/PasswordProtection";
+import { TwitterCardMeta } from "./components/TwitterCardMeta";
+import { HelmetProvider } from "react-helmet-async";
 
 const App: React.FC = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   if (!isAuthenticated) {
     return (
-      <PasswordProtection 
-        correctPassword="agentic" 
-        onSuccess={() => setIsAuthenticated(true)} 
+      <PasswordProtection
+        correctPassword="agentic"
+        onSuccess={() => setIsAuthenticated(true)}
       />
     );
   }
 
   return (
-    <BrowserRouter>
+    <HelmetProvider>
+      <BrowserRouter>
+        <TwitterCardMeta />
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -32,7 +36,8 @@ const App: React.FC = () => {
           <Route path="/docs" element={<Docs />} />
           <Route path="/:docId" element={<Docs />} />
         </Routes>
-    </BrowserRouter>
+      </BrowserRouter>
+    </HelmetProvider>
   );
 };
 

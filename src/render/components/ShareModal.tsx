@@ -35,9 +35,13 @@ export const ShareModal: React.FC<ShareModalProps> = ({ isOpen, onClose, item })
   };
   
   const handleTwitterShare = () => {
+    // Enhanced Twitter share with hashtags and via parameters
     const tweetText = encodeURIComponent(`Check out "${item.title}" on Agent TARS`);
     const tweetUrl = encodeURIComponent(shareUrl);
-    const twitterShareUrl = `https://x.com/intent/tweet?text=${tweetText}&url=${tweetUrl}`;
+    const hashtags = encodeURIComponent('AgentTARS,AI,Multimodal');
+    const via = 'AgentTars';
+    
+    const twitterShareUrl = `https://twitter.com/intent/tweet?text=${tweetText}&url=${tweetUrl}&hashtags=${hashtags}&via=${via}`;
     window.open(twitterShareUrl, '_blank');
   };
   
