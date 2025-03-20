@@ -115,5 +115,5 @@ Stay updated by following us on X ([@AgentTars](https://x.com/AgentTars)) and jo
 ## Links
 
 - X: https://x.com/AgentTars
-- Github: https://github.com/bytedance/UI-TARS-desktop
 - Showcase: https://agent-tars.com/showcase
+- Github: https://github.com/bytedance/UI-TARS-desktop

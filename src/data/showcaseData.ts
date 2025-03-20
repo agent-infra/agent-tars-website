@@ -1,18 +1,18 @@
 export type CategoryType = "finance" | "technology" | "science" | "general";
 
 export interface ShowcaseItem {
-  id: string;
-  title: string;
-  description: string;
-  category: CategoryType;
-  imageUrl: string;
-  link: string;
-  date?: string;
-  languages?: string[];
-  tags?: string[];
+  id: string;                  // Unique identifier for the showcase item
+  title: string;               // Title of the showcase item
+  description: string;         // Brief description of the showcase item
+  category: CategoryType;      // Category the item belongs to
+  imageUrl: string;            // URL for the item's preview image
+  link: string;                // Link to the full showcase content
+  date?: string;               // Optional publication date
+  languages?: string[];        // Optional list of languages used in the showcase
+  tags?: string[];             // Optional tags for filtering and categorization
   author?: {
-    github: string;
-    name: string;
+    github: string;            // Author's GitHub username
+    name: string;              // Author's display name
   };
 }
 
@@ -93,7 +93,6 @@ export const showcaseItems: ShowcaseItem[] = [
       github: "ulivz",
       name: "ULIVZ",
     },
-    
   },
   {
     id: "lynx-repository-issues-report",
