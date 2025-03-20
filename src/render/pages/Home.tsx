@@ -6,12 +6,14 @@ import { SiGithub } from "react-icons/si";
 import { FaTools, FaDesktop } from "react-icons/fa";
 import { MdWorkspaces } from "react-icons/md";
 import { Modal, ModalContent, ModalBody } from "@nextui-org/react";
-import { FiDownload } from "react-icons/fi";
+
+import { FiDownload, FiBookOpen } from "react-icons/fi";
 import { Spinner } from "@nextui-org/react";
 import { FaPlay } from "react-icons/fa";
 import { WorkflowNodes } from "../components/WorkflowNodes";
 import { Octokit } from "@octokit/rest";
-import { AiOutlineStar } from "react-icons/ai";
+
+import { Link } from "react-router-dom";
 
 const features = [
   {
@@ -47,7 +49,6 @@ const LandingPage: React.FC = () => {
   const videoRef = React.useRef<HTMLVideoElement>(null);
   const canvasRef = React.useRef<HTMLCanvasElement>(null);
   const [isVideoReady, setIsVideoReady] = React.useState(false);
-  const [starCount, setStarCount] = React.useState<number>(0);
 
   const generateThumbnail = React.useCallback(() => {
     const video = videoRef.current;
@@ -136,8 +137,9 @@ const LandingPage: React.FC = () => {
               Agent TARS
             </h1>
             <p className="text-xl mb-8 text-gray-400">
-              An open-source <b>multimodal</b> AI agent <br/>Offering
-              seamless integration with a wide range of real-world tools.
+              An open-source <b>multimodal</b> AI agent <br />
+              Offering seamless integration with a wide range of real-world
+              tools.
             </p>
             <div className="flex gap-4 justify-center mb-12">
               <Button
@@ -150,14 +152,13 @@ const LandingPage: React.FC = () => {
                 GitHub
               </Button>
               <Button
-                as="a"
-                href="https://github.com/bytedance/UI-TARS-desktop"
-                target="_blank"
+                as={Link}
+                to="/2025/03/18/announcing-agent-tars-app"
                 variant="solid"
                 className="bg-gradient-to-r from-gray-100 to-white text-black hover:opacity-90 min-w-[120px]"
-                startContent={<AiOutlineStar className="text-lg" />}
+                startContent={<FiBookOpen className="text-lg" />}
               >
-                {starCount > 0 ? `Star ${starCount}` : "Star"}
+                Introduction
               </Button>
             </div>
           </motion.div>

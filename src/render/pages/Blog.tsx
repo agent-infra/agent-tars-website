@@ -57,7 +57,9 @@ const Blog: React.FC = () => {
 
   if (isPostPage && currentPost) {
     // Generate absolute URL for the current blog post
-    const currentUrl = `${window.location.origin}${getBlogPermalink(currentPost)}`;
+    const currentUrl = `${window.location.origin}${getBlogPermalink(
+      currentPost
+    )}`;
 
     return (
       <>
@@ -65,9 +67,12 @@ const Blog: React.FC = () => {
           title={`${currentPost.title} | Agent TARS Blog`}
           description={currentPost.excerpt}
           url={currentUrl}
-          image={currentPost.coverImage || 'https://github.com/bytedance/UI-TARS-desktop/blob/main/apps/agent-tars/public/twitter-card.png?raw=true'}
+          image={
+            currentPost.coverImage ||
+            "https://github.com/bytedance/UI-TARS-desktop/blob/main/apps/agent-tars/public/twitter-card.png?raw=true"
+          }
         />
-        
+
         <div className="min-h-screen pt-24 px-4 pb-24 bg-black text-white">
           <div className="max-w-4xl mx-auto">
             <div className="mb-8">
@@ -119,7 +124,7 @@ const Blog: React.FC = () => {
         description="Latest updates and insights from the Agent TARS team"
         url={`${window.location.origin}/blog`}
       />
-      
+
       <div className="min-h-screen pt-24 px-4 bg-black text-white">
         <div className="max-w-4xl mx-auto">
           <motion.div
