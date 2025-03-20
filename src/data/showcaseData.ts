@@ -10,6 +10,10 @@ export interface ShowcaseItem {
   date?: string;
   languages?: string[];
   tags?: string[];
+  author?: {
+    github: string;
+    name: string;
+  };
 }
 
 export type Category = {
@@ -52,6 +56,10 @@ export const showcaseItems: ShowcaseItem[] = [
     link: "https://sf16-sg.tiktokcdn.com/obj/eden-sg/psvhouloj/agent-tars/tesla-stock-decline-reasons.html",
     date: "2025-03-18",
     languages: ["English"],
+    author: {
+      github: "ycjcl868",
+      name: "Charles",
+    },
   },
   {
     id: "kipchoge-marathon-moon",
@@ -65,6 +73,10 @@ export const showcaseItems: ShowcaseItem[] = [
     link: "https://sf16-sg.tiktokcdn.com/obj/eden-sg/psvhouloj/agent-tars/kipchoge-marathon-moon.html",
     date: "2025-03-18",
     languages: ["English"],
+    author: {
+      github: "skychx",
+      name: "skychx",
+    },
   },
   {
     id: "7-day-trip-plan-to-mexico-city",
@@ -77,6 +89,11 @@ export const showcaseItems: ShowcaseItem[] = [
     link: "https://sf16-sg.tiktokcdn.com/obj/eden-sg/psvhouloj/agent-tars/7-day-trip-plan-to-mexico-city.html",
     date: "2025-03-18",
     languages: ["English", "Spanish"],
+    author: {
+      github: "ulivz",
+      name: "ULIVZ",
+    },
+    
   },
   {
     id: "lynx-repository-issues-report",
@@ -89,6 +106,10 @@ export const showcaseItems: ShowcaseItem[] = [
     link: "https://sf16-sg.tiktokcdn.com/obj/eden-sg/psvhouloj/agent-tars/lynx-repository-issues-report.html",
     date: "2025-03-18",
     languages: ["English"],
+    author: {
+      github: "ulivz",
+      name: "ULIVZ",
+    },
   },
   {
     id: "lynx-repository-issues-report",
@@ -100,6 +121,10 @@ export const showcaseItems: ShowcaseItem[] = [
     link: "https://sf16-sg.tiktokcdn.com/obj/eden-sg/psvhouloj/agent-tars/tesla-stock-technical-analysis.html",
     date: "2025-03-20",
     languages: ["Chinese"],
+    author: {
+      github: "ycjcl868",
+      name: "Charles",
+    },
   },
   {
     id: "hangzhou-to-weihai-travel-plan",
@@ -112,6 +137,10 @@ export const showcaseItems: ShowcaseItem[] = [
     link: "https://sf16-sg.tiktokcdn.com/obj/eden-sg/psvhouloj/agent-tars/hangzhou-to-weihai-travel-plan.html",
     date: "2025-03-20",
     languages: ["Chinese"],
+    author: {
+      github: "sanyuan0704",
+      name: "yangxingyuan",
+    },
   },
 ];
 

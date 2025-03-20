@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Card, Button } from "@nextui-org/react";
+import { Card, Button, Avatar } from "@nextui-org/react";
 import { ShowcaseItem } from "../../data/showcaseData";
 import { FiShare2, FiMonitor } from "react-icons/fi";
 
@@ -87,6 +87,20 @@ export const ShowcaseCard: React.FC<ShowcaseCardProps> = ({
           <p className="text-sm text-gray-400 line-clamp-2 mb-3">
             {item.description}
           </p>
+
+          {/* Author information */}
+          {item.author && (
+            <div className="flex items-center gap-2 mb-3">
+              <Avatar
+                src={`https://github.com/${item.author.github}.png`}
+                alt={item.author.name}
+                className="w-6 h-6 border border-white/20"
+              />
+              <span className="text-xs text-gray-300">
+                {item.author.name}
+              </span>
+            </div>
+          )}
 
           {item.languages && item.languages.length > 0 && (
             <div className="flex flex-wrap gap-1 mt-2 mb-2">
