@@ -3,7 +3,7 @@
 
 ## Introduction
 
-Hello everyone! We’re excited to introduce you to an friend — **Agent TARS**.  
+Hello everyone! We're thrilled to introduce a new friend — **Agent TARS**.  
 
 **Agent TARS** is an open-source multimodal AI agent that offers streamlined browser operations by interpreting web pages visually. It also effortlessly integrates with command lines and file systems. For a quick overview, check out the demo video below:  
 
@@ -52,6 +52,8 @@ These features combine to make Agent TARS a powerful and versatile tool for AI-a
 - [7-day trip plan to Mexico City from NYC](/showcase/7-day-trip-plan-to-mexico-city)
 
 ## Quick Start
+
+> **DISCLAIMER**: Agent TARS is still in **Technical Preview** stage and not stable yet. It's not recommended to use it in production. If you run into any issues, we welcome feedback on [Github](https://github.com/bytedance/UI-TARS-desktop) or on [Twitter](https://x.com/AgentTars).
 
 ### Install  
 
