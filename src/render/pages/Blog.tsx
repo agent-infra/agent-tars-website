@@ -98,14 +98,17 @@ const Blog: React.FC = () => {
                   transition={{ duration: 0.5 }}
                   className="markdown-body bg-transparent text-white mb-16"
                 >
-                  <div className="flex justify-between items-center mb-4">
-                    <div></div>
+                  <div className="flex justify-between items-start mb-4">
+                    <div className="w-full max-w-2xl">
+                      {/* 限制主内容区域宽度 */}
+                    </div>
                     <TableOfContents markdown={content} />
                   </div>
                   <MarkdownRenderer
                     content={content}
                     publishDate={currentPost?.date}
                     author={currentPost?.author}
+                    className="prose-lg prose-invert max-w-2xl"
                   />
                 </motion.div>
               )}

@@ -14,7 +14,6 @@ const Docs: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const { docId } = useParams();
   const currentDocId = docId;
-  console.log("availableDocs", availableDocs);
 
   const currentDoc =
     availableDocs.find((doc) => doc.id === currentDocId) || availableDocs[0];
@@ -27,7 +26,6 @@ const Docs: React.FC = () => {
         // Check if we have a local version first
         if (currentDoc.localPath) {
           const localContent = getLocalDoc(currentDoc.localPath);
-          console.log("localContent", localContent);
 
           if (localContent) {
             setMarkdown(localContent);
@@ -70,48 +68,58 @@ const Docs: React.FC = () => {
           {/* Sidebar */}
           <DocsSidebar />
 
-          {/* Main content */}
+          {/* Main content area with a two-column layout */}
           <div className="flex-1 overflow-y-auto p-6 mt-10">
-            <div className="max-w-4xl mx-auto">
+            <div className="md:mx-20">
               <div className="flex justify-between items-center mb-8">
                 <h1 className="text-3xl font-bold bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
                   {/* {currentDoc.title} */}
                 </h1>
 
-                <div className="flex items-center gap-4">
-                  <Button
-                    as="a"
-                    href="https://github.com/bytedance/UI-TARS-desktop/issues"
-                    target="_blank"
-                    className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white hover:opacity-90 transition-opacity"
-                    startContent={<FaBug className="text-sm" />}
-                    size="sm"
-                  >
-                    Report Issue
-                  </Button>
-                  <TableOfContents markdown={markdown} />
-                </div>
+                <Button
+                  as="a"
+                  href="https://github.com/bytedance/UI-TARS-desktop/issues"
+                  target="_blank"
+                  className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white hover:opacity-90 transition-opacity"
+                  startContent={<FaBug className="text-sm" />}
+                  size="sm"
+                >
+                  Report Issue
+                </Button>
               </div>
 
-              {isLoading ? (
-                <div className="flex justify-center items-center h-64">
-                  <Spinner size="lg" color="white" />
+              <div className="flex flex-col md:flex-row gap-8">
+                {/* Main content column with width constraint */}
+                <div className="md:flex-1 md:max-w-[75%]">
+                  {isLoading ? (
+                    <div className="flex justify-center items-center h-64">
+                      <Spinner size="lg" color="white" />
+                    </div>
+                  ) : (
+                    <motion.div
+                      key={currentDocId}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5 }}
+                      className="markdown-body bg-transparent text-white mb-16"
+                    >
+                      <MarkdownRenderer
+                        content={markdown}
+                        publishDate={currentDoc.publishDate}
+                        className="prose-lg prose-invert max-w-none"
+                      />
+                    </motion.div>
+                  )}
                 </div>
-              ) : (
-                <motion.div
-                  key={currentDocId}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5 }}
-                  className="markdown-body bg-transparent text-white mb-16"
-                >
-                  <MarkdownRenderer
-                    content={markdown}
-                    publishDate={currentDoc.publishDate}
-                    // author={currentDoc.author}
-                  />
-                </motion.div>
-              )}
+
+                {/* Table of contents column - only show when not loading */}
+                {!isLoading && (
+
+                  <div className="md:w-[23%] md:min-w-[200px] flex-shrink-0 overflow-auto">
+                    <TableOfContents markdown={markdown} />
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>

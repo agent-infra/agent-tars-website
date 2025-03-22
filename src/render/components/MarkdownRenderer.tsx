@@ -9,6 +9,7 @@ interface MarkdownRendererProps {
   content: string;
   publishDate?: string;
   author?: string;
+  className?: string; // 添加className属性以便于外部控制样式
 }
 
 /**
@@ -70,6 +71,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
   content,
   publishDate,
   author,
+  className = "", // 默认为空字符串
 }) => {
   // Handle hash navigation on page load
   React.useEffect(() => {
@@ -89,6 +91,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
     <ReactMarkdown
       remarkPlugins={[remarkGfm]}
       rehypePlugins={[rehypeRaw, rehypeHighlight]}
+      className={className} // 应用传入的className
       components={{
         h1: ({ node, children, ...props }) => {
           // Generate ID from heading text for anchor links
