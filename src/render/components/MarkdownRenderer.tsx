@@ -12,6 +12,7 @@ interface MarkdownRendererProps {
   content: string;
   publishDate?: string;
   author?: string;
+  className?: string; // 添加className属性以便于外部控制样式
 }
 
 /**
@@ -73,6 +74,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
   content,
   publishDate,
   author,
+  className = "", // 默认为空字符串
 }) => {
   const [openImage, setOpenImage] = useState<string | null>(null);
   const [imageLoaded, setImageLoaded] = useState(false);

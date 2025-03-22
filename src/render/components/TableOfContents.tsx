@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Button } from "@nextui-org/react";
-import { FiList } from "react-icons/fi";
 
 interface TOCItem {
   id: string;
@@ -14,14 +12,13 @@ interface TableOfContentsProps {
 
 export const TableOfContents: React.FC<TableOfContentsProps> = ({ markdown }) => {
   const [items, setItems] = useState<TOCItem[]>([]);
-  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     // Extract headings from markdown
     const headingRegex = /^(#{1,6})\s+(.+)$/gm;
     const matches = [...markdown.matchAll(headingRegex)];
     
-    const tocItems: TOCItem[] = matches.map((match, index) => {
+    const tocItems: TOCItem[] = matches.map((match) => {
       const level = match[1].length;
       const text = match[2];
       const id = text.toLowerCase().replace(/[^\w\s]/g, '').replace(/\s+/g, '-');
@@ -39,36 +36,25 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({ markdown }) =>
   if (items.length === 0) return null;
 
   return (
-    <div className="relative">
-      <Button
-        isIconOnly
-        className="bg-white/10 hover:bg-white/20"
-        onClick={() => setIsOpen(!isOpen)}
-      >
-        <FiList className="text-white" />
-      </Button>
-
-      {isOpen && (
-        <div className="absolute right-0 top-full mt-2 w-64 bg-black/90 backdrop-blur-md border border-white/10 rounded-lg shadow-xl p-4 z-50">
-          <h4 className="text-sm font-medium text-white/70 mb-2">Table of Contents</h4>
-          <ul className="space-y-1">
-            {items.map((item, index) => (
-              <li 
-                key={index}
-                style={{ paddingLeft: `${(item.level - 1) * 12}px` }}
+    <div className="sticky top-4 ml-8 max-h-[calc(100vh-8rem)] overflow-y-auto">
+      <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-4 shadow-lg">
+        <h4 className="text-sm font-medium text-white/70 mb-3">Table of Contents</h4>
+        <ul className="space-y-1">
+          {items.map((item, index) => (
+            <li 
+              key={index}
+              style={{ paddingLeft: `${(item.level - 1) * 12}px` }}
+            >
+              <a
+                href={`#${item.id}`}
+                className="text-sm text-gray-400 hover:text-white block py-1 transition-colors"
               >
-                <a
-                  href={`#${item.id}`}
-                  className="text-sm text-purple-400 hover:text-purple-300 block py-1"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {item.text}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+                {item.text}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
