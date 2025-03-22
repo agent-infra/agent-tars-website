@@ -65,7 +65,7 @@ export const Navbar: React.FC = () => {
             {!isMobile && (
               <div className="flex items-center gap-6">
                 <Link
-                  to="/docs"
+                  to="/doc"
                   className="text-gray-300 hover:text-white transition-colors"
                 >
                   Docs
@@ -164,7 +164,7 @@ export const Navbar: React.FC = () => {
             >
               <div className="flex flex-col gap-8">
                 <Link
-                  to="/docs"
+                  to="/doc"
                   className="text-gray-300 hover:text-white transition-colors text-lg font-medium"
                   onClick={closeMobileMenu}
                 >

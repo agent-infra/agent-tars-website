@@ -21,8 +21,8 @@ const App: React.FC = () => {
           <Route path="/:year/:month/:day/:slug" element={<Blog />} />
           <Route path="/showcase" element={<Showcase />} />
           <Route path="/showcase/:id" element={<ShowcaseDetail />} />
-          <Route path="/docs" element={<Docs />} />
-          <Route path="/:docId" element={<Docs />} />
+          <Route path="/doc" element={<Docs />} />
+          <Route path="/doc/:docId" element={<Docs />} />
         </Routes>
       </BrowserRouter>
     </HelmetProvider>
