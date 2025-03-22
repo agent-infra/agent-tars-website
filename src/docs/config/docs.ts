@@ -1,7 +1,7 @@
 export interface DocItem {
   id: string;
   title: string;
-  path: string;
+  // path: string;
 
   githubPath?: string;
   localPath?: string;
@@ -12,9 +12,9 @@ export interface DocItem {
 
 export const availableDocs: DocItem[] = [
   {
-    id: "quick-start",
+    id: "doc/quick-start",
     title: "Quick Start",
-    path: "quick-start",
+    // path: "quick-start",
     // using local file for better performance
     localPath: "quick-start",
     // githubPath:
