@@ -1,4 +1,4 @@
-# Getting started with Agent TARS
+# Quick Start
 
 ## Introduction
 
