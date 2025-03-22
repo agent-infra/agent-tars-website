@@ -105,7 +105,7 @@ const Docs: React.FC = () => {
                   <MarkdownRenderer
                     content={markdown}
                     publishDate={currentDoc.publishDate}
-                    author={currentDoc.author}
+                    // author={currentDoc.author}
                   />
                 </motion.div>
               )}
