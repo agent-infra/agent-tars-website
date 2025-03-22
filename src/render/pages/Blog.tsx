@@ -74,7 +74,7 @@ const Blog: React.FC = () => {
         />
 
         <div className="min-h-screen pt-24 px-4 pb-24 bg-black text-white">
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-7xl mx-auto">
             <div className="mb-8">
               <Button
                 as={Link}
@@ -98,18 +98,21 @@ const Blog: React.FC = () => {
                   transition={{ duration: 0.5 }}
                   className="markdown-body bg-transparent text-white mb-16"
                 >
-                  <div className="flex justify-between items-start mb-4">
-                    <div className="w-full max-w-2xl">
-                      {/* 限制主内容区域宽度 */}
+                  <div className="flex flex-col md:flex-row gap-8">
+                    <div className="md:flex-1 md:max-w-[72%]">
+                      <MarkdownRenderer
+                        content={content}
+                        publishDate={currentPost?.date}
+                        author={currentPost?.author}
+                        className="prose-lg prose-invert max-w-none"
+                      />
                     </div>
-                    <TableOfContents markdown={content} />
+
+                    {/* 目录列 */}
+                    <div className="md:w-[25%] md:min-w-[200px] flex-shrink-0">
+                      <TableOfContents markdown={content} />
+                    </div>
                   </div>
-                  <MarkdownRenderer
-                    content={content}
-                    publishDate={currentPost?.date}
-                    author={currentPost?.author}
-                    className="prose-lg prose-invert max-w-2xl"
-                  />
                 </motion.div>
               )}
             </div>
