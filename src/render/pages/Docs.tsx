@@ -13,7 +13,8 @@ const Docs: React.FC = () => {
   const [markdown, setMarkdown] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const { docId } = useParams();
-  const currentDocId = docId || "quick-start";
+  const currentDocId = docId;
+  console.log("availableDocs", availableDocs);
 
   const currentDoc =
     availableDocs.find((doc) => doc.id === currentDocId) || availableDocs[0];
@@ -26,6 +27,8 @@ const Docs: React.FC = () => {
         // Check if we have a local version first
         if (currentDoc.localPath) {
           const localContent = getLocalDoc(currentDoc.localPath);
+          console.log("localContent", localContent);
+
           if (localContent) {
             setMarkdown(localContent);
             setIsLoading(false);

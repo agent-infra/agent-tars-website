@@ -128,7 +128,7 @@ export const DocsSidebar: React.FC = () => {
             <div className={`p-4 ${isOpen ? "" : "items-center"}`}>
               {isOpen && (
                 <div className="flex justify-between items-center mb-4">
-                  <h3 className="font-medium text-white/90">Documentation</h3>
+                  {/* <h3 className="font-medium text-white/90">Documentation</h3> */}
                   {!isMobile && (
                     <Button
                       isIconOnly
@@ -172,7 +172,7 @@ export const DocsSidebar: React.FC = () => {
                             {docs.map((doc) => (
                               <li key={doc.id}>
                                 <Link
-                                  to={`/${doc.id}`}
+                                  to={`/doc/${doc.id}`}
                                   className={`
                                     block px-3 py-2 rounded-md transition-colors text-sm
                                     ${

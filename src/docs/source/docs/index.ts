@@ -1,8 +1,10 @@
 import quickStart from "./quick-start.md";
+import troubeShooting from "./trouble-shooting.md"
 
 // Map of local markdown imports
 const localDocumentations: Record<string, string> = {
   "quick-start": quickStart,
+  "trouble-shooting": troubeShooting,
 };
 
 /**
