@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@nextui-org/react";
 import { FiDownload } from "react-icons/fi";
-import { FaTwitter } from "react-icons/fa";
+import { FaDiscord } from "react-icons/fa";
 import Icon from "./icon.png";
 
 export const Navbar: React.FC = () => {
@@ -34,13 +34,13 @@ export const Navbar: React.FC = () => {
         <div className="flex items-center gap-4">
           <Button
             as="a"
-            href="https://x.com/AgentTars"
+            href="https://discord.gg/NAeJMKk4"
             target="_blank"
             className="min-w-[36px] w-[36px] h-[36px] p-0 bg-transparent border border-white/20 hover:bg-white/10"
             isIconOnly
             size="md"
           >
-            <FaTwitter className="text-white" />
+            <FaDiscord className="text-white" />
           </Button>
           <Button
             as="a"
