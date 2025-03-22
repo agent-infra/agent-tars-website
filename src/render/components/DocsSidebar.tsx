@@ -1,17 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import { availableDocs, getDocsByCategory } from "../../docs";
+import {  getDocsByCategory } from "../../docs";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@nextui-org/react";
 import { FiMenu, FiX, FiChevronRight, FiChevronDown } from "react-icons/fi";
 
 export const DocsSidebar: React.FC = () => {
   const { docId } = useParams();
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(() => {
+    // 初始化时根据窗口宽度判断
+    return window.innerWidth >= 768;
+  });
   const [expandedCategories, setExpandedCategories] = useState<
     Record<string, boolean>
   >({});
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(() => {
+    // 初始化时根据窗口宽度判断
+    return window.innerWidth < 768;
+  });
   const currentDocId = docId || "quick-start";
   const docsByCategory = getDocsByCategory();
 
@@ -29,18 +35,30 @@ export const DocsSidebar: React.FC = () => {
     };
   }, []);
 
-  // Auto-expand the category containing the current doc
+  // 初始化时默认展开所有分类
   useEffect(() => {
-    const newExpandedCategories = { ...expandedCategories };
-
-    Object.entries(docsByCategory).forEach(([category, docs]) => {
-      if (docs.some((doc) => doc.id === currentDocId)) {
-        newExpandedCategories[category] = true;
-      }
+    const categories = Object.keys(docsByCategory);
+    const newExpandedCategories: Record<string, boolean> = {};
+    
+    categories.forEach(category => {
+      newExpandedCategories[category] = true;
     });
-
+    
     setExpandedCategories(newExpandedCategories);
-  }, [currentDocId]);
+  }, []);
+
+    // Auto-expand the category containing the current doc
+    useEffect(() => {
+      const newExpandedCategories = { ...expandedCategories };
+  
+      Object.entries(docsByCategory).forEach(([category, docs]) => {
+        if (docs.some((doc) => doc.id === currentDocId)) {
+          newExpandedCategories[category] = true;
+        }
+      });
+  
+      setExpandedCategories(newExpandedCategories);
+    }, [currentDocId]);
 
   const toggleCategory = (category: string) => {
     setExpandedCategories((prev) => ({
@@ -48,8 +66,6 @@ export const DocsSidebar: React.FC = () => {
       [category]: !prev[category],
     }));
   };
-
-  const sidebarWidth = isOpen ? "w-64" : "w-16";
 
   return (
     <>
@@ -73,7 +89,10 @@ export const DocsSidebar: React.FC = () => {
           <Button
             isIconOnly
             className="bg-purple-600/20 text-purple-400 hover:bg-purple-600/30 mb-8"
-            onClick={() => setIsOpen(true)}
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsOpen(true);
+            }}
           >
             <FiMenu />
           </Button>
@@ -109,6 +128,7 @@ export const DocsSidebar: React.FC = () => {
             <div className={`p-4 ${isOpen ? "" : "items-center"}`}>
               {isOpen && (
                 <div className="flex justify-between items-center mb-4">
+                  <h3 className="font-medium text-white/90">Documentation</h3>
                   {!isMobile && (
                     <Button
                       isIconOnly

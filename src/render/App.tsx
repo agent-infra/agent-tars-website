@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Navbar } from "./components/Navbar";
 import Home from "./pages/Home";
@@ -10,7 +10,6 @@ import { TwitterCardMeta } from "./components/TwitterCardMeta";
 import { HelmetProvider } from "react-helmet-async";
 
 const App: React.FC = () => {
-
   return (
     <HelmetProvider>
       <BrowserRouter>

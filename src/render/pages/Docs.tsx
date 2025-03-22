@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 import { availableDocs, getLocalDoc } from "../../docs";
 import { DocsSidebar } from "../components/DocsSidebar";
 import { TableOfContents } from "../components/TableOfContents";
+import { TwitterCardMeta } from "../components/TwitterCardMeta";
 
 const Docs: React.FC = () => {
   const [markdown, setMarkdown] = useState<string>("");
@@ -54,57 +55,65 @@ const Docs: React.FC = () => {
   }, [currentDoc]);
 
   return (
-    <div className="min-h-screen pt-16 bg-black text-white">
-      <div className="flex h-[calc(100vh-4rem)]">
-        {/* Sidebar */}
-        <DocsSidebar />
+    <>
+      <TwitterCardMeta
+        title={`${currentDoc.title} | Agent TARS Docs`}
+        description="Agent TARS documentation and guides"
+        url={`${window.location.origin}/${currentDocId}`}
+      />
 
-        {/* Main content */}
-        <div className="flex-1 overflow-y-auto p-6 mt-10">
-          <div className="max-w-4xl mx-auto">
-            <div className="flex justify-between items-center mb-8">
-              <h1 className="text-3xl font-bold bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
-                {/* {currentDoc.title} */}
-              </h1>
+      <div className="min-h-screen pt-16 bg-black text-white">
+        <div className="flex h-[calc(100vh-4rem)]">
+          {/* Sidebar */}
+          <DocsSidebar />
 
-              <div className="flex items-center gap-4">
-                <Button
-                  as="a"
-                  href="https://github.com/bytedance/UI-TARS-desktop/issues"
-                  target="_blank"
-                  className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white hover:opacity-90 transition-opacity"
-                  startContent={<FaBug className="text-sm" />}
-                  size="sm"
+          {/* Main content */}
+          <div className="flex-1 overflow-y-auto p-6 mt-10">
+            <div className="max-w-4xl mx-auto">
+              <div className="flex justify-between items-center mb-8">
+                <h1 className="text-3xl font-bold bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
+                  {currentDoc.title}
+                </h1>
+
+                <div className="flex items-center gap-4">
+                  <Button
+                    as="a"
+                    href="https://github.com/bytedance/UI-TARS-desktop/issues"
+                    target="_blank"
+                    className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white hover:opacity-90 transition-opacity"
+                    startContent={<FaBug className="text-sm" />}
+                    size="sm"
+                  >
+                    Report Issue
+                  </Button>
+                  <TableOfContents markdown={markdown} />
+                </div>
+              </div>
+
+              {isLoading ? (
+                <div className="flex justify-center items-center h-64">
+                  <Spinner size="lg" color="white" />
+                </div>
+              ) : (
+                <motion.div
+                  key={currentDocId}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                  className="markdown-body bg-transparent text-white mb-16"
                 >
-                  Report Issue
-                </Button>
-                <TableOfContents markdown={markdown} />
-              </div>
+                  <MarkdownRenderer
+                    content={markdown}
+                    publishDate={currentDoc.publishDate}
+                    author={currentDoc.author}
+                  />
+                </motion.div>
+              )}
             </div>
-
-            {isLoading ? (
-              <div className="flex justify-center items-center h-64">
-                <Spinner size="lg" color="white" />
-              </div>
-            ) : (
-              <motion.div
-                key={currentDocId}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="markdown-body bg-transparent text-white mb-16"
-              >
-                <MarkdownRenderer
-                  content={markdown}
-                  publishDate={currentDoc.publishDate}
-                  author={currentDoc.author}
-                />
-              </motion.div>
-            )}
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
