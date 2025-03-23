@@ -44,7 +44,7 @@ export const Navbar: React.FC = () => {
           </Button>
           <Button
             as="a"
-            href="https://github.com/bytedance/UI-TARS-desktop/releases"
+            href="https://github.com/bytedance/UI-TARS-desktop/releases?q=Agent-TARS&expanded=true"
             target="_blank"
             size="sm"
             className="
