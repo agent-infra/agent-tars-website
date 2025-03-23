@@ -39,6 +39,11 @@ export const categories: Category[] = [
     description: "Tech innovations and solutions",
   },
   {
+    id: "research",
+    name: "Research",
+    description: "General research and discoveries",
+  },
+  {
     id: "science",
     name: "Science",
     description: "Scientific research and discoveries",
@@ -162,13 +167,32 @@ export const showcaseItems: ShowcaseItem[] = [
       name: "ULIVZ",
     },
   },
+  {
+    id: "agent-tars-release-summaries",
+    title: "Organize and summarize the latest releases of Agent TARS",
+    description: "Organize and summarize the latest releases of Agent TARS",
+    category: "research",
+    imageUrl:
+      "https://sf16-sg.tiktokcdn.com/obj/eden-sg/psvhouloj/images/agent-tars-twitter-banner.png",
+    link: "https://sf16-sg.tiktokcdn.com/obj/eden-sg/psvhouloj/agent-tars/agent-tars-release-summaries.html",
+    date: "2025-03-23",
+    languages: ["English"],
+    author: {
+      github: "ulivz",
+      name: "ULIVZ",
+    },
+  },
 ];
 
 // Helper function to get items by category
 export const getItemsByCategory = (categoryId: string): ShowcaseItem[] => {
-  return categoryId === "all"
-    ? showcaseItems
-    : showcaseItems.filter((item) => item.category === categoryId);
+  const items =
+    categoryId === "all"
+      ? showcaseItems
+      : showcaseItems.filter((item) => item.category === categoryId);
+
+  // Sort by date (newest first)
+  return sortItemsByDate(items);
 };
 
 // Helper function to get all categories with counts
@@ -177,4 +201,35 @@ export const getCategoriesWithCounts = (): (Category & { count: number })[] => {
     ...category,
     count: showcaseItems.filter((item) => item.category === category.id).length,
   }));
+};
+
+// Helper function to sort items by date (newest first)
+export const sortItemsByDate = (items: ShowcaseItem[]): ShowcaseItem[] => {
+  return [...items].sort((a, b) => {
+    // If no date is provided, consider it as oldest
+    const dateA = a.date ? new Date(a.date) : new Date(0);
+    const dateB = b.date ? new Date(b.date) : new Date(0);
+    return dateB.getTime() - dateA.getTime();
+  });
+};
+
+// Helper function to check if an item was published within the last N days
+export const isRecentlyPublished = (
+  item: ShowcaseItem,
+  days: number = 3
+): boolean => {
+  if (!item.date) return false;
+
+  const publishDate = new Date(item.date);
+  const currentDate = new Date();
+
+  // Reset time part for accurate day comparison
+  currentDate.setHours(0, 0, 0, 0);
+  publishDate.setHours(0, 0, 0, 0);
+
+  // Calculate difference in days
+  const diffTime = currentDate.getTime() - publishDate.getTime();
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+  return diffDays <= days && diffDays >= 0;
 };

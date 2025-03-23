@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Card, Button } from "@nextui-org/react";
-import { ShowcaseItem } from "../../data/showcaseData";
+import { ShowcaseItem, isRecentlyPublished } from "../../data/showcaseData";
 import { FiShare2 } from "react-icons/fi";
 import { FaPlay } from "react-icons/fa";
 
@@ -24,6 +24,9 @@ export const ShowcaseCard: React.FC<ShowcaseCardProps> = ({
       onShareItem(item);
     }
   };
+
+  // Check if item was published within the last 3 days
+  const isNew = isRecentlyPublished(item, 3);
 
   return (
     <motion.div
@@ -49,6 +52,12 @@ export const ShowcaseCard: React.FC<ShowcaseCardProps> = ({
           >
             <FiShare2 className="text-white" />
           </Button> */}
+          {/* New badge */}
+          {isNew && (
+            <div className="absolute top-2 left-2 z-20 bg-gradient-to-r from-purple-600 to-pink-600 text-white text-xs font-bold px-2 py-1 rounded-full shadow-lg animate-pulse">
+              NEW
+            </div>
+          )}
 
           {/* Preview button overlay */}
           <div className="absolute inset-0 flex items-center justify-center z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">

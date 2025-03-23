@@ -18,7 +18,11 @@ import {
   FiMaximize2,
 } from "react-icons/fi";
 import { FaCode } from "react-icons/fa";
-import { showcaseItems, ShowcaseItem } from "../../data/showcaseData";
+import {
+  showcaseItems,
+  ShowcaseItem,
+  isRecentlyPublished,
+} from "../../data/showcaseData";
 import { BrowserShell } from "../components/BrowserShell";
 import { ShareModal } from "../components/ShareModal";
 import { TwitterCardMeta } from "../components/TwitterCardMeta";
@@ -64,6 +68,9 @@ const ShowcaseDetail: React.FC = () => {
     );
   }
 
+  // Check if item was published within the last 3 days
+  const isNew = isRecentlyPublished(item, 3);
+
   // Generate absolute URL for the current page
   const currentUrl = `${window.location.origin}/showcase/${item.id}`;
 
@@ -75,7 +82,7 @@ const ShowcaseDetail: React.FC = () => {
         image={item.imageUrl}
         url={currentUrl}
       />
-      
+
       <div className="min-h-screen pt-20 bg-black text-white">
         <AnimatePresence>
           {isExpanded ? (
@@ -219,9 +226,16 @@ const ShowcaseDetail: React.FC = () => {
                 <div>
                   <h1 className="text-2xl font-bold mb-3 bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
                     {item.title}
+                    {isNew && (
+                      <span className="ml-2 inline-block bg-gradient-to-r from-purple-600 to-pink-600 text-white text-xs font-bold px-2 py-1 rounded-full align-middle">
+                        NEW
+                      </span>
+                    )}
                   </h1>
 
-                  <p className="text-gray-400 mb-5 text-sm">{item.description}</p>
+                  <p className="text-gray-400 mb-5 text-sm">
+                    {item.description}
+                  </p>
                 </div>
 
                 <div className="space-y-5">
@@ -284,8 +298,8 @@ const ShowcaseDetail: React.FC = () => {
                       Contribute Your Own
                     </h3>
                     <p className="text-sm text-gray-300 mb-3">
-                      Have an interesting Agent TARS report to showcase? We'd love
-                      to feature your work in our gallery!
+                      Have an interesting Agent TARS report to showcase? We'd
+                      love to feature your work in our gallery!
                     </p>
                     <Button
                       as={Link}

@@ -26,6 +26,7 @@ const Showcase: React.FC = () => {
     // Simulate loading data
     setIsLoading(true);
     setTimeout(() => {
+      // getItemsByCategory now returns sorted items
       setFilteredItems(getItemsByCategory(activeCategory));
       setIsLoading(false);
     }, 600);
