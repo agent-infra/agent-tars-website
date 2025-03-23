@@ -130,6 +130,12 @@ Preview, share, and enjoy the awesome replay process!
 
 ---
 
+## Important Information
+
+1. Our Planning has been tested based on Claude. Currently, support for OpenAI is still unstable, and you are welcome to collaborate with us to enhance OpenAI support.
+2. You may encounter various issues. If any problems arise, please refer to [Trouble Shooting](/doc/trouble-shooting).  
+
+---
 
 ## What’s Next? 
 
