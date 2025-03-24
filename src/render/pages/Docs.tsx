@@ -114,8 +114,7 @@ const Docs: React.FC = () => {
 
                 {/* Table of contents column - only show when not loading */}
                 {!isLoading && (
-
-                  <div className="md:w-[23%] md:min-w-[200px] flex-shrink-0 overflow-auto">
+                  <div className="md:w-[23%] md:min-w-[200px] flex-shrink-0">
                     <TableOfContents markdown={markdown} />
                   </div>
                 )}
