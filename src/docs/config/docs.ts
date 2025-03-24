@@ -14,22 +14,16 @@ export const availableDocs: DocItem[] = [
   {
     id: "quick-start",
     title: "Quick Start",
-    // path: "quick-start",
-    // using local file for better performance
     localPath: "quick-start",
-    // githubPath:
-    // "https://raw.githubusercontent.com/bytedance/UI-TARS-desktop/refs/heads/main/apps/agent-tars/docs/quick-start.md",
-    category: "Agent TARS",
+    category: "Guide",
     publishDate: "2025-03-18",
-    // author: "Agent TARS Team",
   },
   {
     id: "trouble-shooting",
     title: "Trouble Shooting",
     localPath: "trouble-shooting",
-    category: "Agent TARS",
+    category: "Guide",
     publishDate: "2025-03-22",
-    // author: "Agent TARS Team",
   },
 ];
 

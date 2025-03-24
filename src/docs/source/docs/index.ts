@@ -1,5 +1,5 @@
-import quickStart from "./quick-start.md";
-import troubeShooting from "./trouble-shooting.md"
+import quickStart from "./guide/quick-start.md";
+import troubeShooting from "./guide/trouble-shooting.md"
 
 // Map of local markdown imports
 const localDocumentations: Record<string, string> = {
