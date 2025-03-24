@@ -71,6 +71,9 @@ curl https://api.anthropic.com/v1/messages \
 }'
 ```
 
+If you can successfully make a request, it means there is no problem with your API Key.
+
+
 ### Validate OpenAI API Key
 
 If you are using the Official OpenAI API Key, you can check whether the current API Key is valid by entering the following Curl command in the terminal:  
@@ -89,6 +92,8 @@ curl "https://api.openai.com/v1/chat/completions" \
         ]
     }'
 ```
+
+If you can successfully make a request, it means there is no problem with your API Key.
 
 
 ### Validate Search
