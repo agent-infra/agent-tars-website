@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { remarkAlert } from "remark-github-blockquote-alert";
 import rehypeRaw from "rehype-raw";
 import rehypeHighlight from "rehype-highlight";
 import { Link } from "react-router-dom";
+import AlertBox from "./AlertBox";
+import 'remark-github-blockquote-alert/alert.css'
 
 interface MarkdownRendererProps {
   content: string;
   publishDate?: string;
   author?: string;
-  className?: string; // 添加className属性以便于外部控制样式
+  className?: string;
 }
 
 /**
@@ -87,12 +90,32 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
     }
   }, [content]); // Re-check when content changes
 
+  // 预处理内容，将 GitHub 风格的 Alerts 转换为自定义组件可以处理的格式
+  // const processedContent = React.useMemo(() => {
+  //   // 匹配 GitHub 风格的 alert 语法: > [!NOTE] 或 > [!WARNING] 等
+  //   return content.replace(
+  //     /^>\s*\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]\s*\n((?:>\s*.*(?:\n|$))*)/gm,
+  //     (_, type, content) => {
+  //       // 去除每行开头的 > 符号和空格，保留实际内容
+  //       const cleanContent = content
+  //         .split("\n")
+  //         .map((line) => line.replace(/^>\s*/, ""))
+  //         .join("\n");
+
+  //       return `<AlertContainer type="${type.toLowerCase()}">\n${cleanContent}\n</AlertContainer>`;
+  //     }
+  //   );
+  // }, [content]);
+
   return (
     <ReactMarkdown
-      remarkPlugins={[remarkGfm]}
+      remarkPlugins={[remarkGfm, remarkAlert]}
       rehypePlugins={[rehypeRaw, rehypeHighlight]}
-      className={className} // 应用传入的className
+      className={className}
       components={{
+        // AlertContainer: ({ type, children }) => (
+        //   <AlertBox type={type}>{children}</AlertBox>
+        // ),
         h1: ({ node, children, ...props }) => {
           // Generate ID from heading text for anchor links
           const id = children
