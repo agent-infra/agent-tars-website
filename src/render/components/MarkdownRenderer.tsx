@@ -1,18 +1,24 @@
 import React, { useState } from "react";
 import ReactMarkdown, { Components } from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { remarkAlert } from "remark-github-blockquote-alert";
 import rehypeRaw from "rehype-raw";
 import rehypeHighlight from "rehype-highlight";
 import { Modal, Box } from "@mui/material";
 import { Link } from "react-router-dom";
+<<<<<<< HEAD
 import "highlight.js/styles/github-dark.css";
 import { motion, AnimatePresence } from "framer-motion";
+=======
+import AlertBox from "./AlertBox";
+import 'remark-github-blockquote-alert/alert.css'
+>>>>>>> 58e2ccc (feat: enable `remark-github-blockquote-alert`)
 
 interface MarkdownRendererProps {
   content: string;
   publishDate?: string;
   author?: string;
-  className?: string; // 添加className属性以便于外部控制样式
+  className?: string;
 }
 
 /**
