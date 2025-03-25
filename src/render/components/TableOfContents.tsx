@@ -97,7 +97,7 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({ markdown }) =>
   return (
     <div 
       ref={tocRef}
-      className="sticky top-20 max-h-[calc(100vh-8rem)] overflow-y-auto z-10"
+      className="sticky top-0 max-h-[calc(100vh-8rem)] overflow-y-auto z-10"
     >
       <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-4 shadow-lg">
         <h4 className="text-sm font-medium text-white/70 mb-3">Table of Contents</h4>
