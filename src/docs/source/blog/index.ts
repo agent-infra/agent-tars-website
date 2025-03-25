@@ -1,8 +1,10 @@
 import announcingAgentTarsApp from "./announcing-agent-tars-app.md";
-
+import mcpBringsANewParadigmToLayeredAIApplicationDevelopment from "./mcp-brings-a-new-paradigm-to-layered-ai-application-development.md";
 // Map of local markdown imports
 const localBlogPosts: Record<string, string> = {
   "announcing-agent-tars-app": announcingAgentTarsApp,
+  "mcp-brings-a-new-paradigm-to-layered-ai-application-development":
+    mcpBringsANewParadigmToLayeredAIApplicationDevelopment,
 };
 
 /**
