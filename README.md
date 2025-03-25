@@ -5,7 +5,7 @@
 ## Writing Guide
 
 1. Do not support local image transpilation.
-2. Using Github Alerts
+2. Using [Github Alerts](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#alerts)
 
 ```md
 > [!NOTE]
@@ -23,5 +23,3 @@
 > [!CAUTION]
 > Advises about risks or negative outcomes of certain actions.
 ```
-
-Ref: https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#alerts
