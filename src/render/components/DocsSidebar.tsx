@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import {  getDocsByCategory } from "../../docs";
+import { getDocsByCategory } from "../../docs";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@nextui-org/react";
 import { FiMenu, FiX, FiChevronRight, FiChevronDown } from "react-icons/fi";
+import { getDocDetailRoute } from "../../constants/routes";
 
 export const DocsSidebar: React.FC = () => {
   const { docId } = useParams();
@@ -172,7 +173,7 @@ export const DocsSidebar: React.FC = () => {
                             {docs.map((doc) => (
                               <li key={doc.id}>
                                 <Link
-                                  to={`/doc/${doc.id}`}
+                                  to={getDocDetailRoute(doc.id)}
                                   className={`
                                     block px-3 py-2 rounded-md transition-colors text-sm
                                     ${

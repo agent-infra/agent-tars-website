@@ -8,6 +8,7 @@ import ShowcaseDetail from "./pages/ShowcaseDetail";
 import Docs from "./pages/Docs";
 import { TwitterCardMeta } from "./components/TwitterCardMeta";
 import { HelmetProvider } from "react-helmet-async";
+import { ETopRoute } from "../constants/routes";
 
 const App: React.FC = () => {
   return (
@@ -16,13 +17,13 @@ const App: React.FC = () => {
         <TwitterCardMeta />
         <Navbar />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/blog" element={<Blog />} />
+          <Route path={ETopRoute.HOME} element={<Home />} />
+          <Route path={ETopRoute.BLOG} element={<Blog />} />
           <Route path="/:year/:month/:day/:slug" element={<Blog />} />
-          <Route path="/showcase" element={<Showcase />} />
-          <Route path="/showcase/:id" element={<ShowcaseDetail />} />
-          <Route path="/doc" element={<Docs />} />
-          <Route path="/doc/:docId" element={<Docs />} />
+          <Route path={ETopRoute.SHOWCASE} element={<Showcase />} />
+          <Route path={`${ETopRoute.SHOWCASE}/:id`} element={<ShowcaseDetail />} />
+          <Route path={ETopRoute.DOC} element={<Docs />} />
+          <Route path={`${ETopRoute.DOC}/:docId`} element={<Docs />} />
         </Routes>
       </BrowserRouter>
     </HelmetProvider>
