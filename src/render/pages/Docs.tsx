@@ -8,6 +8,7 @@ import { availableDocs, getLocalDoc } from "../../docs";
 import { DocsSidebar } from "../components/DocsSidebar";
 import { TableOfContents } from "../components/TableOfContents";
 import { TwitterCardMeta } from "../components/TwitterCardMeta";
+import { ETopRoute } from "../../constants/routes";
 
 const Docs: React.FC = () => {
   const [markdown, setMarkdown] = useState<string>("");
@@ -60,7 +61,7 @@ const Docs: React.FC = () => {
       <TwitterCardMeta
         title={`${currentDoc.title} | Agent TARS Docs`}
         description="Agent TARS documentation and guides"
-        url={`${window.location.origin}/${currentDocId}`}
+        url={`${window.location.origin}${ETopRoute.DOC}/${currentDocId}`}
       />
 
       <div className="min-h-screen pt-16 bg-black text-white">

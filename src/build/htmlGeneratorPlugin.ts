@@ -3,6 +3,7 @@ import path from "path";
 import type { RsbuildPlugin } from "@rsbuild/core";
 import { availableDocs, blogPosts, getBlogPermalink } from "../docs/config";
 import { showcaseItems } from "../data/showcaseData";
+import { ETopRoute } from "../constants/routes";
 
 export interface HtmlGeneratorOptions {
   /**
@@ -85,7 +86,7 @@ export const pluginHtmlGenerator = (
         const isVerbose = options.verbose !== false;
 
         // Default static routes list
-        const staticRoutes = ["/blog", "/showcase", "/docs"];
+        const staticRoutes = [ETopRoute.BLOG, ETopRoute.SHOWCASE, ETopRoute.DOC];
 
         // Merge user-provided additional routes
         if (options.additionalRoutes?.length) {
@@ -95,7 +96,7 @@ export const pluginHtmlGenerator = (
         // Get dynamic routes from availableDocs
         const docRoutes =
           options.generateDocRoutes !== false
-            ? availableDocs.map((doc) => `/${doc.id}`)
+            ? availableDocs.map((doc) => `${ETopRoute.DOC}/${doc.id}`)
             : [];
 
         // Get blog permalinks
@@ -107,7 +108,7 @@ export const pluginHtmlGenerator = (
         // Get showcase routes
         const showcaseRoutes =
           options.generateShowcaseRoutes !== false
-            ? showcaseItems.map((item) => `/showcase/${item.id}`)
+            ? showcaseItems.map((item) => `${ETopRoute.SHOWCASE}/${item.id}`)
             : [];
 
         // Read original index.html content

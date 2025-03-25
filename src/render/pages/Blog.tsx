@@ -13,6 +13,7 @@ import { Button, Card, Spinner, Divider } from "@nextui-org/react";
 import { FiArrowLeft, FiCalendar, FiUser } from "react-icons/fi";
 import { TableOfContents } from "../components/TableOfContents";
 import { TwitterCardMeta } from "../components/TwitterCardMeta";
+import { ETopRoute } from "../../constants/routes";
 
 const Blog: React.FC = () => {
   const { year, month, day, slug } = useParams();
@@ -78,7 +79,7 @@ const Blog: React.FC = () => {
             <div className="mb-8">
               <Button
                 as={Link}
-                to="/blog"
+                to={ETopRoute.BLOG}
                 variant="light"
                 color="default"
                 startContent={<FiArrowLeft />}
@@ -128,7 +129,7 @@ const Blog: React.FC = () => {
       <TwitterCardMeta
         title="Agent TARS Blog - Latest Updates and Insights"
         description="Latest updates and insights from the Agent TARS team"
-        url={`${window.location.origin}/blog`}
+        url={`${window.location.origin}${ETopRoute.BLOG}`}
       />
 
       <div className="min-h-screen pt-24 px-4 bg-black text-white">

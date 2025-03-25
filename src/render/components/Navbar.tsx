@@ -5,6 +5,7 @@ import { FiDownload, FiMenu, FiX } from "react-icons/fi";
 import { FaDiscord } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import Icon from "./icon.png";
+import { ETopRoute } from "../../constants/routes";
 
 export const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -57,7 +58,7 @@ export const Navbar: React.FC = () => {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-black/50 backdrop-blur-md border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-0 h-16 flex items-center justify-between">
           <div className="flex items-center gap-6">
-            <Link to="/" className="flex items-center">
+            <Link to={ETopRoute.HOME} className="flex items-center">
               <img src={Icon} alt="TARS Logo" className="h-8 w-8 mr-0" />
             </Link>
 
@@ -65,19 +66,19 @@ export const Navbar: React.FC = () => {
             {!isMobile && (
               <div className="flex items-center gap-6">
                 <Link
-                  to="/doc"
+                  to={ETopRoute.DOC}
                   className="text-gray-300 hover:text-white transition-colors"
                 >
                   Docs
                 </Link>
                 <Link
-                  to="/blog"
+                  to={ETopRoute.BLOG}
                   className="text-gray-300 hover:text-white transition-colors"
                 >
                   Blog
                 </Link>
                 <Link
-                  to="/showcase"
+                  to={ETopRoute.SHOWCASE}
                   className="text-gray-300 hover:text-white transition-colors"
                 >
                   Showcase
@@ -164,21 +165,21 @@ export const Navbar: React.FC = () => {
             >
               <div className="flex flex-col gap-8">
                 <Link
-                  to="/doc"
+                  to={ETopRoute.DOC}
                   className="text-gray-300 hover:text-white transition-colors text-lg font-medium"
                   onClick={closeMobileMenu}
                 >
                   Docs
                 </Link>
                 <Link
-                  to="/blog"
+                  to={ETopRoute.BLOG}
                   className="text-gray-300 hover:text-white transition-colors text-lg font-medium"
                   onClick={closeMobileMenu}
                 >
                   Blog
                 </Link>
                 <Link
-                  to="/showcase"
+                  to={ETopRoute.SHOWCASE}
                   className="text-gray-300 hover:text-white transition-colors text-lg font-medium"
                   onClick={closeMobileMenu}
                 >

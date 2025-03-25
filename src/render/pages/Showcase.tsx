@@ -12,6 +12,7 @@ import {
   ShowcaseItem
 } from '../../data/showcaseData';
 import { useNavigate } from 'react-router-dom';
+import { ETopRoute, getShowcaseDetailRoute } from '../../constants/routes';
 
 const Showcase: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState("all");
@@ -36,7 +37,7 @@ const Showcase: React.FC = () => {
   };
 
   const handleOpenPreview = (item: ShowcaseItem) => {
-    navigate(`/showcase/${item.id}`);
+    navigate(getShowcaseDetailRoute(item.id));
   };
   
   const handleShareItem = (item: ShowcaseItem) => {
