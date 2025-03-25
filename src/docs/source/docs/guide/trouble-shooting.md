@@ -1,6 +1,6 @@
 # Trouble Shooting
 
-Starting from `v0.0.1-alpha.4`, we have introduced log-based error troubleshooting capabilities.  
+Starting from [v0.0.1-alpha.4](https://github.com/bytedance/UI-TARS-desktop/releases/tag/Agent-TARS-v1.0.0-alpha.4), we have introduced log-based error troubleshooting capabilities.  
 
 ## Introduction
 
@@ -11,11 +11,11 @@ If you complete the guide in this section and find that the program still does n
 
 ## Overview
 
-| Issue Number | Scenario                  | Solution Approach                                  |
+| No. | Scenario                  | Solution Approach                                  |
 | ------------ | ------------------------- | ------------------------------------------------- |
 |  #1          | No response               | Use [Inspect Main Process](#inspect-main-process) to search for `[Error]` to determine if the LLM encountered an request error. |
-|  #2          | Validate whether OpenAI Key is effective | Refer to [Validate OpenAI API Key](#validate-openai-api-key).            |
-|  #3          | Validate whether Anthropic AI Key is effective | Refer to [Validate Anthropic API Key](#validate-anthropic-api-key).      |
+|  #2          | Validate whether OpenAI API Key is effective | Refer to [Validate OpenAI API Key](#validate-openai-api-key).            |
+|  #3          | Validate whether Anthropic API Key is effective | Refer to [Validate Anthropic API Key](#validate-anthropic-api-key).      |
 
 
 ## Guide
@@ -39,20 +39,22 @@ By filtering `[Error]`, you can locate all potential runtime errors in typical s
 
 ### Inspect WebView Process
 
-当你遇到 UI 部分渲染不正常时，你可以通过下述步骤启动 Chrome Devtools。
+If you encounter abnormal UI rendering, you can launch Chrome DevTools using the following steps:  
 
 <p align="center">
   <img width="300" src="https://sf16-sg.tiktokcdn.com/obj/eden-sg/psvhouloj/agent-tars-docs/toggle-developer-tools.png">
 </p>
 
-你将会能够调试 UI，并且查看控制台中是否有报错日志：
+You will be able to debug the UI and check the console for any error logs:  
 
 <p align="center">
   <img width="600" src="https://sf16-sg.tiktokcdn.com/obj/eden-sg/psvhouloj/agent-tars-docs/chrome-devtools.png">
 </p>
 
 
-### Validate Anthropic API Key
+### Validate LLM Request
+
+#### Validate Anthropic API Key
 
 If you are using the Official Anthropic API Key, you can check whether the current API Key is valid by entering the following Curl command in the terminal:  
 
@@ -73,8 +75,11 @@ curl https://api.anthropic.com/v1/messages \
 
 If you can successfully make a request, it means there is no problem with your API Key.
 
+> **See more**: https://docs.anthropic.com/en/api/getting-started
 
-### Validate OpenAI API Key
+---
+
+#### Validate OpenAI API Key
 
 If you are using the Official OpenAI API Key, you can check whether the current API Key is valid by entering the following Curl command in the terminal:  
 
@@ -87,7 +92,7 @@ curl "https://api.openai.com/v1/chat/completions" \
         "messages": [
             {
                 "role": "user",
-                "content": "Write a one-sentence bedtime story about a unicorn."
+                "content": "Hello, world."
             }
         ]
     }'
@@ -95,24 +100,35 @@ curl "https://api.openai.com/v1/chat/completions" \
 
 If you can successfully make a request, it means there is no problem with your API Key.
 
+> **See more**: https://platform.openai.com/docs/quickstart
+
+---
 
 ### Validate Search
 
+#### Validate Traily
 
-## 已知错误
+```bash
+curl -X POST https://api.tavily.com/search \
+-H 'Content-Type: application/json' \
+-H 'Authorization: Bearer tvly-dev-********************************' \
+-d '{
+    "query": "Agent TARS"
+}'
+```
+
+## Errors
 
 ### Claude
 
 #### 403: Request not allowed
 
-```
+```bash
 Failed to get tool response from LLM: Failed to get tool response
 from Anthropic:Error:403 {"error":{"type": "feorbidden","message": "Request not allowed"}}
 ```
 
-解决办法：
-
-1. [Validate OpenAI API Key](#validate-openai-api-key)。
+**Solution**：[Validate Anthropic API Key](#validate-anthropic-api-key)。
 
 
 ### OpenAI
@@ -123,7 +139,7 @@ from Anthropic:Error:403 {"error":{"type": "feorbidden","message": "Request not 
 [2025-03-22T18:05:59.707Z] [ERROR] Failed to get tool response from LLM: Failed to get tool response from OpenAI: Error: 401 Incorrect API key provided: xx. You can find your API key at https://platform.openai.com/account/api-keys.
 ```
 
-解决办法：[Validate OpenAI API Key](#validate-openai-api-key)。
+**Solution**：[Validate OpenAI API Key](#validate-openai-api-key)。
 
 ---
 
@@ -133,7 +149,7 @@ from Anthropic:Error:403 {"error":{"type": "feorbidden","message": "Request not 
 [2025-03-22T17:14:02.078Z] [ERROR] Failed to get tool response from LLM: Failed to get tool response from OpenAI: TypeError: Invalid URL
 ```
 
-解决办法：替换 [Validate OpenAI API Key](#validate-openai-api-key) 中的 `https://api.openai.com/v1` 进行请求，确定 Base URL（Endpoint）配置正确。
+**Solution**：Replace the `https://api.openai.com/v1` in [Validate OpenAI API Key](#validate-openai-api-key) for requests and ensure the Base URL (Endpoint) is configured correctly.  
 
 
 ---
@@ -143,6 +159,8 @@ from Anthropic:Error:403 {"error":{"type": "feorbidden","message": "Request not 
 ```bash
 Failed to get tool response from LLM: Failed to get tool response from OpenAI: Error: 400 invalid model or product name, product not right
 ```  
+
+---
 
 #### Error: 401 no model permission:
 
@@ -160,6 +178,7 @@ Failed to get tool response from LLM: Failed to get tool response from Azure Ope
 [2025-03-23T04:01:26.836Z] [ERROR] Failed to get tool response from LLM: Failed to get tool response from OpenAI: Error: 402 Insufficient Balance
 ```
 
-解决办法：充值
+Solution: Recharge.  
+
 
 
