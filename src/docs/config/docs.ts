@@ -11,13 +11,13 @@ export interface DocItem {
 }
 
 export const availableDocs: DocItem[] = [
-  {
-    id: "quick-start",
-    title: "Quick Start",
-    localPath: "quick-start",
-    category: "Guide",
-    publishDate: "2025-03-18",
-  },
+  // {
+  //   id: "quick-start",
+  //   title: "Quick Start",
+  //   localPath: "quick-start",
+  //   category: "Guide",
+  //   publishDate: "2025-03-18",
+  // },
   {
     id: "trouble-shooting",
     title: "Trouble Shooting",
