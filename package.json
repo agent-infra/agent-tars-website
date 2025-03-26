@@ -27,6 +27,7 @@
     "@types/react-dom": "^18.2.24",
     "@types/react-helmet": "^6.1.11",
     "autoprefixer": "^10.4.20",
+    "highlight.js": "^11.11.1",
     "postcss": "^8.4.49",
     "react-helmet": "^6.1.0",
     "react-helmet-async": "^2.0.5",

@@ -4,6 +4,7 @@ import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import rehypeHighlight from "rehype-highlight";
 import { Link } from "react-router-dom";
+import 'highlight.js/styles/github-dark.css';
 
 interface MarkdownRendererProps {
   content: string;
@@ -19,7 +20,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
   return (
     <ReactMarkdown
       remarkPlugins={[remarkGfm]}
-      rehypePlugins={[rehypeRaw, rehypeHighlight]}
+      rehypePlugins={[rehypeRaw, [rehypeHighlight, { detect: true, ignoreMissing: true }]]}
       components={{
         h1: ({ node, children, ...props }) => {
           const id = children
@@ -155,11 +156,11 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
 
           if (match) {
             return (
-              <div className="relative my-6">
+              <div className="relative my-6 group">
                 <div className="absolute top-0 right-0 bg-white/10 rounded-bl rounded-tr px-2 py-1 text-xs text-gray-400 font-mono">
                   {match[1] || "code"}
                 </div>
-                <pre className="bg-black/50 backdrop-blur-sm border border-white/10 rounded-lg p-4 overflow-x-auto text-gray-300 text-sm font-mono">
+                <pre className="bg-[#282c34] backdrop-blur-sm border border-white/10 rounded-lg overflow-x-auto text-sm font-mono shadow-lg">
                   <code className={className} {...props}>
                     {children}
                   </code>
