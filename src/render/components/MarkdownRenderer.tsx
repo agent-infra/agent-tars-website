@@ -194,7 +194,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
         ),
         td: ({ node, ...props }) => (
           <td
-            className="px-4 py-3 whitespace-nowrap text-gray-400 border-white/10"
+            className="px-4 py-3 text-gray-400 border-white/10"
             {...props}
           />
         ),
