@@ -363,7 +363,7 @@ At this point, the entire MCP workflow has been fully implemented, covering all 
 
 ## Ecosystem
 
-The MCP ecosystem continues to grow, with increasing applications supporting MCP and open platforms providing MCP Servers. Services like [Composio](https://mcp.composio.dev/) and [Zapier](https://zapier.com/mcp) use SSE to host MCP (i.e., connecting one MCP Endpoint grants access to multiple MCP Servers). The ideal scenario for Stdio implementation would be running MCP Servers and Agent systems within the same Docker container.
+The MCP ecosystem continues to grow, with increasing applications supporting MCP and open platforms providing MCP Servers. Services like [Cloudflare](https://blog.cloudflare.com/remote-model-context-protocol-servers-mcp/) and [Composio](https://mcp.composio.dev/), [Zapier](https://zapier.com/mcp) use SSE to host MCP (i.e., connecting one MCP Endpoint grants access to multiple MCP Servers). The ideal scenario for Stdio implementation would be running MCP Servers and Agent systems within the same Docker container.
 
 ![](https://sf16-sg.tiktokcdn.com/obj/eden-sg/zyha-pb/ljhwZthlaukjlkulzlp/202503252346952.png)
 
