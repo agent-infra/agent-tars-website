@@ -22,11 +22,11 @@ export const blogPosts: BlogPost[] = [
     tags: ["announcement", "release"],
   },
   {
-    id: "mcp-brings-a-new-paradigm-to-layered-ai-application-development",
+    id: "mcp-brings-a-new-paradigm-to-layered-ai-app-development",
     title: "MCP Brings a New Paradigm to Layered AI Application Development",
-    slug: "mcp-dev",
+    slug: "mcp-brings-a-new-paradigm-to-layered-ai-app-development",
     date: "2025-03-25",
-    author: "Agent TARS Team",
+    author: "ycjcl868",
     excerpt:
       "MCP's role in transforming development paradigms and expanding tool ecosystems.",
     tags: ["development", "paradigm", "tooling"],

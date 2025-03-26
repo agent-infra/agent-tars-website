@@ -4,7 +4,7 @@
 >
 > Using the development of the [Agent TARS](https://agent-tars.com/) application as an example, this article details MCP's role in transforming development paradigms and expanding tool ecosystems.
 
-# Terminology
+## Terminology
 
 | Term | Definition |
 | :-- | :-- |
@@ -14,11 +14,11 @@
 | **Agent TARS** | An open-source multimodal AI agent seamlessly integrating with real-world tools. |
 | **RESTful API** | An architectural style for client-server interaction, based on design principles rather than strict standards. |
 
-# Overview
+## Overview
 
 AI has evolved from dialogue-only Chatbots to decision-supporting Copilots and now autonomous Agents, demanding richer **context** and **tools** for task execution.
 
-## Challenges
+### Challenges
 
 The lack of standardized context and tooling creates three major challenges:
 
@@ -29,7 +29,7 @@ The lack of standardized context and tooling creates three major challenges:
 ![Function Call Without MCP](https://sf16-sg.tiktokcdn.com/obj/eden-sg/zyha-pb/ljhwZthlaukjlkulzlp/202503260037073.png)
 
 
-## Goal
+### Goal
 
 > "All problems in computer science can be solved by another level of indirection" -- Butler Lampson
 
@@ -37,7 +37,7 @@ MCP decouples tools into a dedicated MCP Server layer, standardizing development
 
 ![](https://sf16-sg.tiktokcdn.com/obj/eden-sg/zyha-pb/ljhwZthlaukjlkulzlp/202503260020513.png)
 
-# Demo
+## Demo
 
 Three examples showcasing MCP's role in AI Agent applications:
 
@@ -50,15 +50,15 @@ Three examples showcasing MCP's role in AI Agent applications:
 > Current MCP customization is closed; third-party MCP Servers were manually mounted for testing.
 > More: [https://agent-tars.com/showcase](https://agent-tars.com/showcase)
 
-# Introduction
+## Introduction
 
-## What is MCP?
+### What is MCP?
 
 Model Context Protocol is a **standard protocol** by Anthropic for LLM-to-external communication (data/tools), based on [JSON-RPC 2.0](https://www.jsonrpc.org/specification). It acts as a **USB-C interface for AI**, standardizing context provision.
 
 ![](https://sf16-sg.tiktokcdn.com/obj/eden-sg/zyha-pb/ljhwZthlaukjlkulzlp/202503252346948.png)
 
-### Architecture
+#### Architecture
 
 ![](https://sf16-sg.tiktokcdn.com/obj/eden-sg/zyha-pb/ljhwZthlaukjlkulzlp/202503252346960.png)
 
@@ -66,13 +66,13 @@ Model Context Protocol is a **standard protocol** by Anthropic for LLM-to-extern
 - **MCP Servers**: Provide context—Resources, Tools, Prompts—to Clients.
 - **Language Support**: TypeScript, Python, Java, Kotlin, C#.
 
-## Flowchart
+### Flowchart
 
 MCP supplies LLMs with three context types: Resources, Prompts, and Tools.
 
 ![](https://sf16-sg.tiktokcdn.com/obj/eden-sg/zyha-pb/ljhwZthlaukjlkulzlp/202503252346961.png)
 
-## MCP vs. Function Call
+### MCP vs. Function Call
 
 |  | [MCP](https://modelcontextprotocol.io/introduction) | [Function Call](https://platform.openai.com/docs/guides/function-calling) |
 | :-- | :-- | :-- |
@@ -83,7 +83,7 @@ MCP supplies LLMs with three context types: Resources, Prompts, and Tools.
 | **Integration** | Complex. | Simple. |
 | **Engineering** | High maturity. | Low maturity. |
 
-## MCP as Frontend-Backend Separation
+### MCP as Frontend-Backend Separation
 
 Early web development coupled UIs with backend logic (JSP/PHP), mirroring today's Agent-tool entanglement. AJAX/Node.js/RESTful APIs enabled separation; MCP now does the same for AI:
 
@@ -95,16 +95,16 @@ This layering lets Agent developers compose tools like building blocks.
 ![](https://sf16-sg.tiktokcdn.com/obj/eden-sg/zyha-pb/ljhwZthlaukjlkulzlp/202503252346964.png)
 
 
-# Practice
+## Practice
 
-## Design Overview
+### Design Overview
 
 The [MCP Browser Tool](https://github.com/bytedance/UI-TARS-desktop/tree/main/packages/agent-infra/mcp-servers/browser) exemplifies the implementation. To ensure out-of-box usability (avoiding Node.js/UV dependencies per [issue#64](https://github.com/modelcontextprotocol/servers/issues/64)), we categorize tools as:
 
 - **Built-in MCP Servers**: Fully MCP-compliant, supporting both Stdio and function calls ("MCP-standardized Function Calls").
 - **Extended MCP Servers**: For advanced users with Npm/UV environments.
 
-## MCP Server Development
+### MCP Server Development
 
 Taking mcp-server-browser as an example, it is essentially an npm package with the following `package.json` configuration:
 
@@ -132,7 +132,7 @@ Taking mcp-server-browser as an example, it is essentially an npm package with t
 - `bin`: Stdio entry
 - `main` / `module`: In-process function call entry
 
-### Development
+#### Development
 
 In practice, using the [Inspector](https://modelcontextprotocol.io/docs/tools/inspector) to develop and debug MCP Servers proves highly effective. By decoupling Agents from tools, developers can debug and develop tools independently.
 
@@ -155,9 +155,9 @@ Set up MCP proxy
 
 > Note: console.log doesn't work in Inspector—debugging requires alternatives.
 
-### Implementation
+#### Implementation
 
-#### Entry Points
+##### Entry Points
 
 To enable **in-process function calls** for built-in MCP Servers, we export three shared methods in the entry file `src/server.ts`:
 
@@ -213,7 +213,7 @@ process.stdin.on("close", () => {
 });
 ```
 
-#### Tool Definition
+##### Tool Definition
 
 The MCP protocol requires using JSON Schema to constrain tool inputs and outputs. Based on practical experience, we recommend using [zod](https://github.com/colinhacks/zod) to define a Zod Schema set, which is then converted to JSON Schema for MCP export.
 
@@ -275,11 +275,11 @@ const callTool = async ({ name, arguments: toolArgs }) => {
 > **Pro Tip**: Unlike OpenAPI's structured data returns, MCP responses are specifically designed for LLM models. To better bridge models and tools, returned text and tool descriptions should be more semantic, improving model comprehension and tool invocation success rates.
 > For example, `browser_scroll` should return page scroll status after each execution (e.g., remaining pixels to bottom, whether bottom reached). This enables models to provide more precise parameters in subsequent calls.
 
-## Agent Integration
+### Agent Integration
 
 After developing the MCP Server, it needs to be integrated into the Agent application. In principle, the Agent shouldn't need to concern itself with the specific details of tools, inputs, and outputs provided by MCP Servers.
 
-### MCP Servers Configuration
+#### MCP Servers Configuration
 
 MCP Servers configuration is divided into "Built-in Servers" and "User Extension Servers". Built-in Servers use in-process Function Calls to ensure out-of-the-box functionality for novice users, while Extension Servers provide advanced users with expanded Agent capabilities.
 
@@ -312,11 +312,11 @@ MCP Servers configuration is divided into "Built-in Servers" and "User Extension
 }
 ```
 
-### MCP Client
+#### MCP Client
 
 The core mission of the MCP Client is to integrate MCP Servers with different invocation methods (Stdio/SSE/Function Call). The Stdio and SSE implementations directly reuse the [Official Examples](https://modelcontextprotocol.io/quickstart/client). Here we focus on how Function Call support was implemented in the Client.
 
-#### Function Call Invocation
+##### Function Call Invocation
 
 ```diff
 export type MCPServer<ServerNames extends string = string> = {
@@ -359,15 +359,15 @@ const response = await openai.chat.completions.create({
 At this point, the entire MCP workflow has been fully implemented, covering all aspects from Server configuration, Client integration to Agent connectivity. More MCP details/code have been open-sourced on GitHub: [Agent Integration](https://github.com/bytedance/UI-TARS-desktop/blob/fb2932afbdd54da757b9fae61e888fc8804e648f/apps/agent-tars/src/main/llmProvider/index.ts#L89-L91), [mcp-client](https://github.com/bytedance/UI-TARS-desktop/tree/main/packages/agent-infra/mcp-client), [mcp-servers](https://github.com/bytedance/UI-TARS-desktop/tree/main/packages/agent-infra/mcp-servers)
 
 
-# Insights
+## Insights
 
-## Ecosystem
+### Ecosystem
 
 The MCP ecosystem continues to grow, with increasing applications supporting MCP and open platforms providing MCP Servers. Services like [Cloudflare](https://blog.cloudflare.com/remote-model-context-protocol-servers-mcp/) and [Composio](https://mcp.composio.dev/), [Zapier](https://zapier.com/mcp) use SSE to host MCP (i.e., connecting one MCP Endpoint grants access to multiple MCP Servers). The ideal scenario for Stdio implementation would be running MCP Servers and Agent systems within the same Docker container.
 
 ![](https://sf16-sg.tiktokcdn.com/obj/eden-sg/zyha-pb/ljhwZthlaukjlkulzlp/202503252346952.png)
 
-## Future
+### Future
 
 - Current MCP lacks mature standardization and engineering frameworks
 - According to the [MCP Roadmap](https://modelcontextprotocol.io/development/roadmap), three key initiatives are planned:
