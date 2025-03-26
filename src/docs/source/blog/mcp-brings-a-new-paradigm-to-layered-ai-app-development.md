@@ -1,10 +1,12 @@
 # MCP Brings a New Paradigm to Layered AI Application Development
 
-> Preface: While MCP is a hot topic, its most critical aspect **decoupling tool providers from application developers through standardized protocols** has been overlooked. This shift mirrors the frontend-backend separation in web development, representing a **paradigm shift in AI Agent application development**.
+> **Preface**: While MCP is a hot topic, its most critical aspect **decoupling tool providers from application developers through standardized protocols** has been overlooked. This shift mirrors the frontend-backend separation in web development, representing a **paradigm shift in AI Agent application development**.
 >
 > Using the development of the [Agent TARS](https://agent-tars.com/) application as an example, this article details MCP's role in transforming development paradigms and expanding tool ecosystems.
 
-## Terminology
+---
+
+## Glossary
 
 | Term | Definition |
 | :-- | :-- |
@@ -14,9 +16,13 @@
 | **Agent TARS** | An open-source multimodal AI agent seamlessly integrating with real-world tools. |
 | **RESTful API** | An architectural style for client-server interaction, based on design principles rather than strict standards. |
 
+---
+
 ## Overview
 
 AI has evolved from dialogue-only Chatbots to decision-supporting Copilots and now autonomous Agents, demanding richer **context** and **tools** for task execution.
+
+---
 
 ### Challenges
 
@@ -26,8 +32,11 @@ The lack of standardized context and tooling creates three major challenges:
 2. **Poor Tool Reusability**: Tight coupling with Agent code leads to inconsistent API adaptations, hindering cross-language reuse.
 3. **Fragmented Ecosystem**: Without standards, tools (e.g., OpenAPIs) are incompatible across Agent ecosystems.
 
-![Function Call Without MCP](https://sf16-sg.tiktokcdn.com/obj/eden-sg/zyha-pb/ljhwZthlaukjlkulzlp/202503260037073.png)
+<p align="center">
+   <img alt="Function Call Without MCP" width="600" src="https://sf16-sg.tiktokcdn.com/obj/eden-sg/zyha-pb/ljhwZthlaukjlkulzlp/202503260037073.png">
+</p>
 
+---
 
 ### Goal
 
@@ -35,7 +44,11 @@ The lack of standardized context and tooling creates three major challenges:
 
 MCP decouples tools into a dedicated MCP Server layer, standardizing development and invocation. MCP Servers provide Agents with standardized access to context and tools.
 
-![](https://sf16-sg.tiktokcdn.com/obj/eden-sg/zyha-pb/ljhwZthlaukjlkulzlp/202503260020513.png)
+<p align="center">
+   <img width="800" src="https://sf16-sg.tiktokcdn.com/obj/eden-sg/zyha-pb/ljhwZthlaukjlkulzlp/202503260020513.png">
+</p>
+
+---
 
 ## Demo
 
@@ -43,12 +56,14 @@ Three examples showcasing MCP's role in AI Agent applications:
 
 | Instruction | Demo | MCP Servers Used | Notes |
 | :-- | :-- | :-- | :-- |
-| Analyze a stock technically, then buy 3 shares at market price | [Replay](https://sf16-sg.tiktokcdn.com/obj/eden-sg/zyha-pb/ljhwZthlaukjlkulzlp/report_1742741107345.html) ![](https://sf16-sg.tiktokcdn.com/obj/eden-sg/zyha-pb/ljhwZthlaukjlkulzlp/202503252346944.png) | [Broker MCP](https://github.com/longportapp/openapi/tree/main/mcp), [Filesystem MCP](https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem) | Uses simulated trading account. |
-| What are my machine's CPU, memory, and network speeds? | [Replay](https://sf16-sg.tiktokcdn.com/obj/eden-sg/zyha-pb/ljhwZthlaukjlkulzlp/report_1742745014696.html) ![](https://sf16-sg.tiktokcdn.com/obj/eden-sg/zyha-pb/ljhwZthlaukjlkulzlp/202503252346946.png) | [CLI MCP](https://github.com/g0t4/mcp-server-commands), [Code Exec MCP](https://github.com/formulahendry/mcp-server-code-runner) | |
-| Find top 5 upvoted products on ProductHunt | [Replay](https://sf16-sg.tiktokcdn.com/obj/eden-sg/zyha-pb/ljhwZthlaukjlkulzlp/report_1742745636585.html) ![](https://sf16-sg.tiktokcdn.com/obj/eden-sg/zyha-pb/ljhwZthlaukjlkulzlp/202503252346947.png) | [Browser MCP](https://github.com/bytedance/UI-TARS-desktop/tree/fb2932afbdd54da757b9fae61e888fc8804e648f/packages/agent-infra/mcp-servers/browser) | |
+| Analyze a stock technically, then buy 3 shares at market price | [Replay](https://sf16-sg.tiktokcdn.com/obj/eden-sg/zyha-pb/ljhwZthlaukjlkulzlp/report_1742741107345.html)  <img width="500" src="https://sf16-sg.tiktokcdn.com/obj/eden-sg/zyha-pb/ljhwZthlaukjlkulzlp/202503252346944.png"> | [Broker MCP](https://github.com/longportapp/openapi/tree/main/mcp), [Filesystem MCP](https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem) | Uses simulated trading account. |
+| What are my machine's CPU, memory, and network speeds? | [Replay](https://sf16-sg.tiktokcdn.com/obj/eden-sg/zyha-pb/ljhwZthlaukjlkulzlp/report_1742745014696.html) <img width="500" src="https://sf16-sg.tiktokcdn.com/obj/eden-sg/zyha-pb/ljhwZthlaukjlkulzlp/202503252346946.png"> | [CLI MCP](https://github.com/g0t4/mcp-server-commands), [Code Exec MCP](https://github.com/formulahendry/mcp-server-code-runner) | |
+| Find top 5 upvoted products on ProductHunt | [Replay](https://sf16-sg.tiktokcdn.com/obj/eden-sg/zyha-pb/ljhwZthlaukjlkulzlp/report_1742745636585.html) <img width="500" src="https://sf16-sg.tiktokcdn.com/obj/eden-sg/zyha-pb/ljhwZthlaukjlkulzlp/202503252346947.png"> | [Browser MCP](https://github.com/bytedance/UI-TARS-desktop/tree/fb2932afbdd54da757b9fae61e888fc8804e648f/packages/agent-infra/mcp-servers/browser) | |
 
 > Current MCP customization is closed; third-party MCP Servers were manually mounted for testing.
 > More: [https://agent-tars.com/showcase](https://agent-tars.com/showcase)
+
+---
 
 ## Introduction
 
@@ -56,32 +71,46 @@ Three examples showcasing MCP's role in AI Agent applications:
 
 Model Context Protocol is a **standard protocol** by Anthropic for LLM-to-external communication (data/tools), based on [JSON-RPC 2.0](https://www.jsonrpc.org/specification). It acts as a **USB-C interface for AI**, standardizing context provision.
 
-![](https://sf16-sg.tiktokcdn.com/obj/eden-sg/zyha-pb/ljhwZthlaukjlkulzlp/202503252346948.png)
+<p align="center">
+   <img width="700" src="https://sf16-sg.tiktokcdn.com/obj/eden-sg/zyha-pb/ljhwZthlaukjlkulzlp/202503252346948.png">
+</p>
+
+---
 
 #### Architecture
 
-![](https://sf16-sg.tiktokcdn.com/obj/eden-sg/zyha-pb/ljhwZthlaukjlkulzlp/202503252346960.png)
+<p align="center">
+   <img width="700" src="https://sf16-sg.tiktokcdn.com/obj/eden-sg/zyha-pb/ljhwZthlaukjlkulzlp/202503252346960.png">
+</p>
 
 - **MCP Client**: Communicates with Servers via MCP protocol (1:1 connection).
 - **MCP Servers**: Provide context—Resources, Tools, Prompts—to Clients.
 - **Language Support**: TypeScript, Python, Java, Kotlin, C#.
 
+---
+
 ### Flowchart
 
 MCP supplies LLMs with three context types: Resources, Prompts, and Tools.
 
-![](https://sf16-sg.tiktokcdn.com/obj/eden-sg/zyha-pb/ljhwZthlaukjlkulzlp/202503252346961.png)
+<p align="center">
+   <img width="400" src="https://sf16-sg.tiktokcdn.com/obj/eden-sg/zyha-pb/ljhwZthlaukjlkulzlp/202503252346961.png">
+</p>
+
+---
 
 ### MCP vs. Function Call
 
 |  | [MCP](https://modelcontextprotocol.io/introduction) | [Function Call](https://platform.openai.com/docs/guides/function-calling) |
 | :-- | :-- | :-- |
 | **Definition** | Standard interface for model-device integration (Tools/Resources/Prompts). | Flat tool listing for external data access. MCP Tools enforce input/output protocols. |
-| **Protocol** | JSON-RPC (bidirectional, discoverable, notifications). ![](https://sf16-sg.tiktokcdn.com/obj/eden-sg/zyha-pb/ljhwZthlaukjlkulzlp/202503252346949.png) | JSON-Schema (static). ![](https://sf16-sg.tiktokcdn.com/obj/eden-sg/zyha-pb/ljhwZthlaukjlkulzlp/202503252346950.png) |
+| **Protocol** | JSON-RPC (bidirectional, discoverable, notifications). ![](https://sf16-sg.tiktokcdn.com/obj/eden-sg/zyha-pb/ljhwZthlaukjlkulzlp/202503252346949.png) | JSON-Schema (static). <img width="400" src="https://sf16-sg.tiktokcdn.com/obj/eden-sg/zyha-pb/ljhwZthlaukjlkulzlp/202503252346950.png"> |
 | **Invocation** | Stdio/SSE/in-process calls. | In-process/language-native functions. |
 | **Use Case** | Dynamic, complex interactions. | Single-tool, static executions. |
 | **Integration** | Complex. | Simple. |
 | **Engineering** | High maturity. | Low maturity. |
+
+---
 
 ### MCP as Frontend-Backend Separation
 
@@ -92,8 +121,12 @@ Early web development coupled UIs with backend logic (JSP/PHP), mirroring today'
 
 This layering lets Agent developers compose tools like building blocks.
 
-![](https://sf16-sg.tiktokcdn.com/obj/eden-sg/zyha-pb/ljhwZthlaukjlkulzlp/202503252346964.png)
+<p align="center">
+   <img width="600" src="https://sf16-sg.tiktokcdn.com/obj/eden-sg/zyha-pb/ljhwZthlaukjlkulzlp/202503252346964.png">
+</p>
 
+
+---
 
 ## Practice
 
@@ -103,6 +136,8 @@ The [MCP Browser Tool](https://github.com/bytedance/UI-TARS-desktop/tree/main/pa
 
 - **Built-in MCP Servers**: Fully MCP-compliant, supporting both Stdio and function calls ("MCP-standardized Function Calls").
 - **Extended MCP Servers**: For advanced users with Npm/UV environments.
+
+---
 
 ### MCP Server Development
 
@@ -131,6 +166,8 @@ Taking mcp-server-browser as an example, it is essentially an npm package with t
 
 - `bin`: Stdio entry
 - `main` / `module`: In-process function call entry
+
+---
 
 #### Development
 
@@ -213,6 +250,8 @@ process.stdin.on("close", () => {
 });
 ```
 
+---
+
 ##### Tool Definition
 
 The MCP protocol requires using JSON Schema to constrain tool inputs and outputs. Based on practical experience, we recommend using [zod](https://github.com/colinhacks/zod) to define a Zod Schema set, which is then converted to JSON Schema for MCP export.
@@ -275,6 +314,8 @@ const callTool = async ({ name, arguments: toolArgs }) => {
 > **Pro Tip**: Unlike OpenAPI's structured data returns, MCP responses are specifically designed for LLM models. To better bridge models and tools, returned text and tool descriptions should be more semantic, improving model comprehension and tool invocation success rates.
 > For example, `browser_scroll` should return page scroll status after each execution (e.g., remaining pixels to bottom, whether bottom reached). This enables models to provide more precise parameters in subsequent calls.
 
+---
+
 ### Agent Integration
 
 After developing the MCP Server, it needs to be integrated into the Agent application. In principle, the Agent shouldn't need to concern itself with the specific details of tools, inputs, and outputs provided by MCP Servers.
@@ -311,6 +352,8 @@ MCP Servers configuration is divided into "Built-in Servers" and "User Extension
     }
 }
 ```
+
+---
 
 #### MCP Client
 
@@ -359,13 +402,20 @@ const response = await openai.chat.completions.create({
 At this point, the entire MCP workflow has been fully implemented, covering all aspects from Server configuration, Client integration to Agent connectivity. More MCP details/code have been open-sourced on GitHub: [Agent Integration](https://github.com/bytedance/UI-TARS-desktop/blob/fb2932afbdd54da757b9fae61e888fc8804e648f/apps/agent-tars/src/main/llmProvider/index.ts#L89-L91), [mcp-client](https://github.com/bytedance/UI-TARS-desktop/tree/main/packages/agent-infra/mcp-client), [mcp-servers](https://github.com/bytedance/UI-TARS-desktop/tree/main/packages/agent-infra/mcp-servers)
 
 
+---
+
 ## Insights
 
 ### Ecosystem
 
 The MCP ecosystem continues to grow, with increasing applications supporting MCP and open platforms providing MCP Servers. Services like [Cloudflare](https://blog.cloudflare.com/remote-model-context-protocol-servers-mcp/) and [Composio](https://mcp.composio.dev/), [Zapier](https://zapier.com/mcp) use SSE to host MCP (i.e., connecting one MCP Endpoint grants access to multiple MCP Servers). The ideal scenario for Stdio implementation would be running MCP Servers and Agent systems within the same Docker container.
 
-![](https://sf16-sg.tiktokcdn.com/obj/eden-sg/zyha-pb/ljhwZthlaukjlkulzlp/202503252346952.png)
+<p align="center">
+   <img width="800" src="https://sf16-sg.tiktokcdn.com/obj/eden-sg/zyha-pb/ljhwZthlaukjlkulzlp/202503252346952.png">
+</p>
+
+
+---
 
 ### Future
 
