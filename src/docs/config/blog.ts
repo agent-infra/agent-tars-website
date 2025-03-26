@@ -21,6 +21,16 @@ export const blogPosts: BlogPost[] = [
       "We're excited to announce the preview release of Agent TARS, an open-source multimodal agent designed to revolutionize GUI interaction.",
     tags: ["announcement", "release"],
   },
+  {
+    id: "mcp-brings-a-new-paradigm-to-layered-ai-application-development",
+    title: "MCP Brings a New Paradigm to Layered AI Application Development",
+    slug: "mcp-dev",
+    date: "2025-03-25",
+    author: "Agent TARS Team",
+    excerpt:
+      "MCP's role in transforming development paradigms and expanding tool ecosystems.",
+    tags: ["development", "paradigm", "tooling"],
+  },
 ];
 
 // Get permalink for a blog post
