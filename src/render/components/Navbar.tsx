@@ -34,7 +34,7 @@ export const Navbar: React.FC = () => {
         <div className="flex items-center gap-4">
           <Button
             as="a"
-            href="https://discord.gg/NAeJMKk4"
+            href="https://discord.gg/HnKcSBgTVx"
             target="_blank"
             className="min-w-[36px] w-[36px] h-[36px] p-0 bg-transparent border border-white/20 hover:bg-white/10"
             isIconOnly
