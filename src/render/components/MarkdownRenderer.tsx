@@ -6,13 +6,8 @@ import rehypeRaw from "rehype-raw";
 import rehypeHighlight from "rehype-highlight";
 import { Modal, Box } from "@mui/material";
 import { Link } from "react-router-dom";
-<<<<<<< HEAD
 import "highlight.js/styles/github-dark.css";
 import { motion, AnimatePresence } from "framer-motion";
-=======
-import AlertBox from "./AlertBox";
-import 'remark-github-blockquote-alert/alert.css'
->>>>>>> 58e2ccc (feat: enable `remark-github-blockquote-alert`)
 
 interface MarkdownRendererProps {
   content: string;
