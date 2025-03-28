@@ -367,7 +367,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
             </div>
 
             <pre
-              className={`bg-gray-900 border-b border-l border-r border-gray-700 rounded-b-lg py-4 px-4 text-gray-300 text-sm font-mono ${
+              className={`bg-gray-900 border-b border-l border-r border-gray-700 rounded-b-lg text-gray-300 text-sm font-mono overflow-hidden ${
                 isWordWrap
                   ? "whitespace-pre-wrap break-words"
                   : "overflow-x-auto"
