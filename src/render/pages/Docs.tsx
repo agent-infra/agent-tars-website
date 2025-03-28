@@ -3,21 +3,32 @@ import { motion } from "framer-motion";
 import { Spinner, Button } from "@nextui-org/react";
 import { FaBug } from "react-icons/fa";
 import { MarkdownRenderer } from "../components/MarkdownRenderer";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { availableDocs, getLocalDoc } from "../../docs";
 import { DocsSidebar } from "../components/DocsSidebar";
 import { TableOfContents } from "../components/TableOfContents";
 import { TwitterCardMeta } from "../components/TwitterCardMeta";
-import { ETopRoute } from "../../constants/routes";
+import { ETopRoute, getDocDetailRoute } from "../../constants/routes";
 
 const Docs: React.FC = () => {
   const [markdown, setMarkdown] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const { docId } = useParams();
-  const currentDocId = docId;
+  const navigate = useNavigate();
 
-  const currentDoc =
-    availableDocs.find((doc) => doc.id === currentDocId) || availableDocs[0];
+  // Find first available document for default routing
+  const firstAvailableDoc = availableDocs[0].id;
+  // If no docId is provided, use the first available document
+  const currentDocId = docId || firstAvailableDoc;
+
+  // If we're at the root doc URL and have no docId, redirect to the first doc
+  useEffect(() => {
+    if (!docId && availableDocs.length > 0) {
+      navigate(getDocDetailRoute(firstAvailableDoc), { replace: true });
+    }
+  }, [docId, navigate, firstAvailableDoc]);
+
+  const currentDoc = availableDocs.find((doc) => doc.id === currentDocId);
 
   useEffect(() => {
     const fetchMarkdown = async () => {
@@ -25,7 +36,7 @@ const Docs: React.FC = () => {
 
       try {
         // Check if we have a local version first
-        if (currentDoc.localPath) {
+        if (currentDoc?.localPath) {
           const localContent = getLocalDoc(currentDoc.localPath);
 
           if (localContent) {
@@ -36,7 +47,7 @@ const Docs: React.FC = () => {
         }
 
         // Otherwise fetch from GitHub
-        if (currentDoc.githubPath) {
+        if (currentDoc?.githubPath) {
           const response = await fetch(currentDoc.githubPath);
           const text = await response.text();
           setMarkdown(text);
