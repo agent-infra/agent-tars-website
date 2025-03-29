@@ -33,6 +33,15 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
   // Add a ref to track if we've rendered the first h1
   const firstH1Ref = useRef(false);
 
+  const handleImageClick = (src: string) => {
+    setOpenImage(src);
+    setImageLoaded(false);
+  };
+
+  const handleCloseModal = () => {
+    setOpenImage(null);
+  };
+
   // Handle hash navigation on page load
   React.useEffect(() => {
     if (window.location.hash) {
