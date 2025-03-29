@@ -26,6 +26,7 @@ import {
 import { BrowserShell } from "../components/BrowserShell";
 import { ShareModal } from "../components/ShareModal";
 import { TwitterCardMeta } from "../components/TwitterCardMeta";
+import { ETopRoute } from "../../constants/routes";
 
 const ShowcaseDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -43,7 +44,7 @@ const ShowcaseDetail: React.FC = () => {
       setItem(showcaseItem);
     } else {
       // If item not found, redirect to showcase page
-      navigate("/showcase", { replace: true });
+      navigate(ETopRoute.SHOWCASE, { replace: true });
     }
 
     // Simulate loading delay
@@ -148,7 +149,7 @@ const ShowcaseDetail: React.FC = () => {
               variant="light"
               color="default"
               startContent={<FiArrowLeft />}
-              onClick={() => navigate("/showcase")}
+              onClick={() => navigate(ETopRoute.SHOWCASE)}
               className="text-white"
             >
               Back to Showcase

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Navbar } from "./components/Navbar";
 import Home from "./pages/Home";
@@ -8,22 +8,22 @@ import ShowcaseDetail from "./pages/ShowcaseDetail";
 import Docs from "./pages/Docs";
 import { TwitterCardMeta } from "./components/TwitterCardMeta";
 import { HelmetProvider } from "react-helmet-async";
+import { ETopRoute } from "../constants/routes";
 
 const App: React.FC = () => {
-
   return (
     <HelmetProvider>
       <BrowserRouter>
         <TwitterCardMeta />
         <Navbar />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/blog" element={<Blog />} />
+          <Route path={ETopRoute.HOME} element={<Home />} />
+          <Route path={ETopRoute.BLOG} element={<Blog />} />
           <Route path="/:year/:month/:day/:slug" element={<Blog />} />
-          <Route path="/showcase" element={<Showcase />} />
-          <Route path="/showcase/:id" element={<ShowcaseDetail />} />
-          <Route path="/docs" element={<Docs />} />
-          <Route path="/:docId" element={<Docs />} />
+          <Route path={ETopRoute.SHOWCASE} element={<Showcase />} />
+          <Route path={`${ETopRoute.SHOWCASE}/:id`} element={<ShowcaseDetail />} />
+          <Route path={ETopRoute.DOC} element={<Docs />} />
+          <Route path={`${ETopRoute.DOC}/:docId`} element={<Docs />} />
         </Routes>
       </BrowserRouter>
     </HelmetProvider>

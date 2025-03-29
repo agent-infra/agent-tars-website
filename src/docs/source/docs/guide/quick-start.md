@@ -1,14 +1,24 @@
-# Getting started with Agent TARS
+# Quick Start
 
 ## Introduction
 
-**Agent TARS** is an open-source multimodal agent designed to revolutionize GUI interaction by visually interpreting web pages and seamlessly integrating with command lines and file systems.
+**[Agent TARS](https://github.com/bytedance/UI-TARS-desktop)** is an open-source multimodal agent designed to revolutionize GUI interaction by visually interpreting web pages and seamlessly integrating with command lines and file systems.
 
-## Necessary Configuration
+In this documentation, we'll help you to quickly start Agent TARS in minimal necessary steps.
 
-Before you begin, you will need to set some necessary configuration.
+```bash
+Tell me the top 5 most popular projects on ProductHunt today, analyze them in depth, and output a report to me.
+```
 
-You can click the left-bottom button to open the configuration page:
+> [!NOTE]
+> For more informations, please head our [inotroduction blog](/2025/03/18/announcing-agent-tars-app).
+
+
+---
+
+## Prerequisites
+
+Before you begin, you will need to set some necessary configuration, you can click the left-bottom button to open the configuration page:
 
 ![setting-icon.png](https://lf3-static.bytednsdoc.com/obj/eden-cn/uhbfnupenuhf/agent-tars/setting-icon.jpeg)
 

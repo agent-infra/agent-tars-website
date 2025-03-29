@@ -7,12 +7,12 @@ import {
   getBlogPermalink,
   BlogPost,
 } from "../../docs";
-import { MarkdownRenderer } from "../components/MarkdownRenderer";
 import { motion } from "framer-motion";
-import { Button, Card, Spinner, Divider } from "@nextui-org/react";
+import { Button, Card, Divider } from "@nextui-org/react";
 import { FiArrowLeft, FiCalendar, FiUser } from "react-icons/fi";
-import { TableOfContents } from "../components/TableOfContents";
 import { TwitterCardMeta } from "../components/TwitterCardMeta";
+import { MarkdownContent } from "../components/Markdown";
+import { ETopRoute } from "../../constants/routes";
 
 const Blog: React.FC = () => {
   const { year, month, day, slug } = useParams();
@@ -74,11 +74,11 @@ const Blog: React.FC = () => {
         />
 
         <div className="min-h-screen pt-24 px-4 pb-24 bg-black text-white">
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-7xl mx-auto">
             <div className="mb-8">
               <Button
                 as={Link}
-                to="/blog"
+                to={ETopRoute.BLOG}
                 variant="light"
                 color="default"
                 startContent={<FiArrowLeft />}
@@ -87,28 +87,13 @@ const Blog: React.FC = () => {
                 Back to Blog
               </Button>
 
-              {isLoading ? (
-                <div className="flex justify-center items-center h-64">
-                  <Spinner size="lg" color="white" />
-                </div>
-              ) : (
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5 }}
-                  className="markdown-body bg-transparent text-white mb-16"
-                >
-                  <div className="flex justify-between items-center mb-4">
-                    <div></div>
-                    <TableOfContents markdown={content} />
-                  </div>
-                  <MarkdownRenderer
-                    content={content}
-                    publishDate={currentPost?.date}
-                    author={currentPost?.author}
-                  />
-                </motion.div>
-              )}
+              <MarkdownContent
+                markdown={content}
+                isLoading={isLoading}
+                contentKey={currentPost.id}
+                publishDate={currentPost?.date}
+                author={currentPost?.author}
+              />
             </div>
           </div>
         </div>
@@ -122,7 +107,7 @@ const Blog: React.FC = () => {
       <TwitterCardMeta
         title="Agent TARS Blog - Latest Updates and Insights"
         description="Latest updates and insights from the Agent TARS team"
-        url={`${window.location.origin}/blog`}
+        url={`${window.location.origin}${ETopRoute.BLOG}`}
       />
 
       <div className="min-h-screen pt-24 px-4 bg-black text-white">

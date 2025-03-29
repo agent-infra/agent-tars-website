@@ -1,53 +1,94 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import ReactMarkdown, { Components } from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
+import { remarkAlert } from "remark-github-blockquote-alert";
 import rehypeHighlight from "rehype-highlight";
 import { Modal, Box } from "@mui/material";
 import { Link } from "react-router-dom";
-import "highlight.js/styles/github-dark.css";
 import { motion, AnimatePresence } from "framer-motion";
+import { HeaderAnchor } from "./HeaderAnchor";
+import { CodeBlock } from "./CodeBlock";
+import "highlight.js/styles/github-dark.css";
 
 interface MarkdownRendererProps {
   content: string;
   publishDate?: string;
   author?: string;
+  className?: string;
 }
 
+/**
+ * MarkdownRenderer component
+ * Renders markdown content with custom styling and enhanced functionality
+ */
 export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
   content,
   publishDate,
   author,
+  className = "", // Default to empty string
 }) => {
   const [openImage, setOpenImage] = useState<string | null>(null);
   const [imageLoaded, setImageLoaded] = useState(false);
+  // Add a ref to track if we've rendered the first h1
+  const firstH1Ref = useRef(false);
 
   const handleImageClick = (src: string) => {
-    setImageLoaded(false);
     setOpenImage(src);
+    setImageLoaded(false);
   };
 
   const handleCloseModal = () => {
     setOpenImage(null);
   };
 
+  // Handle hash navigation on page load
+  React.useEffect(() => {
+    if (window.location.hash) {
+      const id = window.location.hash.substring(1);
+      const element = document.getElementById(id);
+      if (element) {
+        // Use setTimeout to ensure page is fully rendered before scrolling
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: "smooth" });
+        }, 100);
+      }
+    }
+  }, [content]); // Re-check when content changes
+
+  // Reset the first h1 flag when content changes
+  React.useEffect(() => {
+    firstH1Ref.current = false;
+  }, [content]);
+
   const components: Components = {
     h1: ({ node, children, ...props }) => {
+      // Generate ID from heading text for anchor links
       const id = children
         ?.toString()
         .toLowerCase()
         .replace(/[^\w\s]/g, "")
         .replace(/\s+/g, "-");
+
+      // Check if this is the first h1 and set the flag
+      const isFirstH1 = !firstH1Ref.current;
+      if (isFirstH1) {
+        firstH1Ref.current = true;
+      }
+
       return (
         <>
           <h1
             id={id}
-            className="text-4xl font-bold mb-2 pb-2 border-b border-white/10 bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent scroll-mt-20"
+            className="group text-4xl font-bold mb-2 pb-2 border-b border-white/10 bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent scroll-mt-20 flex items-center"
             {...props}
           >
             {children}
+            {id && <HeaderAnchor id={id} />}
           </h1>
-          {(publishDate || author) && (
+
+          {/* Display metadata only after the first h1 */}
+          {isFirstH1 && (publishDate || author) && (
             <div className="flex items-center gap-1 mb-6 text-sm text-gray-400 mb-10">
               {publishDate && <span>{publishDate}</span>}
               {author && (
@@ -70,10 +111,11 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
       return (
         <h2
           id={id}
-          className="text-3xl font-bold mt-12 mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent scroll-mt-20"
+          className="group text-3xl font-bold mt-12 mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent scroll-mt-20 flex items-center"
           {...props}
         >
           {children}
+          {id && <HeaderAnchor id={id} />}
         </h2>
       );
     },
@@ -86,10 +128,11 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
       return (
         <h3
           id={id}
-          className="text-2xl font-semibold mt-8 mb-3 text-white/90 scroll-mt-20"
+          className="group text-2xl font-semibold mt-8 mb-3 text-white/90 scroll-mt-20 flex items-center"
           {...props}
         >
           {children}
+          {id && <HeaderAnchor id={id} />}
         </h3>
       );
     },
@@ -102,10 +145,11 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
       return (
         <h4
           id={id}
-          className="text-xl font-semibold mt-6 mb-2 text-white/80 scroll-mt-20"
+          className="group text-xl font-semibold mt-6 mb-2 text-white/80 scroll-mt-20 flex items-center"
           {...props}
         >
           {children}
+          {id && <HeaderAnchor id={id} />}
         </h4>
       );
     },
@@ -113,11 +157,36 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
       <p className="my-4 text-gray-300 leading-relaxed" {...props} />
     ),
     a: ({ node, href, ...props }) => {
-      // 检查是否为站内链接（不以 http:// 或 https:// 开头，且以 / 开头）
-      const isInternalLink =
-        href && !href.match(/^(https?:)?\/\//) && href.startsWith("/");
+      // Handle three types of links:
+      // 1. Hash links (#section)
+      // 2. Internal path links (/path)
+      // 3. External links (https://...)
 
-      if (isInternalLink) {
+      if (href && href.startsWith("#")) {
+        // Hash links - use smooth scrolling
+        return (
+          <a
+            href={href}
+            className="text-blue-400 hover:text-blue-300 transition-colors underline underline-offset-2"
+            onClick={(e) => {
+              e.preventDefault();
+              // Find target element and scroll into view
+              const element = document.getElementById(href.substring(1));
+              if (element) {
+                element.scrollIntoView({ behavior: "smooth" });
+                // Update URL without page reload
+                window.history.pushState(null, "", href);
+              }
+            }}
+            {...props}
+          />
+        );
+      } else if (
+        href &&
+        !href.match(/^(https?:)?\/\//) &&
+        href.startsWith("/")
+      ) {
+        // Internal links - use React Router's Link
         return (
           <Link
             to={href}
@@ -127,7 +196,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
         );
       }
 
-      // 外部链接保持不变
+      // External links - open in new tab
       return (
         <a
           href={href}
@@ -152,33 +221,11 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
       />
     ),
     code: ({ node, className, children, ...props }) => {
-      if (!className) {
-        return (
-          <code
-            className="bg-white/10 text-purple-500 px-1.5 py-0.5 rounded text-sm font-mono"
-            {...props}
-          >
-            {children}
-          </code>
-        );
-      }
-
-      const match = /language-(\w+)/.exec(className || "");
-
-      if (match) {
-        return (
-          <div className="relative my-6 group">
-            <div className="absolute top-0 right-0 bg-white/10 rounded-bl rounded-tr px-2 py-1 text-xs text-gray-400 font-mono">
-              {match[1] || "code"}
-            </div>
-            <pre className="bg-[#282c34] backdrop-blur-sm border border-white/10 rounded-lg overflow-x-auto text-sm font-mono shadow-lg">
-              <code className={className} {...props}>
-                {children}
-              </code>
-            </pre>
-          </div>
-        );
-      }
+      return (
+        <CodeBlock className={className} {...props}>
+          {children}
+        </CodeBlock>
+      );
     },
     table: ({ node, ...props }) => (
       <div className="overflow-x-auto my-6">
@@ -224,11 +271,12 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
   return (
     <>
       <ReactMarkdown
-        remarkPlugins={[remarkGfm]}
+        remarkPlugins={[remarkGfm, remarkAlert]}
         rehypePlugins={[
           rehypeRaw,
           [rehypeHighlight, { detect: true, ignoreMissing: true }],
         ]}
+        className={className}
         components={components}
       >
         {content}
