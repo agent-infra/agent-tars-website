@@ -1,32 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 interface CodeBlockProps {
   className?: string;
   children: React.ReactNode;
 }
 
-export const CodeBlock: React.FC<CodeBlockProps> = ({ className, children }) => {
+export const CodeBlock: React.FC<CodeBlockProps> = ({
+  className,
+  children,
+}) => {
   const match = /language-(\w+)/.exec(className || "");
   const [isWordWrap, setIsWordWrap] = useState(true);
   const [isCopied, setIsCopied] = useState(false);
+  const codeRef = useRef<HTMLElement>(null);
 
   // 如果没有语言指定，则返回内联代码样式
   if (!match) {
     return (
-      <code
-        className="bg-white/10 text-purple-500 px-1.5 py-0.5 rounded text-sm font-mono"
-      >
+      <code className="bg-white/10 text-purple-500 px-1.5 py-0.5 rounded text-sm font-mono">
         {children}
       </code>
     );
   }
 
   const handleCopy = () => {
-    const code = children?.toString() || "";
-    navigator.clipboard.writeText(code).then(() => {
-      setIsCopied(true);
-      setTimeout(() => setIsCopied(false), 2000);
-    });
+    if (codeRef.current) {
+      // 提取代码元素的文本内容而不是React节点
+      const code = codeRef.current.textContent || "";
+      navigator.clipboard.writeText(code).then(() => {
+        setIsCopied(true);
+        setTimeout(() => setIsCopied(false), 2000);
+      });
+    }
   };
 
   const toggleWordWrap = () => {
@@ -50,6 +55,7 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({ className, children }) => 
             className="hover:bg-gray-700 transition-colors rounded-sm px-2 py-1 text-xs text-gray-400"
             title={isWordWrap ? "Disable word wrap" : "Enable word wrap"}
           >
+            {/* ... 保留现有导入 ... */}
             {isWordWrap ? (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -115,12 +121,10 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({ className, children }) => 
 
       <pre
         className={`bg-gray-900 border-b border-l border-r border-gray-700 rounded-b-lg text-gray-300 text-sm font-mono overflow-hidden ${
-          isWordWrap
-            ? "whitespace-pre-wrap break-words"
-            : "overflow-x-auto"
+          isWordWrap ? "whitespace-pre-wrap break-words" : "overflow-x-auto"
         }`}
       >
-        <code className={className}>
+        <code ref={codeRef} className={className}>
           {children}
         </code>
       </pre>
