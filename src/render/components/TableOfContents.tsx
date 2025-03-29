@@ -10,10 +10,12 @@ interface TableOfContentsProps {
   markdown: string;
 }
 
-export const TableOfContents: React.FC<TableOfContentsProps> = ({ markdown }) => {
+export const TableOfContents: React.FC<TableOfContentsProps> = ({
+  markdown,
+}) => {
   const [items, setItems] = useState<TOCItem[]>([]);
   const [activeId, setActiveId] = useState<string>("");
-  
+
   // Observer reference
   const observerRef = useRef<IntersectionObserver | null>(null);
   // Reference to the TOC container
@@ -23,19 +25,22 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({ markdown }) =>
     // Extract headings from markdown
     const headingRegex = /^(#{1,6})\s+(.+)$/gm;
     const matches = [...markdown.matchAll(headingRegex)];
-    
+
     const tocItems: TOCItem[] = matches.map((match) => {
       const level = match[1].length;
       const text = match[2];
-      const id = text.toLowerCase().replace(/[^\w\s]/g, '').replace(/\s+/g, '-');
-      
+      const id = text
+        .toLowerCase()
+        .replace(/[^\w\s]/g, "")
+        .replace(/\s+/g, "-");
+
       return {
         id,
         text,
-        level
+        level,
       };
     });
-    
+
     setItems(tocItems);
   }, [markdown]);
 
@@ -52,8 +57,8 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({ markdown }) =>
     const observer = new IntersectionObserver(
       (entries) => {
         // Get all entries that are currently visible
-        const visibleEntries = entries.filter(entry => entry.isIntersecting);
-        
+        const visibleEntries = entries.filter((entry) => entry.isIntersecting);
+
         // If we have visible entries, use the first one (topmost)
         if (visibleEntries.length > 0) {
           // Get the ID from the element
@@ -63,12 +68,12 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({ markdown }) =>
       },
       {
         rootMargin: "-80px 0px -80% 0px", // Adjust rootMargin to fine-tune when headings are considered visible
-        threshold: 0.1 // Trigger when at least 10% of the heading is visible
+        threshold: 0.1, // Trigger when at least 10% of the heading is visible
       }
     );
 
     // Observe all section headings
-    items.forEach(item => {
+    items.forEach((item) => {
       const element = document.getElementById(item.id);
       if (element) {
         observer.observe(element);
@@ -95,23 +100,25 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({ markdown }) =>
   if (items.length === 0) return null;
 
   return (
-    <div 
+    <div
       ref={tocRef}
       className="sticky top-0 max-h-[calc(100vh-8rem)] overflow-y-auto z-10"
     >
       <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-4 shadow-lg">
-        <h4 className="text-sm font-medium text-white/70 mb-3">Table of Contents</h4>
+        <h4 className="text-sm font-medium text-white/70 mb-3">
+          Table of Contents
+        </h4>
         <ul className="space-y-1">
           {items.map((item, index) => (
-            <li 
+            <li
               key={index}
               style={{ paddingLeft: `${(item.level - 1) * 12}px` }}
             >
               <a
                 href={`#${item.id}`}
                 className={`text-sm block py-1 transition-colors ${
-                  activeId === item.id 
-                    ? "text-purple-400 font-medium" 
+                  activeId === item.id
+                    ? "text-purple-400 font-medium"
                     : "text-gray-400 hover:text-white"
                 }`}
                 onClick={(e) => {

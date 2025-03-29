@@ -7,12 +7,11 @@ import {
   getBlogPermalink,
   BlogPost,
 } from "../../docs";
-import { MarkdownRenderer } from "../components/MarkdownRenderer";
 import { motion } from "framer-motion";
-import { Button, Card, Spinner, Divider } from "@nextui-org/react";
+import { Button, Card, Divider } from "@nextui-org/react";
 import { FiArrowLeft, FiCalendar, FiUser } from "react-icons/fi";
-import { TableOfContents } from "../components/TableOfContents";
 import { TwitterCardMeta } from "../components/TwitterCardMeta";
+import { MarkdownContent } from "../components/MarkdownContent";
 import { ETopRoute } from "../../constants/routes";
 
 const Blog: React.FC = () => {
@@ -88,34 +87,13 @@ const Blog: React.FC = () => {
                 Back to Blog
               </Button>
 
-              {isLoading ? (
-                <div className="flex justify-center items-center h-64">
-                  <Spinner size="lg" color="white" />
-                </div>
-              ) : (
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5 }}
-                  className="markdown-body bg-transparent text-white mb-16"
-                >
-                  <div className="flex flex-col md:flex-row gap-8">
-                    <div className="md:flex-1 md:max-w-[72%]">
-                      <MarkdownRenderer
-                        content={content}
-                        publishDate={currentPost?.date}
-                        author={currentPost?.author}
-                        className="prose-lg prose-invert max-w-none"
-                      />
-                    </div>
-
-                    {/* 目录列 */}
-                    <div className="md:w-[25%] md:min-w-[200px] flex-shrink-0">
-                      <TableOfContents markdown={content} />
-                    </div>
-                  </div>
-                </motion.div>
-              )}
+              <MarkdownContent
+                markdown={content}
+                isLoading={isLoading}
+                contentKey={currentPost.id}
+                publishDate={currentPost?.date}
+                author={currentPost?.author}
+              />
             </div>
           </div>
         </div>

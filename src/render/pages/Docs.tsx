@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { Spinner, Button } from "@nextui-org/react";
+import { Button } from "@nextui-org/react";
 import { FaBug } from "react-icons/fa";
-import { MarkdownRenderer } from "../components/MarkdownRenderer";
 import { useParams, useNavigate } from "react-router-dom";
 import { availableDocs, getLocalDoc } from "../../docs";
 import { DocsSidebar } from "../components/DocsSidebar";
-import { TableOfContents } from "../components/TableOfContents";
 import { TwitterCardMeta } from "../components/TwitterCardMeta";
+import { MarkdownContent } from "../components/MarkdownContent";
 import { ETopRoute, getDocDetailRoute } from "../../constants/routes";
 
 const Docs: React.FC = () => {
@@ -28,7 +26,7 @@ const Docs: React.FC = () => {
     }
   }, [docId, navigate, firstAvailableDoc]);
 
-  const currentDoc = availableDocs.find((doc) => doc.id === currentDocId);
+  const currentDoc = availableDocs.find((doc) => doc.id === currentDocId)!;
 
   useEffect(() => {
     const fetchMarkdown = async () => {
@@ -100,37 +98,12 @@ const Docs: React.FC = () => {
                 </Button>
               </div>
 
-              <div className="flex flex-col md:flex-row gap-8">
-                {/* Main content column with width constraint */}
-                <div className="md:flex-1 md:max-w-[75%]">
-                  {isLoading ? (
-                    <div className="flex justify-center items-center h-64">
-                      <Spinner size="lg" color="white" />
-                    </div>
-                  ) : (
-                    <motion.div
-                      key={currentDocId}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5 }}
-                      className="markdown-body bg-transparent text-white mb-16"
-                    >
-                      <MarkdownRenderer
-                        content={markdown}
-                        publishDate={currentDoc.publishDate}
-                        className="prose-lg prose-invert max-w-none"
-                      />
-                    </motion.div>
-                  )}
-                </div>
-
-                {/* Table of contents column - only show when not loading */}
-                {!isLoading && (
-                  <div className="md:w-[23%] md:min-w-[200px] flex-shrink-0">
-                    <TableOfContents markdown={markdown} />
-                  </div>
-                )}
-              </div>
+              <MarkdownContent
+                markdown={markdown}
+                isLoading={isLoading}
+                contentKey={currentDocId}
+                publishDate={currentDoc.publishDate}
+              />
             </div>
           </div>
         </div>
