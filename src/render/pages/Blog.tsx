@@ -11,7 +11,7 @@ import { motion } from "framer-motion";
 import { Button, Card, Divider } from "@nextui-org/react";
 import { FiArrowLeft, FiCalendar, FiUser } from "react-icons/fi";
 import { TwitterCardMeta } from "../components/TwitterCardMeta";
-import { MarkdownContent } from "../components/MarkdownContent";
+import { MarkdownContent } from "../components/Markdown";
 import { ETopRoute } from "../../constants/routes";
 
 const Blog: React.FC = () => {

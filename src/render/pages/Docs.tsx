@@ -5,7 +5,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { availableDocs, getLocalDoc } from "../../docs";
 import { DocsSidebar } from "../components/DocsSidebar";
 import { TwitterCardMeta } from "../components/TwitterCardMeta";
-import { MarkdownContent } from "../components/MarkdownContent";
+import { MarkdownContent } from "../components/Markdown";
 import { ETopRoute, getDocDetailRoute } from "../../constants/routes";
 
 const Docs: React.FC = () => {
