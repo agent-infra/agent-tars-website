@@ -26,20 +26,28 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
     const headingRegex = /^(#{1,6})\s+(.+)$/gm;
     const matches = [...markdown.matchAll(headingRegex)];
 
-    const tocItems: TOCItem[] = matches.map((match) => {
-      const level = match[1].length;
-      const text = match[2];
-      const id = text
-        .toLowerCase()
-        .replace(/[^\w\s]/g, "")
-        .replace(/\s+/g, "-");
+    const tocItems: TOCItem[] = matches
+      .map((match) => {
+        const level = match[1].length;
+        const text = match[2];
+        const id = text
+          .toLowerCase()
+          .replace(/[^\w\s]/g, "")
+          .replace(/\s+/g, "-");
 
-      return {
-        id,
-        text,
-        level,
-      };
-    });
+        return {
+          id,
+          text,
+          level,
+        };
+      })
+      // Filter out h1 headings
+      .filter((item, index) => {
+        if (index === 0 && item.level === 1) {
+          return false;
+        }
+        return true;
+      });
 
     setItems(tocItems);
   }, [markdown]);
@@ -112,7 +120,7 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
           {items.map((item, index) => (
             <li
               key={index}
-              style={{ paddingLeft: `${(item.level - 1) * 12}px` }}
+              style={{ paddingLeft: `${(item.level - 2) * 12}px` }}
             >
               <a
                 href={`#${item.id}`}
