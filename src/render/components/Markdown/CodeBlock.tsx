@@ -14,7 +14,7 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
   const [isCopied, setIsCopied] = useState(false);
   const codeRef = useRef<HTMLElement>(null);
 
-  // 如果没有语言指定，则返回内联代码样式
+  // If no language is specified, return inline code style
   if (!match) {
     return (
       <code className="bg-white/10 text-purple-500 px-1.5 py-0.5 rounded text-sm font-mono">
@@ -25,7 +25,7 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
 
   const handleCopy = () => {
     if (codeRef.current) {
-      // 提取代码元素的文本内容而不是React节点
+      // Extract text content from code element instead of React nodes
       const code = codeRef.current.textContent || "";
       navigator.clipboard.writeText(code).then(() => {
         setIsCopied(true);
@@ -65,7 +65,7 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
                 viewBox="0 0 16 16"
               >
                 <path d="M1 3.5A1.5 1.5 0 0 1 2.5 2h12A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-12A1.5 1.5 0 0 1 1 12.5v-9zM2.5 3a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h12a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-12z" />
-                <path d="M13 5.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1H14v6.5a.5.5 0 0 1-1 0V5.5z" />
+                <path d="M13 5.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1H12v6.5a.5.5 0 0 1-1 0V5.5z" />
               </svg>
             ) : (
               <svg

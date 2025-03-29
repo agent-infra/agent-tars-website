@@ -151,3 +151,5 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
     </div>
   );
 };
+
+export default TableOfContents;

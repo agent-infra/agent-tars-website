@@ -26,7 +26,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
   content,
   publishDate,
   author,
-  className = "", // 默认为空字符串
+  className = "", // Default to empty string
 }) => {
   const [openImage, setOpenImage] = useState<string | null>(null);
   const [imageLoaded, setImageLoaded] = useState(false);
