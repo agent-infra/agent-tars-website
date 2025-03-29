@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import ReactMarkdown, { Components } from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
@@ -30,15 +30,8 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
 }) => {
   const [openImage, setOpenImage] = useState<string | null>(null);
   const [imageLoaded, setImageLoaded] = useState(false);
-
-  const handleImageClick = (src: string) => {
-    setImageLoaded(false);
-    setOpenImage(src);
-  };
-
-  const handleCloseModal = () => {
-    setOpenImage(null);
-  };
+  // Add a ref to track if we've rendered the first h1
+  const firstH1Ref = useRef(false);
 
   // Handle hash navigation on page load
   React.useEffect(() => {
@@ -54,6 +47,11 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
     }
   }, [content]); // Re-check when content changes
 
+  // Reset the first h1 flag when content changes
+  React.useEffect(() => {
+    firstH1Ref.current = false;
+  }, [content]);
+
   const components: Components = {
     h1: ({ node, children, ...props }) => {
       // Generate ID from heading text for anchor links
@@ -62,6 +60,13 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
         .toLowerCase()
         .replace(/[^\w\s]/g, "")
         .replace(/\s+/g, "-");
+
+      // Check if this is the first h1 and set the flag
+      const isFirstH1 = !firstH1Ref.current;
+      if (isFirstH1) {
+        firstH1Ref.current = true;
+      }
+
       return (
         <>
           <h1
@@ -73,8 +78,8 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
             {id && <HeaderAnchor id={id} />}
           </h1>
 
-          {/* Display metadata if available */}
-          {(publishDate || author) && (
+          {/* Display metadata only after the first h1 */}
+          {isFirstH1 && (publishDate || author) && (
             <div className="flex items-center gap-1 mb-6 text-sm text-gray-400 mb-10">
               {publishDate && <span>{publishDate}</span>}
               {author && (
