@@ -75,7 +75,7 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
         }
       },
       {
-        rootMargin: "-80px 0px -80% 0px", // Adjust rootMargin to fine-tune when headings are considered visible
+        rootMargin: "-60px 0px -80% 0px", // Adjust rootMargin to fine-tune when headings are considered visible
         threshold: 0.1, // Trigger when at least 10% of the heading is visible
       }
     );
