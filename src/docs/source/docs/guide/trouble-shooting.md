@@ -4,60 +4,56 @@ Starting from [v0.0.1-alpha.4](https://github.com/bytedance/UI-TARS-desktop/rele
 
 ## Introduction
 
-Considering that the current Agent TARS App is still in the `preview` stage, coupled with the serving instability of LLM providers, you may encounter various unexpected runtime failures. When encountering such issues, conducting self-troubleshooting to a certain extent might help you resolve the problem more quickly.
+Since the Agent TARS App is currently in the `preview` stage and considering the occasional instability of LLM provider services, you may encounter various unexpected issues during runtime. This guide will help you perform self-troubleshooting to resolve many common problems quickly and efficiently.
 
-If you complete the guide in this section and find that the program still does not work, or encounter error scenarios not covered in this document, please [report the issue](https://github.com/bytedance/UI-TARS-desktop/issues) to us and provide the minimal steps to reproduce the problem.  
-
+If after following this guide your problem persists, or if you encounter an error scenario not covered in this document, please [report the issue](https://github.com/bytedance/UI-TARS-desktop/issues) to us with the minimal steps needed to reproduce the problem.
 
 ## Overview
 
-| No. | Scenario                  | Solution Approach                                  |
-| ------------ | ------------------------- | ------------------------------------------------- |
-|  #1          | No response               | Use [Inspect Main Process](TIP#inspect-main-process) to search for `[Error]` to determine if the LLM encountered an request error. |
-|  #2          | Validate whether OpenAI API Key is effective | Refer to [Validate OpenAI API Key](#validate-openai-api-key).            |
-|  #3          | Validate whether Anthropic API Key is effective | Refer to [Validate Anthropic API Key](#validate-anthropic-api-key).      |
-|  #4          | Search does not work | Refer to [Validate Search](#validate-search).      |
-
+| No. | Scenario | Solution Approach |
+| --- | --- | --- |
+| #1 | No response from application | Use [Inspect Main Process](#inspect-main-process) to search for `[Error]` logs to identify potential LLM request errors. |
+| #2 | OpenAI API Key validation | See [Validate OpenAI API Key](#validate-openai-api-key) section. |
+| #3 | Anthropic API Key validation | See [Validate Anthropic API Key](#validate-anthropic-api-key) section. |
+| #4 | Search functionality issues | See [Validate Search](#validate-search) section. |
 
 ## Guide
 
 ### Inspect Main Process
 
-Open the top left menu, navigate to `Help > View Logs`:
+To view application logs, open the top left menu and navigate to `Help > View Logs`:
 
 <p align="center">
   <img width="300" src="https://sf16-sg.tiktokcdn.com/obj/eden-sg/psvhouloj/agent-tars-docs/view-logs.png">
 </p>
 
-You will see the complete logs of the Main thread:
+This will display the complete logs from the Main thread:
 
 <p align="center">
   <img width="600" src="https://sf16-sg.tiktokcdn.com/obj/eden-sg/psvhouloj/agent-tars-docs/logs-window.png">
 </p>
 
-By filtering `[Error]`, you can locate all potential runtime errors in typical scenarios.
-
+You can filter for `[Error]` to quickly locate all potential runtime issues in common scenarios.
 
 ### Inspect WebView Process
 
-If you encounter abnormal UI rendering, you can launch Chrome DevTools using the following steps:  
+If you're experiencing abnormal UI rendering, you can access Chrome DevTools through these steps:
 
 <p align="center">
   <img width="300" src="https://sf16-sg.tiktokcdn.com/obj/eden-sg/psvhouloj/agent-tars-docs/toggle-developer-tools.png">
 </p>
 
-You will be able to debug the UI and check the console for any error logs:  
+This allows you to debug the UI and check the console for any error messages:
 
 <p align="center">
   <img width="600" src="https://sf16-sg.tiktokcdn.com/obj/eden-sg/psvhouloj/agent-tars-docs/chrome-devtools.png">
 </p>
 
-
 ### Validate LLM Request
 
 #### Validate Anthropic API Key
 
-If you are using the Official Anthropic API Key, you can check whether the current API Key is valid by entering the following Curl command in the terminal:  
+For users of the Official Anthropic API Key, verify your key's validity by running this curl command in your terminal:
 
 ```bash
 curl https://api.anthropic.com/v1/messages \
@@ -74,7 +70,7 @@ curl https://api.anthropic.com/v1/messages \
 }'
 ```
 
-If you can successfully make a request, it means there is no problem with your API Key.
+A successful response indicates that your API key is working correctly.
 
 > [!TIP]
 > **See more**: https://docs.anthropic.com/en/api/getting-started
@@ -83,7 +79,7 @@ If you can successfully make a request, it means there is no problem with your A
 
 #### Validate OpenAI API Key
 
-If you are using the Official OpenAI API Key, you can check whether the current API Key is valid by entering the following Curl command in the terminal:  
+For Official OpenAI API Key users, verify your key with this curl command:
 
 ```bash
 curl "https://api.openai.com/v1/chat/completions" \
@@ -100,7 +96,7 @@ curl "https://api.openai.com/v1/chat/completions" \
     }'
 ```
 
-If you can successfully make a request, it means there is no problem with your API Key.
+A successful response confirms your API key is valid.
 
 > [!TIP]
 > **See more**: https://platform.openai.com/docs/quickstart
@@ -110,6 +106,8 @@ If you can successfully make a request, it means there is no problem with your A
 ### Validate Search
 
 #### Validate Tavily Search
+
+Test your Tavily search functionality with:
 
 ```bash
 curl -X POST https://api.tavily.com/search \
@@ -127,6 +125,8 @@ curl -X POST https://api.tavily.com/search \
 
 #### Validate Duckduckgo Search
 
+Test DuckDuckGo search with:
+
 ```bash
 curl -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36" \
   -H "Accept: application/json, text/javascript, */*; q=0.01" \
@@ -141,7 +141,7 @@ curl -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, li
 > - https://duck-duck-scrape.js.org
 
 > [!WARNING]
-> Since Duckduckgo is free, there may be instability. If you know about this, please help us improve more details.
+> As DuckDuckGo is a free service, occasional instability may occur. If you have insights about this, please help us improve this section.
 
 ## Errors
 
@@ -154,8 +154,7 @@ Failed to get tool response from LLM: Failed to get tool response
 from Anthropic:Error:403 {"error":{"type": "feorbidden","message": "Request not allowed"}}
 ```
 
-**Solution**：[Validate Anthropic API Key](#validate-anthropic-api-key)。
-
+**Solution**: Follow the steps in [Validate Anthropic API Key](#validate-anthropic-api-key).
 
 ### OpenAI
 
@@ -165,7 +164,7 @@ from Anthropic:Error:403 {"error":{"type": "feorbidden","message": "Request not 
 [2025-03-22T18:05:59.707Z] [ERROR] Failed to get tool response from LLM: Failed to get tool response from OpenAI: Error: 401 Incorrect API key provided: xx. You can find your API key at https://platform.openai.com/account/api-keys.
 ```
 
-**Solution**：[Validate OpenAI API Key](#validate-openai-api-key)。
+**Solution**: Follow the steps in [Validate OpenAI API Key](#validate-openai-api-key).
 
 ---
 
@@ -175,8 +174,7 @@ from Anthropic:Error:403 {"error":{"type": "feorbidden","message": "Request not 
 [2025-03-22T17:14:02.078Z] [ERROR] Failed to get tool response from LLM: Failed to get tool response from OpenAI: TypeError: Invalid URL
 ```
 
-**Solution**：Replace the `https://api.openai.com/v1` in [Validate OpenAI API Key](#validate-openai-api-key) for requests and ensure the Base URL (Endpoint) is configured correctly.  
-
+**Solution**: Verify that the Base URL (Endpoint) is configured correctly. Replace the `https://api.openai.com/v1` in the [Validate OpenAI API Key](#validate-openai-api-key) section with your actual endpoint URL.
 
 ---
 
@@ -184,7 +182,7 @@ from Anthropic:Error:403 {"error":{"type": "feorbidden","message": "Request not 
 
 ```bash
 Failed to get tool response from LLM: Failed to get tool response from OpenAI: Error: 400 invalid model or product name, product not right
-```  
+```
 
 ---
 
@@ -204,7 +202,4 @@ Failed to get tool response from LLM: Failed to get tool response from Azure Ope
 [2025-03-23T04:01:26.836Z] [ERROR] Failed to get tool response from LLM: Failed to get tool response from OpenAI: Error: 402 Insufficient Balance
 ```
 
-Solution: Recharge.  
-
-
-
+**Solution**: Recharge your account balance.
