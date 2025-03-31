@@ -13,9 +13,10 @@ If you complete the guide in this section and find that the program still does n
 
 | No. | Scenario                  | Solution Approach                                  |
 | ------------ | ------------------------- | ------------------------------------------------- |
-|  #1          | No response               | Use [Inspect Main Process](#inspect-main-process) to search for `[Error]` to determine if the LLM encountered an request error. |
+|  #1          | No response               | Use [Inspect Main Process](TIP#inspect-main-process) to search for `[Error]` to determine if the LLM encountered an request error. |
 |  #2          | Validate whether OpenAI API Key is effective | Refer to [Validate OpenAI API Key](#validate-openai-api-key).            |
 |  #3          | Validate whether Anthropic API Key is effective | Refer to [Validate Anthropic API Key](#validate-anthropic-api-key).      |
+|  #4          | Search does not work | Refer to [Validate Search](#validate-search).      |
 
 
 ## Guide
@@ -75,6 +76,7 @@ curl https://api.anthropic.com/v1/messages \
 
 If you can successfully make a request, it means there is no problem with your API Key.
 
+> [!TIP]
 > **See more**: https://docs.anthropic.com/en/api/getting-started
 
 ---
@@ -100,13 +102,14 @@ curl "https://api.openai.com/v1/chat/completions" \
 
 If you can successfully make a request, it means there is no problem with your API Key.
 
+> [!TIP]
 > **See more**: https://platform.openai.com/docs/quickstart
 
 ---
 
 ### Validate Search
 
-#### Validate Traily
+#### Validate Tavily Search
 
 ```bash
 curl -X POST https://api.tavily.com/search \
@@ -116,6 +119,29 @@ curl -X POST https://api.tavily.com/search \
     "query": "Agent TARS"
 }'
 ```
+
+> [!TIP]
+> **See more**: https://tavily.com/
+
+---
+
+#### Validate Duckduckgo Search
+
+```bash
+curl -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36" \
+  -H "Accept: application/json, text/javascript, */*; q=0.01" \
+  -H "Accept-Language: en-US,en;q=0.9" \
+  -H "Referer: https://duckduckgo.com/" \
+  "https://duckduckgo.com/?q=hello+world&format=json"
+```
+
+> [!TIP]
+> **See more**: 
+> - https://github.com/Snazzah/duck-duck-scrape
+> - https://duck-duck-scrape.js.org
+
+> [!WARNING]
+> Since Duckduckgo is free, there may be instability. If you know about this, please help us improve more details.
 
 ## Errors
 

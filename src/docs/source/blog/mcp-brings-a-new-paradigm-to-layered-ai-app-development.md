@@ -1,5 +1,6 @@
 # MCP Brings a New Paradigm to Layered AI Application Development
 
+> [!TIP]
 > **Preface**: While MCP is a hot topic, its most critical aspect **decoupling tool providers from application developers through standardized protocols** has been overlooked. This shift mirrors the frontend-backend separation in web development, representing a **paradigm shift in AI Agent application development**.
 >
 > Using the development of the [Agent TARS](https://agent-tars.com/) application as an example, this article details MCP's role in transforming development paradigms and expanding tool ecosystems.
