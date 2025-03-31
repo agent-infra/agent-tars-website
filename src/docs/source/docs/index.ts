@@ -8,10 +8,10 @@ const localDocumentations: Record<string, string> = {
 };
 
 /**
- * Get markdown content by path ID
- * @param pathId The local path ID for the markdown file
+ * Get markdown content by ID
+ * @param docId The document ID
  * @returns The markdown content or null if not found
  */
-export const getLocalDoc = (pathId: string): string | null => {
-  return localDocumentations[pathId] || null;
+export const getLocalDoc = (docId: string): string | null => {
+  return localDocumentations[docId] || null;
 };

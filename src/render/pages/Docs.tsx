@@ -2,11 +2,14 @@ import React, { useState, useEffect } from "react";
 import { Button } from "@nextui-org/react";
 import { FaBug } from "react-icons/fa";
 import { useParams, useNavigate } from "react-router-dom";
-import { availableDocs, getLocalDoc } from "../../docs";
+import { availableDocs, getLocalDoc, getGithubEditPath } from "../../docs";
 import { DocsSidebar } from "../components/DocsSidebar";
 import { TwitterCardMeta } from "../components/TwitterCardMeta";
 import { MarkdownContent } from "../components/Markdown";
 import { ETopRoute, getDocDetailRoute } from "../../constants/routes";
+
+const GITHUB_REPO_URL = "https://github.com/agent-infra/agent-tars-website";
+const GITHUB_BRANCH = "main";
 
 const Docs: React.FC = () => {
   const [markdown, setMarkdown] = useState<string>("");
@@ -27,28 +30,20 @@ const Docs: React.FC = () => {
   }, [docId, navigate, firstAvailableDoc]);
 
   const currentDoc = availableDocs.find((doc) => doc.id === currentDocId)!;
+  
+  // Get GitHub edit URL
+  const githubEditUrl = currentDocId ? getGithubEditPath(currentDocId) : undefined;
 
   useEffect(() => {
     const fetchMarkdown = async () => {
       setIsLoading(true);
 
       try {
-        // Check if we have a local version first
-        if (currentDoc?.localPath) {
-          const localContent = getLocalDoc(currentDoc.localPath);
+        // Get local document content directly using ID
+        const localContent = getLocalDoc(currentDocId);
 
-          if (localContent) {
-            setMarkdown(localContent);
-            setIsLoading(false);
-            return;
-          }
-        }
-
-        // Otherwise fetch from GitHub
-        if (currentDoc?.githubPath) {
-          const response = await fetch(currentDoc.githubPath);
-          const text = await response.text();
-          setMarkdown(text);
+        if (localContent) {
+          setMarkdown(localContent);
         } else {
           setMarkdown(
             "# Document Not Found\nThe requested document could not be loaded."
@@ -63,7 +58,7 @@ const Docs: React.FC = () => {
     };
 
     fetchMarkdown();
-  }, [currentDoc]);
+  }, [currentDocId]);
 
   return (
     <>
@@ -103,6 +98,7 @@ const Docs: React.FC = () => {
                 isLoading={isLoading}
                 contentKey={currentDocId}
                 publishDate={currentDoc.publishDate}
+                githubEditUrl={githubEditUrl}
               />
             </div>
           </div>
