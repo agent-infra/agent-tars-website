@@ -12,12 +12,12 @@ export const GITHUB_BRANCH = 'main';
 export const DOCS_SOURCE_PATH = 'src/docs/source/docs';
 
 export const availableDocs: DocItem[] = [
-  {
-    id: 'quick-start',
-    title: 'Quick Start',
-    category: 'Introduction',
-    publishDate: '2025-03-18',
-  },
+  // {
+  //   id: 'quick-start',
+  //   title: 'Quick Start',
+  //   category: 'Introduction',
+  //   publishDate: '2025-03-18',
+  // },
   {
     id: 'mcp',
     title: 'MCP',
