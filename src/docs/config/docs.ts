@@ -24,6 +24,12 @@ export const availableDocs: DocItem[] = [
     category: "Guide",
     publishDate: "2025-03-22",
   },
+  {
+    id: "mcp",
+    title: "MCP",
+    category: "Guide",
+    publishDate: "2025-04-02",
+  },
 ];
 
 // Group docs by category
