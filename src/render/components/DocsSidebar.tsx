@@ -40,26 +40,26 @@ export const DocsSidebar: React.FC = () => {
   useEffect(() => {
     const categories = Object.keys(docsByCategory);
     const newExpandedCategories: Record<string, boolean> = {};
-    
-    categories.forEach(category => {
+
+    categories.forEach((category) => {
       newExpandedCategories[category] = true;
     });
-    
+
     setExpandedCategories(newExpandedCategories);
   }, []);
 
-    // Auto-expand the category containing the current doc
-    useEffect(() => {
-      const newExpandedCategories = { ...expandedCategories };
-  
-      Object.entries(docsByCategory).forEach(([category, docs]) => {
-        if (docs.some((doc) => doc.id === currentDocId)) {
-          newExpandedCategories[category] = true;
-        }
-      });
-  
-      setExpandedCategories(newExpandedCategories);
-    }, [currentDocId]);
+  // Auto-expand the category containing the current doc
+  useEffect(() => {
+    const newExpandedCategories = { ...expandedCategories };
+
+    Object.entries(docsByCategory).forEach(([category, docs]) => {
+      if (docs.some((doc) => doc.id === currentDocId)) {
+        newExpandedCategories[category] = true;
+      }
+    });
+
+    setExpandedCategories(newExpandedCategories);
+  }, [currentDocId]);
 
   const toggleCategory = (category: string) => {
     setExpandedCategories((prev) => ({

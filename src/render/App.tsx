@@ -21,7 +21,10 @@ const App: React.FC = () => {
           <Route path={ETopRoute.BLOG} element={<Blog />} />
           <Route path="/:year/:month/:day/:slug" element={<Blog />} />
           <Route path={ETopRoute.SHOWCASE} element={<Showcase />} />
-          <Route path={`${ETopRoute.SHOWCASE}/:id`} element={<ShowcaseDetail />} />
+          <Route
+            path={`${ETopRoute.SHOWCASE}/:id`}
+            element={<ShowcaseDetail />}
+          />
           <Route path={ETopRoute.DOC} element={<Docs />} />
           <Route path={`${ETopRoute.DOC}/:docId`} element={<Docs />} />
         </Routes>

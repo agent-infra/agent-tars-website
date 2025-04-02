@@ -10,7 +10,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { HeaderAnchor } from "./HeaderAnchor";
 import { CodeBlock } from "./CodeBlock";
 import "highlight.js/styles/github-dark.css";
-import 'remark-github-blockquote-alert/alert.css'
+import "remark-github-blockquote-alert/alert.css";
 
 interface MarkdownRendererProps {
   content: string;

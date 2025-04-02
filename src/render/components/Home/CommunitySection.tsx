@@ -17,8 +17,8 @@ export const CommunitySection: React.FC = () => {
             Join Our Community
           </h2>
           <p className="text-gray-500 mb-8 max-w-2xl mx-auto">
-            Agent TARS is open source and welcomes contributions from
-            developers worldwide
+            Agent TARS is open source and welcomes contributions from developers
+            worldwide
           </p>
           <Button
             as="a"

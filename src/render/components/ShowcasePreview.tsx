@@ -11,12 +11,12 @@ interface ShowcasePreviewProps {
   onExpand?: (item: ShowcaseItem) => void;
 }
 
-export const ShowcasePreview: React.FC<ShowcasePreviewProps> = ({ 
-  isOpen, 
-  onClose, 
+export const ShowcasePreview: React.FC<ShowcasePreviewProps> = ({
+  isOpen,
+  onClose,
   item,
   onShare,
-  onExpand
+  onExpand,
 }) => {
   const [isLoading, setIsLoading] = React.useState(true);
   const [currentUrl, setCurrentUrl] = useState("");
@@ -46,22 +46,22 @@ export const ShowcasePreview: React.FC<ShowcasePreviewProps> = ({
     }
   };
 
-  const handleNavigate = (type: 'back' | 'forward' | 'refresh') => {
+  const handleNavigate = (type: "back" | "forward" | "refresh") => {
     if (!iframeRef.current) return;
 
-    if (type === 'back' && iframeRef.current.contentWindow) {
+    if (type === "back" && iframeRef.current.contentWindow) {
       iframeRef.current.contentWindow.history.back();
-    } else if (type === 'forward' && iframeRef.current.contentWindow) {
+    } else if (type === "forward" && iframeRef.current.contentWindow) {
       iframeRef.current.contentWindow.history.forward();
-    } else if (type === 'refresh') {
+    } else if (type === "refresh") {
       setIsLoading(true);
       iframeRef.current.src = currentUrl;
     }
   };
 
   return (
-    <Modal 
-      isOpen={isOpen} 
+    <Modal
+      isOpen={isOpen}
       onClose={onClose}
       size="5xl"
       classNames={{
@@ -81,16 +81,16 @@ export const ShowcasePreview: React.FC<ShowcasePreviewProps> = ({
             onExpand={onExpand ? handleExpand : undefined}
             title={item.title}
           >
-            <iframe 
+            <iframe
               ref={iframeRef}
               src={item.link}
               className="w-full h-full"
               onLoad={() => setIsLoading(false)}
               title={item.title}
               frameBorder="0"
-              style={{ 
-                borderRadius: '0 0 12px 12px',
-                backgroundColor: '#fff'
+              style={{
+                borderRadius: "0 0 12px 12px",
+                backgroundColor: "#fff",
               }}
             />
           </BrowserShell>

@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { HiOutlineLightBulb, HiCode } from "react-icons/hi";
+import { HiOutlineLightBulb } from "react-icons/hi";
 import { FaTools, FaDesktop } from "react-icons/fa";
 import { MdWorkspaces } from "react-icons/md";
 

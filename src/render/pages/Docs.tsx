@@ -8,9 +8,6 @@ import { TwitterCardMeta } from "../components/TwitterCardMeta";
 import { MarkdownContent } from "../components/Markdown";
 import { ETopRoute, getDocDetailRoute } from "../../constants/routes";
 
-const GITHUB_REPO_URL = "https://github.com/agent-infra/agent-tars-website";
-const GITHUB_BRANCH = "main";
-
 const Docs: React.FC = () => {
   const [markdown, setMarkdown] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -30,9 +27,11 @@ const Docs: React.FC = () => {
   }, [docId, navigate, firstAvailableDoc]);
 
   const currentDoc = availableDocs.find((doc) => doc.id === currentDocId)!;
-  
+
   // Get GitHub edit URL
-  const githubEditUrl = currentDocId ? getGithubEditPath(currentDocId) : undefined;
+  const githubEditUrl = currentDocId
+    ? getGithubEditPath(currentDocId)
+    : undefined;
 
   useEffect(() => {
     const fetchMarkdown = async () => {

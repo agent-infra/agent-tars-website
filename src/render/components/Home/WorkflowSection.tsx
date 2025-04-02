@@ -17,8 +17,8 @@ export const WorkflowSection: React.FC = () => {
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
             Experience the power of autonomous agent-driven workflow
-            integration. Our intelligent agent continuously learns and adapts
-            to optimize your development process.
+            integration. Our intelligent agent continuously learns and adapts to
+            optimize your development process.
           </p>
         </motion.div>
 

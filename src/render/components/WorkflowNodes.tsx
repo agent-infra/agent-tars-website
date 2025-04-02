@@ -92,12 +92,12 @@ export const WorkflowNodes: React.FC = () => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
-    
+
     checkMobile();
-    window.addEventListener('resize', checkMobile);
-    
+    window.addEventListener("resize", checkMobile);
+
     return () => {
-      window.removeEventListener('resize', checkMobile);
+      window.removeEventListener("resize", checkMobile);
     };
   }, []);
 
@@ -110,7 +110,7 @@ export const WorkflowNodes: React.FC = () => {
         setActiveNodeIndex(0);
         return;
       }
-      
+
       for (let i = 0; i < nodes.length; i++) {
         await controls[i].start({
           pathLength: 1,
@@ -139,7 +139,9 @@ export const WorkflowNodes: React.FC = () => {
   return (
     <motion.div
       ref={ref}
-      className={`relative ${isMobile ? 'h-auto py-10' : 'h-[700px]'} max-w-6xl mx-auto`}
+      className={`relative ${
+        isMobile ? "h-auto py-10" : "h-[700px]"
+      } max-w-6xl mx-auto`}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
@@ -301,7 +303,8 @@ export const WorkflowNodes: React.FC = () => {
             <motion.div
               className="absolute inset-0 rounded-full"
               style={{
-                background: "linear-gradient(45deg, rgba(59,130,246,0.1), rgba(147,51,234,0.1))",
+                background:
+                  "linear-gradient(45deg, rgba(59,130,246,0.1), rgba(147,51,234,0.1))",
                 border: "2px solid rgba(59,130,246,0.3)",
               }}
               animate={{
@@ -311,7 +314,7 @@ export const WorkflowNodes: React.FC = () => {
                 rotate: { duration: 10, repeat: Infinity, ease: "linear" },
               }}
             />
-            
+
             <motion.div
               className="absolute inset-3 rounded-full flex items-center justify-center"
               style={{
@@ -332,7 +335,7 @@ export const WorkflowNodes: React.FC = () => {
             >
               <FaBrain className="w-6 h-6 text-white" />
             </motion.div>
-            
+
             <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap">
               <span className="text-sm font-medium bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
                 Agent Loop
@@ -397,7 +400,7 @@ export const WorkflowNodes: React.FC = () => {
       <div className={isMobile ? "flex flex-col gap-4" : ""}>
         {nodes
           .slice()
-          .sort((a, b) => isMobile ? a.mobileOrder - b.mobileOrder : 0)
+          .sort((a, b) => (isMobile ? a.mobileOrder - b.mobileOrder : 0))
           .map((node, index) => (
             <motion.div
               key={index}
@@ -431,7 +434,10 @@ export const WorkflowNodes: React.FC = () => {
                   className="absolute inset-0 opacity-0"
                   initial={false}
                   animate={{
-                    opacity: (activeNodeIndex === index && !isMobile) || isMobile ? 0.1 : 0,
+                    opacity:
+                      (activeNodeIndex === index && !isMobile) || isMobile
+                        ? 0.1
+                        : 0,
                     background: `linear-gradient(45deg, ${node.color
                       .split(" ")[0]
                       .replace("from-", "")}, ${node.color
@@ -448,7 +454,10 @@ export const WorkflowNodes: React.FC = () => {
                       shadow-lg
                     `}
                     animate={{
-                      scale: (activeNodeIndex === index && !isMobile) ? [1, 1.1, 1] : 1,
+                      scale:
+                        activeNodeIndex === index && !isMobile
+                          ? [1, 1.1, 1]
+                          : 1,
                     }}
                     transition={{
                       duration: 0.5,
@@ -462,7 +471,8 @@ export const WorkflowNodes: React.FC = () => {
                     <motion.h3
                       className="font-semibold text-white/90"
                       animate={{
-                        opacity: (activeNodeIndex === index && !isMobile) ? 1 : 0.7,
+                        opacity:
+                          activeNodeIndex === index && !isMobile ? 1 : 0.7,
                       }}
                     >
                       {node.title}
@@ -470,7 +480,8 @@ export const WorkflowNodes: React.FC = () => {
                     <motion.p
                       className="text-sm text-white/60"
                       animate={{
-                        opacity: (activeNodeIndex === index && !isMobile) ? 0.8 : 0.5,
+                        opacity:
+                          activeNodeIndex === index && !isMobile ? 0.8 : 0.5,
                       }}
                     >
                       {node.description}
@@ -488,7 +499,7 @@ export const WorkflowNodes: React.FC = () => {
                       .replace("to-", "")}, transparent)`,
                   }}
                   animate={{
-                    opacity: (activeNodeIndex === index && !isMobile) ? 0.5 : 0.2,
+                    opacity: activeNodeIndex === index && !isMobile ? 0.5 : 0.2,
                   }}
                 />
               </Card>
