@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { getDocsByCategory } from '../../docs';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -9,14 +9,19 @@ import { getDocDetailRoute } from '../../constants/routes';
 export const DocsSidebar: React.FC = () => {
   const { docId } = useParams();
   const [isOpen, setIsOpen] = useState(() => {
-    // 初始化时根据窗口宽度判断
+
+    // Initialize based on window width
     return window.innerWidth >= 768;
   });
   const [expandedCategories, setExpandedCategories] = useState<Record<string, boolean>>({});
   const [isMobile, setIsMobile] = useState(() => {
-    // 初始化时根据窗口宽度判断
+
+    // Initialize based on window width
     return window.innerWidth < 768;
   });
+
+  // Add initial load flag
+  const isInitialMount = useRef(true);
   const currentDocId = docId || 'quick-start';
   const docsByCategory = getDocsByCategory();
 
@@ -34,7 +39,8 @@ export const DocsSidebar: React.FC = () => {
     };
   }, []);
 
-  // 初始化时默认展开所有分类
+
+  // Expand all categories by default on initialization
   useEffect(() => {
     const categories = Object.keys(docsByCategory);
     const newExpandedCategories: Record<string, boolean> = {};
@@ -58,6 +64,14 @@ export const DocsSidebar: React.FC = () => {
 
     setExpandedCategories(newExpandedCategories);
   }, [currentDocId]);
+
+
+  // Set initial mount state to false after component mounts
+  useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+    }
+  }, []);
 
   const toggleCategory = (category: string) => {
     setExpandedCategories(prev => ({
@@ -110,7 +124,7 @@ export const DocsSidebar: React.FC = () => {
       <AnimatePresence>
         {(isOpen || !isMobile) && (
           <motion.div
-            initial={isMobile ? { x: -300 } : { width: '64px' }}
+            initial={isInitialMount.current ? false : isMobile ? { x: -300 } : { width: '64px' }}
             animate={isOpen ? { x: 0, width: '256px' } : isMobile ? { x: -300 } : { width: '64px' }}
             exit={isMobile ? { x: -300 } : { width: '64px' }}
             transition={{ type: 'spring', bounce: 0.1, duration: 0.5 }}
