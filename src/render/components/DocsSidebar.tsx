@@ -52,20 +52,6 @@ export const DocsSidebar: React.FC = () => {
     setExpandedCategories(newExpandedCategories);
   }, []);
 
-  // Auto-expand the category containing the current doc
-  useEffect(() => {
-    const newExpandedCategories = { ...expandedCategories };
-
-    Object.entries(docsByCategory).forEach(([category, docs]) => {
-      if (docs.some(doc => doc.id === currentDocId)) {
-        newExpandedCategories[category] = true;
-      }
-    });
-
-    setExpandedCategories(newExpandedCategories);
-  }, [currentDocId]);
-
-
   // Set initial mount state to false after component mounts
   useEffect(() => {
     if (isInitialMount.current) {
