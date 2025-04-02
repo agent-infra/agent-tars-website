@@ -2,17 +2,13 @@
 
 ## Introduction
 
-**[Agent TARS](https://github.com/bytedance/UI-TARS-desktop)** is an open-source multimodal agent designed to revolutionize GUI interaction by visually interpreting web pages and seamlessly integrating with command lines and file systems.
+**[Agent TARS](https://github.com/bytedance/UI-TARS-desktop)** is an open-source multimodal agent designed to revolutionize GUI interaction by visually interpreting web pages and seamlessly integrating with command lines and file systems, for more informations, please head our [inotroduction blog](/2025/03/18/announcing-agent-tars-app).
 
-In this documentation, we'll help you to quickly start Agent TARS in minimal necessary steps.
+In this section, we'll help you to quickly start Agent TARS in minimal necessary steps, and take the following prompt as an example:
 
 ```bash
 Tell me the top 5 most popular projects on ProductHunt today, analyze them in depth, and output a report to me.
 ```
-
-> [!NOTE]
-> For more informations, please head our [inotroduction blog](/2025/03/18/announcing-agent-tars-app).
-
 
 ---
 
@@ -22,7 +18,9 @@ Before you begin, you will need to set some necessary configuration, you can cli
 
 ![setting-icon.png](https://lf3-static.bytednsdoc.com/obj/eden-cn/uhbfnupenuhf/agent-tars/setting-icon.jpeg)
 
-Then you can set the model config and the search config.
+---
+
+### Config Model Provider
 
 For model config, you can set the model provider and api key:
 
@@ -30,9 +28,15 @@ For model config, you can set the model provider and api key:
 
 > For Azure OpenAI, you can set more params, including apiVersion, deploymentName and endpoint.
 
+---
+
+### Config Search Provider
+
 For search config, you can set the search provider and api key:
 
 ![search-settings.png](https://lf3-static.bytednsdoc.com/obj/eden-cn/uhbfnupenuhf/agent-tars/search-setting.jpeg)
+
+---
 
 ## Start Your First Journey
 
