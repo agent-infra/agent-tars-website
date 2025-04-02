@@ -13,15 +13,15 @@
 
 1. Open Settings
    - Click the settings icon (⚙️) in the left sidebar to access the settings interface
-  ![Image](https://github.com/user-attachments/assets/0c4c69d1-9f28-4bc0-81cd-6b5608a5f964)
+  ![Image](https://sf16-sg.tiktokcdn.com/obj/eden-sg/100upeupq/1.png)
 
 2. Navigate to MCP Servers
    - Select the "MCP Servers" tab from the top navigation bar in settings
-  ![Image](https://github.com/user-attachments/assets/8fd411e5-d84d-4b03-a684-b8b21acea165)
+  ![Image](https://sf16-sg.tiktokcdn.com/obj/eden-sg/100upeupq/2.png)
 
 3. Add New Server
    - Click the "Add Server" button to begin adding a new MCP server
-  ![Image](https://github.com/user-attachments/assets/042ab505-92dc-420c-bc03-17f359fe6172)
+  ![Image](https://sf16-sg.tiktokcdn.com/obj/eden-sg/100upeupq/3.png)
 
 
 ## Configuration Options
@@ -49,7 +49,7 @@ When selecting "SSE (Server-Sent Events)" type, you need to fill in the followin
 - **HEADERS**: SSE request headers
 - **Enable**: Toggle switch to enable/disable the server
 
-![Image](https://github.com/user-attachments/assets/532ba2c4-2436-49ac-acfe-4be49f6a6cf6)
+![Image](https://sf16-sg.tiktokcdn.com/obj/eden-sg/100upeupq/4.png)
 
 ### Advanced Options
 
