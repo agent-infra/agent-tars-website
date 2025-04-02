@@ -1,15 +1,19 @@
-# MCP Servers Configuration
+# Config MCP Servers
 
 ## Overview
 
 **MCP (Model Context Protocol)** is an open-source protocol designed to provide context information to Large Language Models (LLMs) in a standardized way. For more information about MCP, please refer to [#what-is-mcp-model-context-protocol](https://modelcontextprotocol.io/introduction).
 
-### Prerequisites: Installing uv and Node.js
+---
+
+## Prerequisites: Install uv and Node.js
 
 - [uv installation](https://docs.astral.sh/uv/getting-started/installation/)
 - [npm installation](https://nodejs.org/en/download)
 
-## How to Use
+---
+
+## Quick Start
 
 1. Open Settings
    - Click the settings icon (⚙️) in the left sidebar to access the settings interface
@@ -23,6 +27,7 @@
    - Click the "Add Server" button to begin adding a new MCP server
   ![Image](https://sf16-sg.tiktokcdn.com/obj/eden-sg/100upeupq/3.png)
 
+---
 
 ## Configuration Options
 
@@ -51,8 +56,10 @@ When selecting "SSE (Server-Sent Events)" type, you need to fill in the followin
 
 ![Image](https://sf16-sg.tiktokcdn.com/obj/eden-sg/100upeupq/4.png)
 
-### Advanced Options
+---
 
-[MCP Brings a New Paradigm to Layered AI Application Development](https://agent-tars.com/2025/03/25/mcp-brings-a-new-paradigm-to-layered-ai-app-development)
+## References
+
+[MCP Brings a New Paradigm to Layered AI Application Development](/2025/03/25/mcp-brings-a-new-paradigm-to-layered-ai-app-development)
 
 
