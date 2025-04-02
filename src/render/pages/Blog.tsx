@@ -1,23 +1,18 @@
-import React, { useState, useEffect } from "react";
-import { useParams, Link, useLocation } from "react-router-dom";
-import { getBlogContent } from "../../docs";
-import {
-  getSortedBlogPosts,
-  getBlogPostByPermalink,
-  getBlogPermalink,
-  BlogPost,
-} from "../../docs";
-import { motion } from "framer-motion";
-import { Button, Card, Divider } from "@nextui-org/react";
-import { FiArrowLeft, FiCalendar, FiUser } from "react-icons/fi";
-import { TwitterCardMeta } from "../components/TwitterCardMeta";
-import { MarkdownContent } from "../components/Markdown";
-import { ETopRoute } from "../../constants/routes";
+import React, { useState, useEffect } from 'react';
+import { useParams, Link, useLocation } from 'react-router-dom';
+import { getBlogContent } from '../../docs';
+import { getSortedBlogPosts, getBlogPostByPermalink, getBlogPermalink, BlogPost } from '../../docs';
+import { motion } from 'framer-motion';
+import { Button, Card, Divider } from '@nextui-org/react';
+import { FiArrowLeft, FiCalendar, FiUser } from 'react-icons/fi';
+import { TwitterCardMeta } from '../components/TwitterCardMeta';
+import { MarkdownContent } from '../components/Markdown';
+import { ETopRoute } from '../../constants/routes';
 
 const Blog: React.FC = () => {
   const { year, month, day, slug } = useParams();
   const location = useLocation();
-  const [content, setContent] = useState<string>("");
+  const [content, setContent] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   // Check if we're on a specific blog post page
@@ -44,8 +39,8 @@ const Blog: React.FC = () => {
           throw new Error(`Failed to load blog: ${currentPost.id}`);
         }
       } catch (error) {
-        console.error("Failed to load blog content:", error);
-        setContent("# Error\nFailed to load blog content.");
+        console.error('Failed to load blog content:', error);
+        setContent('# Error\nFailed to load blog content.');
       } finally {
         setIsLoading(false);
       }
@@ -57,9 +52,7 @@ const Blog: React.FC = () => {
 
   if (isPostPage && currentPost) {
     // Generate absolute URL for the current blog post
-    const currentUrl = `${window.location.origin}${getBlogPermalink(
-      currentPost
-    )}`;
+    const currentUrl = `${window.location.origin}${getBlogPermalink(currentPost)}`;
 
     return (
       <>
@@ -69,7 +62,7 @@ const Blog: React.FC = () => {
           url={currentUrl}
           image={
             currentPost.coverImage ||
-            "https://github.com/bytedance/UI-TARS-desktop/blob/main/apps/agent-tars/public/twitter-card.png?raw=true"
+            'https://github.com/bytedance/UI-TARS-desktop/blob/main/apps/agent-tars/public/twitter-card.png?raw=true'
           }
         />
 
@@ -138,10 +131,7 @@ const Blog: React.FC = () => {
 };
 
 // Blog post card component for the listing page
-const BlogPostCard: React.FC<{ post: BlogPost; index: number }> = ({
-  post,
-  index,
-}) => {
+const BlogPostCard: React.FC<{ post: BlogPost; index: number }> = ({ post, index }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -169,11 +159,8 @@ const BlogPostCard: React.FC<{ post: BlogPost; index: number }> = ({
           </Link>
 
           <div className="flex flex-wrap gap-2 mb-4">
-            {post.tags?.map((tag) => (
-              <span
-                key={tag}
-                className="px-3 py-1 bg-white/10 text-white/70 text-xs rounded-full"
-              >
+            {post.tags?.map(tag => (
+              <span key={tag} className="px-3 py-1 bg-white/10 text-white/70 text-xs rounded-full">
                 {tag}
               </span>
             ))}

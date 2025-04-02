@@ -1,15 +1,12 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef } from 'react';
 
 interface CodeBlockProps {
   className?: string;
   children: React.ReactNode;
 }
 
-export const CodeBlock: React.FC<CodeBlockProps> = ({
-  className,
-  children,
-}) => {
-  const match = /language-(\w+)/.exec(className || "");
+export const CodeBlock: React.FC<CodeBlockProps> = ({ className, children }) => {
+  const match = /language-(\w+)/.exec(className || '');
   const [isWordWrap, setIsWordWrap] = useState(true);
   const [isCopied, setIsCopied] = useState(false);
   const codeRef = useRef<HTMLElement>(null);
@@ -26,7 +23,7 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
   const handleCopy = () => {
     if (codeRef.current) {
       // Extract text content from code element instead of React nodes
-      const code = codeRef.current.textContent || "";
+      const code = codeRef.current.textContent || '';
       navigator.clipboard.writeText(code).then(() => {
         setIsCopied(true);
         setTimeout(() => setIsCopied(false), 2000);
@@ -43,9 +40,7 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
       {/* Code block header with actions */}
       <div className="flex items-center justify-between bg-gray-800 rounded-t-lg border-t border-l border-r border-gray-700 px-4 py-2">
         {/* Language badge */}
-        <div className="text-xs text-gray-400 font-mono">
-          {match[1] || "code"}
-        </div>
+        <div className="text-xs text-gray-400 font-mono">{match[1] || 'code'}</div>
 
         {/* Action buttons */}
         <div className="flex items-center gap-2">
@@ -53,7 +48,7 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
           <button
             onClick={toggleWordWrap}
             className="hover:bg-gray-700 transition-colors rounded-sm px-2 py-1 text-xs text-gray-400"
-            title={isWordWrap ? "Disable word wrap" : "Enable word wrap"}
+            title={isWordWrap ? 'Disable word wrap' : 'Enable word wrap'}
           >
             {/* ... 保留现有导入 ... */}
             {isWordWrap ? (
@@ -121,7 +116,7 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
 
       <pre
         className={`bg-gray-900 border-b border-l border-r border-gray-700 rounded-b-lg text-gray-300 text-sm font-mono overflow-hidden ${
-          isWordWrap ? "whitespace-pre-wrap break-words" : "overflow-x-auto"
+          isWordWrap ? 'whitespace-pre-wrap break-words' : 'overflow-x-auto'
         }`}
       >
         <code ref={codeRef} className={className}>

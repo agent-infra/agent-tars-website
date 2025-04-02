@@ -1,9 +1,9 @@
-declare module "*.md" {
+declare module '*.md' {
   const content: string;
   export default content;
 }
 
 declare module '*.png' {
-  const src: string
-  export default src
+  const src: string;
+  export default src;
 }

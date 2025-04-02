@@ -1,5 +1,5 @@
-import React from "react";
-import { Modal, ModalContent, ModalBody } from "@nextui-org/react";
+import React from 'react';
+import { Modal, ModalContent, ModalBody } from '@nextui-org/react';
 
 interface VideoModalProps {
   isOpen: boolean;
@@ -17,8 +17,8 @@ export const VideoModal: React.FC<VideoModalProps> = ({ isOpen, onClose }) => {
       onClose={onClose}
       size="full"
       classNames={{
-        base: "bg-black/95 backdrop-blur-xl",
-        body: "p-0",
+        base: 'bg-black/95 backdrop-blur-xl',
+        body: 'p-0',
       }}
     >
       <ModalContent>

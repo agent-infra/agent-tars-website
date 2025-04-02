@@ -32,11 +32,23 @@
     "postcss": "^8.4.49",
     "react-helmet": "^6.1.0",
     "react-helmet-async": "^2.0.5",
-    "tailwindcss": "^3.4.15"
+    "tailwindcss": "^3.4.15",
+    "prettier": "^3.2.5",
+    "prettier-plugin-tailwindcss": "^0.5.11"
   },
   "scripts": {
     "dev": "rsbuild dev --open",
     "build": "rsbuild build",
-    "preview": "rsbuild preview"
+    "preview": "rsbuild preview",
+    "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,css,md}\""
+  },
+  "prettier": {
+    "semi": true,
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "all",
+    "printWidth": 100,
+    "bracketSameLine": false,
+    "arrowParens": "avoid"
   }
 }

@@ -1,11 +1,10 @@
-
 # Announcing Agent TARS App (Preview)
 
 ## Introduction
 
-Hello everyone! We're thrilled to introduce a new friend — **Agent TARS**.  
+Hello everyone! We're thrilled to introduce a new friend — **Agent TARS**.
 
-**Agent TARS** is an open-source multimodal AI agent that offers streamlined browser operations by interpreting web pages visually. It also effortlessly integrates with command lines and file systems. For a quick overview, check out the demo video below:  
+**Agent TARS** is an open-source multimodal AI agent that offers streamlined browser operations by interpreting web pages visually. It also effortlessly integrates with command lines and file systems. For a quick overview, check out the demo video below:
 
 <div className="bg-gray-900 w-full h-500 rounded-lg overflow-hidden">
   <video
@@ -19,7 +18,7 @@ Hello everyone! We're thrilled to introduce a new friend — **Agent TARS**.
       type="video/mp4"
     />
   </video>
-</div>  
+</div>
 
 You can find more examples in our [Showcase](https://agent-tars.com/showcase) page.
 
@@ -41,21 +40,20 @@ Agent TARS leverages a sophisticated **agent framework** to execute complex `bro
 
 To enhance user engagement with AI _processes_ and _outcomes_, the Agent TARS App offers an intuitive streaming user interface showcasing `multimodal` artifacts like **browsers** and **documents**. _This is also an important entry point for you to contact Agent TARS_. You can find all released versions [here](https://github.com/bytedance/UI-TARS-desktop/releases?q=Agent+Tars&expanded=true).
 
-
 These features combine to make Agent TARS a powerful and versatile tool for AI-assisted browsing, research, and task execution, check out our examples:
 
 - [Technical analysis of Tesla's future stock price trends](/showcase/tesla-stock-technical-analysis)
 - [Top 5 most popular ProductHunt projects analysis report](/showcase/producthunt-top-projects-analysis)
 - [Analyse issues in the Lynx repository](/showcase/lynx-repository-issues-report)
 - [Reasons behind Tesla's recent stock price decline
-](/showcase/tesla-stock-decline-reasons)
+  ](/showcase/tesla-stock-decline-reasons)
 - [7-day trip plan to Mexico City from NYC](/showcase/7-day-trip-plan-to-mexico-city)
 
 ## Quick Start
 
 > **DISCLAIMER**: Agent TARS is still in **Technical Preview** stage and not stable yet. It's not recommended to use it in production. If you run into any issues, we welcome feedback on [Github](https://github.com/bytedance/UI-TARS-desktop) or on [Twitter](https://x.com/AgentTars).
 
-### Install  
+### Install
 
 Visit [Releases](https://github.com/bytedance/UI-TARS-desktop/releases?q=Agent+Tars&expanded=true) page to download the latest desktop package of Agent TARS.
 
@@ -67,7 +65,7 @@ Currently, Agent TARS supports only macOS, but don’t worry — support for oth
 
 ### Configuration
 
-When you open the app, you need to first open the lower-left corner to access the `Settings` page and  adjust the necessary settings:
+When you open the app, you need to first open the lower-left corner to access the `Settings` page and adjust the necessary settings:
 
 Before you begin, you will need to set some necessary configuration, You can click the left-bottom button to open the `setting` page:
 
@@ -126,25 +124,24 @@ Then Agent TARS will post a request to the remote server to upload the html bund
 > - Response:
 >   - data: { url: string }
 
-Preview, share, and enjoy the awesome replay process!  
+Preview, share, and enjoy the awesome replay process!
 
 ---
 
 ## Important Information
 
 1. Our Planning has been tested based on Claude. Currently, support for OpenAI is still unstable, and you are welcome to collaborate with us to enhance OpenAI support.
-2. You may encounter various issues. If any problems arise, please refer to [Trouble Shooting](/doc/trouble-shooting).  
+2. You may encounter various issues. If any problems arise, please refer to [Trouble Shooting](/doc/trouble-shooting).
 
 ---
 
-## What’s Next? 
+## What’s Next?
 
-This app marks the exciting first step in Agent TARS's journey, Next, we’ll share its inner workings and unique design with the community.  
+This app marks the exciting first step in Agent TARS's journey, Next, we’ll share its inner workings and unique design with the community.
 
 Stay updated by following us on X ([@AgentTars](https://x.com/AgentTars)) and join our [Discord](https://discord.gg/NAeJMKk4) to share your experiences!
 
-
---- 
+---
 
 ## Links
 

@@ -86,7 +86,11 @@ export const pluginHtmlGenerator = (
         const isVerbose = options.verbose !== false;
 
         // Default static routes list
-        const staticRoutes = [ETopRoute.BLOG, ETopRoute.SHOWCASE, ETopRoute.DOC];
+        const staticRoutes: string[] = [
+          ETopRoute.BLOG,
+          ETopRoute.SHOWCASE,
+          ETopRoute.DOC,
+        ];
 
         // Merge user-provided additional routes
         if (options.additionalRoutes?.length) {
@@ -177,7 +181,10 @@ export const pluginHtmlGenerator = (
         if (isVerbose) {
           console.log(
             `[html-generator] Successfully generated ${
-              staticRoutes.length + docRoutes.length + blogRoutes.length + showcaseRoutes.length
+              staticRoutes.length +
+              docRoutes.length +
+              blogRoutes.length +
+              showcaseRoutes.length
             } HTML files`
           );
         }

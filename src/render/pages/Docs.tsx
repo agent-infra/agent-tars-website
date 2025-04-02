@@ -1,18 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { Button } from "@nextui-org/react";
-import { FaBug } from "react-icons/fa";
-import { useParams, useNavigate } from "react-router-dom";
-import { availableDocs, getLocalDoc, getGithubEditPath } from "../../docs";
-import { DocsSidebar } from "../components/DocsSidebar";
-import { TwitterCardMeta } from "../components/TwitterCardMeta";
-import { MarkdownContent } from "../components/Markdown";
-import { ETopRoute, getDocDetailRoute } from "../../constants/routes";
-
-const GITHUB_REPO_URL = "https://github.com/agent-infra/agent-tars-website";
-const GITHUB_BRANCH = "main";
+import React, { useState, useEffect } from 'react';
+import { Button } from '@nextui-org/react';
+import { FaBug } from 'react-icons/fa';
+import { useParams, useNavigate } from 'react-router-dom';
+import { availableDocs, getLocalDoc, getGithubEditPath } from '../../docs';
+import { DocsSidebar } from '../components/DocsSidebar';
+import { TwitterCardMeta } from '../components/TwitterCardMeta';
+import { MarkdownContent } from '../components/Markdown';
+import { ETopRoute, getDocDetailRoute } from '../../constants/routes';
 
 const Docs: React.FC = () => {
-  const [markdown, setMarkdown] = useState<string>("");
+  const [markdown, setMarkdown] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const { docId } = useParams();
   const navigate = useNavigate();
@@ -29,8 +26,8 @@ const Docs: React.FC = () => {
     }
   }, [docId, navigate, firstAvailableDoc]);
 
-  const currentDoc = availableDocs.find((doc) => doc.id === currentDocId)!;
-  
+  const currentDoc = availableDocs.find(doc => doc.id === currentDocId)!;
+
   // Get GitHub edit URL
   const githubEditUrl = currentDocId ? getGithubEditPath(currentDocId) : undefined;
 
@@ -45,13 +42,11 @@ const Docs: React.FC = () => {
         if (localContent) {
           setMarkdown(localContent);
         } else {
-          setMarkdown(
-            "# Document Not Found\nThe requested document could not be loaded."
-          );
+          setMarkdown('# Document Not Found\nThe requested document could not be loaded.');
         }
       } catch (error) {
-        console.error("Failed to fetch markdown:", error);
-        setMarkdown("# Error\nFailed to load documentation.");
+        console.error('Failed to fetch markdown:', error);
+        setMarkdown('# Error\nFailed to load documentation.');
       } finally {
         setIsLoading(false);
       }

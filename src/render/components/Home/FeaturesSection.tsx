@@ -1,33 +1,33 @@
-import React from "react";
-import { motion } from "framer-motion";
-import { HiOutlineLightBulb, HiCode } from "react-icons/hi";
-import { FaTools, FaDesktop } from "react-icons/fa";
-import { MdWorkspaces } from "react-icons/md";
+import React from 'react';
+import { motion } from 'framer-motion';
+import { HiOutlineLightBulb } from 'react-icons/hi';
+import { FaTools, FaDesktop } from 'react-icons/fa';
+import { MdWorkspaces } from 'react-icons/md';
 
 const features = [
   {
     icon: <HiOutlineLightBulb className="w-6 h-6" />,
-    title: "Advanced Browser Operations",
-    description: "Executes sophisticated tasks through an agent framework",
-    color: "from-blue-500 to-blue-600",
+    title: 'Advanced Browser Operations',
+    description: 'Executes sophisticated tasks through an agent framework',
+    color: 'from-blue-500 to-blue-600',
   },
   {
     icon: <FaTools className="w-6 h-6" />,
-    title: "Comprehensive Tool Support",
-    description: "Integrates with search, file editing, and command line tools",
-    color: "from-purple-500 to-purple-600",
+    title: 'Comprehensive Tool Support',
+    description: 'Integrates with search, file editing, and command line tools',
+    color: 'from-purple-500 to-purple-600',
   },
   {
     icon: <FaDesktop className="w-6 h-6" />,
-    title: "Enhanced Desktop App",
-    description: "Revamped UI with multimodal elements and session management",
-    color: "from-emerald-500 to-emerald-600",
+    title: 'Enhanced Desktop App',
+    description: 'Revamped UI with multimodal elements and session management',
+    color: 'from-emerald-500 to-emerald-600',
   },
   {
     icon: <MdWorkspaces className="w-6 h-6" />,
-    title: "Workflow Orchestration",
-    description: "Seamlessly connects GUI Agent tools and workflows",
-    color: "from-rose-500 to-rose-600",
+    title: 'Workflow Orchestration',
+    description: 'Seamlessly connects GUI Agent tools and workflows',
+    color: 'from-rose-500 to-rose-600',
   },
 ];
 
@@ -44,9 +44,7 @@ export const FeaturesSection: React.FC = () => {
           <h2 className="text-5xl font-bold mb-4 bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
             Features
           </h2>
-          <p className="text-xl text-gray-400">
-            Discover the power of Agent TARS
-          </p>
+          <p className="text-xl text-gray-400">Discover the power of Agent TARS</p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

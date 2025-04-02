@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Spinner } from "@nextui-org/react";
+import { Spinner } from '@nextui-org/react';
 import { ShowcaseCard } from '../components/ShowcaseCard';
 import { CategoryFilter } from '../components/CategoryFilter';
 import { ShowcaseHeader } from '../components/ShowcaseHeader';
 import { ShareModal } from '../components/ShareModal';
-import { 
-  showcaseItems, 
-  getItemsByCategory, 
+import {
+  showcaseItems,
+  getItemsByCategory,
   getCategoriesWithCounts,
-  ShowcaseItem
+  ShowcaseItem,
 } from '../../data/showcaseData';
 import { useNavigate } from 'react-router-dom';
 import { ETopRoute, getShowcaseDetailRoute } from '../../constants/routes';
 
 const Showcase: React.FC = () => {
-  const [activeCategory, setActiveCategory] = useState("all");
+  const [activeCategory, setActiveCategory] = useState('all');
   const [filteredItems, setFilteredItems] = useState(showcaseItems);
   const [isLoading, setIsLoading] = useState(true);
   const [shareItem, setShareItem] = useState<ShowcaseItem | null>(null);
@@ -40,7 +40,7 @@ const Showcase: React.FC = () => {
   const handleOpenPreview = (item: ShowcaseItem) => {
     navigate(getShowcaseDetailRoute(item.id));
   };
-  
+
   const handleShareItem = (item: ShowcaseItem) => {
     setShareItem(item);
     setIsShareModalOpen(true);
@@ -49,12 +49,12 @@ const Showcase: React.FC = () => {
   return (
     <div className="min-h-screen pt-24 px-4 pb-16 bg-black text-white">
       <div className="max-w-7xl mx-auto">
-        <ShowcaseHeader 
+        <ShowcaseHeader
           title="Showcase"
           description="Explore our collection of impressive demos and applications"
         />
 
-        <CategoryFilter 
+        <CategoryFilter
           categories={categoriesWithCounts}
           activeCategory={activeCategory}
           onSelectCategory={handleCategoryChange}
@@ -83,17 +83,17 @@ const Showcase: React.FC = () => {
               {filteredItems.length > 0 ? (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 auto-rows-fr">
                   {filteredItems.map((item, index) => (
-                    <ShowcaseCard 
-                      key={item.id} 
-                      item={item} 
-                      index={index} 
+                    <ShowcaseCard
+                      key={item.id}
+                      item={item}
+                      index={index}
                       onOpenPreview={handleOpenPreview}
                       onShareItem={handleShareItem}
                     />
                   ))}
                 </div>
               ) : (
-                <motion.div 
+                <motion.div
                   className="flex flex-col items-center justify-center py-20 px-4 text-center bg-white/5 border border-white/10 rounded-xl"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -109,7 +109,7 @@ const Showcase: React.FC = () => {
             </motion.div>
           </AnimatePresence>
         )}
-        
+
         <motion.div
           className="mt-16 pt-8 border-t border-white/10 text-center"
           initial={{ opacity: 0 }}
@@ -117,11 +117,14 @@ const Showcase: React.FC = () => {
           transition={{ duration: 0.5, delay: 0.5 }}
         >
           <p className="text-gray-500">
-            Want to showcase your project? <a href="#" className="text-purple-400 hover:text-purple-300 underline">Contact us</a>
+            Want to showcase your project?{' '}
+            <a href="#" className="text-purple-400 hover:text-purple-300 underline">
+              Contact us
+            </a>
           </p>
         </motion.div>
       </div>
-      
+
       {/* Share Modal */}
       <ShareModal
         isOpen={isShareModalOpen}

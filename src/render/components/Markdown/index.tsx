@@ -1,1 +1,1 @@
-export * from "./MarkdownContent";
+export * from './MarkdownContent';

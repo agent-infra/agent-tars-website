@@ -25,7 +25,7 @@ export const TwitterCardMeta: React.FC<TwitterCardMetaProps> = ({
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={image} />
       <meta name="twitter:creator" content="@AgentTars" />
-      
+
       {/* Open Graph data (used by Facebook and other platforms) */}
       <meta property="og:title" content={title} />
       <meta property="og:type" content="website" />

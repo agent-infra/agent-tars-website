@@ -1,16 +1,16 @@
-import React, { useState, useRef } from "react";
-import ReactMarkdown, { Components } from "react-markdown";
-import remarkGfm from "remark-gfm";
-import rehypeRaw from "rehype-raw";
-import { remarkAlert } from "remark-github-blockquote-alert";
-import rehypeHighlight from "rehype-highlight";
-import { Modal, Box } from "@mui/material";
-import { Link } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
-import { HeaderAnchor } from "./HeaderAnchor";
-import { CodeBlock } from "./CodeBlock";
-import "highlight.js/styles/github-dark.css";
-import 'remark-github-blockquote-alert/alert.css'
+import React, { useState, useRef } from 'react';
+import ReactMarkdown, { Components } from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
+import { remarkAlert } from 'remark-github-blockquote-alert';
+import rehypeHighlight from 'rehype-highlight';
+import { Modal, Box } from '@mui/material';
+import { Link } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import { HeaderAnchor } from './HeaderAnchor';
+import { CodeBlock } from './CodeBlock';
+import 'highlight.js/styles/github-dark.css';
+import 'remark-github-blockquote-alert/alert.css';
 
 interface MarkdownRendererProps {
   content: string;
@@ -27,7 +27,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
   content,
   publishDate,
   author,
-  className = "", // Default to empty string
+  className = '', // Default to empty string
 }) => {
   const [openImage, setOpenImage] = useState<string | null>(null);
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -51,7 +51,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
       if (element) {
         // Use setTimeout to ensure page is fully rendered before scrolling
         setTimeout(() => {
-          element.scrollIntoView({ behavior: "smooth" });
+          element.scrollIntoView({ behavior: 'smooth' });
         }, 100);
       }
     }
@@ -68,8 +68,8 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
       const id = children
         ?.toString()
         .toLowerCase()
-        .replace(/[^\w\s]/g, "")
-        .replace(/\s+/g, "-");
+        .replace(/[^\w\s]/g, '')
+        .replace(/\s+/g, '-');
 
       // Check if this is the first h1 and set the flag
       const isFirstH1 = !firstH1Ref.current;
@@ -107,8 +107,8 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
       const id = children
         ?.toString()
         .toLowerCase()
-        .replace(/[^\w\s]/g, "")
-        .replace(/\s+/g, "-");
+        .replace(/[^\w\s]/g, '')
+        .replace(/\s+/g, '-');
       return (
         <h2
           id={id}
@@ -124,8 +124,8 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
       const id = children
         ?.toString()
         .toLowerCase()
-        .replace(/[^\w\s]/g, "")
-        .replace(/\s+/g, "-");
+        .replace(/[^\w\s]/g, '')
+        .replace(/\s+/g, '-');
       return (
         <h3
           id={id}
@@ -141,8 +141,8 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
       const id = children
         ?.toString()
         .toLowerCase()
-        .replace(/[^\w\s]/g, "")
-        .replace(/\s+/g, "-");
+        .replace(/[^\w\s]/g, '')
+        .replace(/\s+/g, '-');
       return (
         <h4
           id={id}
@@ -154,39 +154,33 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
         </h4>
       );
     },
-    p: ({ node, ...props }) => (
-      <p className="my-4 text-gray-300 leading-relaxed" {...props} />
-    ),
+    p: ({ node, ...props }) => <p className="my-4 text-gray-300 leading-relaxed" {...props} />,
     a: ({ node, href, ...props }) => {
       // Handle three types of links:
       // 1. Hash links (#section)
       // 2. Internal path links (/path)
       // 3. External links (https://...)
 
-      if (href && href.startsWith("#")) {
+      if (href && href.startsWith('#')) {
         // Hash links - use smooth scrolling
         return (
           <a
             href={href}
             className="text-blue-400 hover:text-blue-300 transition-colors underline underline-offset-2"
-            onClick={(e) => {
+            onClick={e => {
               e.preventDefault();
               // Find target element and scroll into view
               const element = document.getElementById(href.substring(1));
               if (element) {
-                element.scrollIntoView({ behavior: "smooth" });
+                element.scrollIntoView({ behavior: 'smooth' });
                 // Update URL without page reload
-                window.history.pushState(null, "", href);
+                window.history.pushState(null, '', href);
               }
             }}
             {...props}
           />
         );
-      } else if (
-        href &&
-        !href.match(/^(https?:)?\/\//) &&
-        href.startsWith("/")
-      ) {
+      } else if (href && !href.match(/^(https?:)?\/\//) && href.startsWith('/')) {
         // Internal links - use React Router's Link
         return (
           <Link
@@ -208,12 +202,8 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
         />
       );
     },
-    ul: ({ node, ...props }) => (
-      <ul className="my-4 list-disc pl-6 text-gray-300" {...props} />
-    ),
-    ol: ({ node, ...props }) => (
-      <ol className="my-4 list-decimal pl-6 text-gray-300" {...props} />
-    ),
+    ul: ({ node, ...props }) => <ul className="my-4 list-disc pl-6 text-gray-300" {...props} />,
+    ol: ({ node, ...props }) => <ol className="my-4 list-decimal pl-6 text-gray-300" {...props} />,
     li: ({ node, ...props }) => <li className="my-1" {...props} />,
     blockquote: ({ node, ...props }) => (
       <blockquote
@@ -230,19 +220,12 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
     },
     table: ({ node, ...props }) => (
       <div className="overflow-x-auto my-6">
-        <table
-          className="min-w-full border-collapse border border-white/20 text-sm"
-          {...props}
-        />
+        <table className="min-w-full border-collapse border border-white/20 text-sm" {...props} />
       </div>
     ),
     thead: ({ node, ...props }) => <thead className="bg-white/5" {...props} />,
-    tbody: ({ node, ...props }) => (
-      <tbody className="divide-y divide-white/10" {...props} />
-    ),
-    tr: ({ node, ...props }) => (
-      <tr className="hover:bg-white/5 transition-colors" {...props} />
-    ),
+    tbody: ({ node, ...props }) => <tbody className="divide-y divide-white/10" {...props} />,
+    tr: ({ node, ...props }) => <tr className="hover:bg-white/5 transition-colors" {...props} />,
     th: ({ node, ...props }) => (
       <th
         className="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider border-b border-white/20"
@@ -259,24 +242,19 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
         src={src}
         onClick={() => src && handleImageClick(src)}
         {...props}
-        alt={props.alt || "Documentation image"}
+        alt={props.alt || 'Documentation image'}
         whileHover={{ scale: 1.01 }}
         transition={{ duration: 0.2 }}
       />
     ),
-    hr: ({ node, ...props }) => (
-      <hr className="my-8 border-t border-white/10" {...props} />
-    ),
+    hr: ({ node, ...props }) => <hr className="my-8 border-t border-white/10" {...props} />,
   };
 
   return (
     <>
       <ReactMarkdown
         remarkPlugins={[remarkGfm, remarkAlert]}
-        rehypePlugins={[
-          rehypeRaw,
-          [rehypeHighlight, { detect: true, ignoreMissing: true }],
-        ]}
+        rehypePlugins={[rehypeRaw, [rehypeHighlight, { detect: true, ignoreMissing: true }]]}
         className={className}
         components={components}
       >
@@ -292,17 +270,17 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
           >
             <Box
               sx={{
-                position: "absolute",
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-                maxWidth: "90%",
-                maxHeight: "90vh",
-                outline: "none",
-                width: "100%",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                maxWidth: '90%',
+                maxHeight: '90vh',
+                outline: 'none',
+                width: '100%',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
               }}
             >
               <motion.div
@@ -312,16 +290,16 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
                   scale: imageLoaded ? 1 : 0.95,
                 }}
                 exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ type: "spring", duration: 0.3 }}
+                transition={{ type: 'spring', duration: 0.3 }}
                 style={{
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "center",
-                  backgroundColor: "rgba(0,0,0,0.2)",
-                  backdropFilter: "blur(10px)",
-                  borderRadius: "8px",
-                  padding: "8px",
-                  boxShadow: "0 4px 30px rgba(0, 0, 0, 0.5)",
+                  width: '100%',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  backgroundColor: 'rgba(0,0,0,0.2)',
+                  backdropFilter: 'blur(10px)',
+                  borderRadius: '8px',
+                  padding: '8px',
+                  boxShadow: '0 4px 30px rgba(0, 0, 0, 0.5)',
                 }}
               >
                 <motion.img
@@ -329,10 +307,10 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
                   alt="Enlarged view"
                   onLoad={() => setImageLoaded(true)}
                   style={{
-                    maxWidth: "100%",
-                    maxHeight: "85vh",
-                    objectFit: "contain",
-                    borderRadius: "4px",
+                    maxWidth: '100%',
+                    maxHeight: '85vh',
+                    objectFit: 'contain',
+                    borderRadius: '4px',
                   }}
                   whileHover={{ scale: 1.02 }}
                   transition={{ duration: 0.2 }}

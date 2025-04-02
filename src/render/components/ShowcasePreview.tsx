@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { Modal, ModalContent, Button, Chip } from "@nextui-org/react";
-import { ShowcaseItem } from "../../data/showcaseData";
-import { BrowserShell } from "./BrowserShell";
+import React, { useState } from 'react';
+import { Modal, ModalContent, Button, Chip } from '@nextui-org/react';
+import { ShowcaseItem } from '../../data/showcaseData';
+import { BrowserShell } from './BrowserShell';
 
 interface ShowcasePreviewProps {
   isOpen: boolean;
@@ -11,15 +11,15 @@ interface ShowcasePreviewProps {
   onExpand?: (item: ShowcaseItem) => void;
 }
 
-export const ShowcasePreview: React.FC<ShowcasePreviewProps> = ({ 
-  isOpen, 
-  onClose, 
+export const ShowcasePreview: React.FC<ShowcasePreviewProps> = ({
+  isOpen,
+  onClose,
   item,
   onShare,
-  onExpand
+  onExpand,
 }) => {
   const [isLoading, setIsLoading] = React.useState(true);
-  const [currentUrl, setCurrentUrl] = useState("");
+  const [currentUrl, setCurrentUrl] = useState('');
   const iframeRef = React.useRef<HTMLIFrameElement>(null);
 
   // Reset loading state when modal opens with new item
@@ -60,14 +60,14 @@ export const ShowcasePreview: React.FC<ShowcasePreviewProps> = ({
   };
 
   return (
-    <Modal 
-      isOpen={isOpen} 
+    <Modal
+      isOpen={isOpen}
       onClose={onClose}
       size="5xl"
       classNames={{
-        base: "mx-auto my-auto max-w-[90%] max-h-[90%]",
-        wrapper: "items-center justify-center",
-        body: "p-0",
+        base: 'mx-auto my-auto max-w-[90%] max-h-[90%]',
+        wrapper: 'items-center justify-center',
+        body: 'p-0',
       }}
     >
       <ModalContent>
@@ -81,16 +81,16 @@ export const ShowcasePreview: React.FC<ShowcasePreviewProps> = ({
             onExpand={onExpand ? handleExpand : undefined}
             title={item.title}
           >
-            <iframe 
+            <iframe
               ref={iframeRef}
               src={item.link}
               className="w-full h-full"
               onLoad={() => setIsLoading(false)}
               title={item.title}
               frameBorder="0"
-              style={{ 
+              style={{
                 borderRadius: '0 0 12px 12px',
-                backgroundColor: '#fff'
+                backgroundColor: '#fff',
               }}
             />
           </BrowserShell>

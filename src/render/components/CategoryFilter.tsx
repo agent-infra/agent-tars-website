@@ -1,7 +1,6 @@
-import React from "react";
-import { motion } from "framer-motion";
-import { Button } from "@nextui-org/react";
-import { Category } from "../../data/showcaseData";
+import React from 'react';
+import { Button } from '@nextui-org/react';
+import { Category } from '../../data/showcaseData';
 
 interface CategoryFilterProps {
   categories: (Category & { count: number })[];
@@ -21,29 +20,35 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({
           key="all"
           size="sm"
           radius="full"
-          variant={activeCategory === "all" ? "solid" : "flat"}
+          variant={activeCategory === 'all' ? 'solid' : 'flat'}
           className={`
-            ${activeCategory === "all" 
-              ? "bg-gradient-to-r from-[#6D28D9] to-[#7C3AED] text-white" 
-              : "bg-white/5 text-gray-300 hover:bg-white/10"}
+            ${
+              activeCategory === 'all'
+                ? 'bg-gradient-to-r from-[#6D28D9] to-[#7C3AED] text-white'
+                : 'bg-white/5 text-gray-300 hover:bg-white/10'
+            }
             transition-all duration-300
           `}
-          onClick={() => onSelectCategory("all")}
+          onClick={() => onSelectCategory('all')}
         >
           All
-          <span className="ml-1 text-xs">({categories.reduce((acc, cat) => acc + cat.count, 0)})</span>
+          <span className="ml-1 text-xs">
+            ({categories.reduce((acc, cat) => acc + cat.count, 0)})
+          </span>
         </Button>
-        
-        {categories.map((category) => (
+
+        {categories.map(category => (
           <Button
             key={category.id}
             size="sm"
             radius="full"
-            variant={activeCategory === category.id ? "solid" : "flat"}
+            variant={activeCategory === category.id ? 'solid' : 'flat'}
             className={`
-              ${activeCategory === category.id 
-                ? "bg-gradient-to-r from-[#6D28D9] to-[#7C3AED] text-white" 
-                : "bg-white/5 text-gray-300 hover:bg-white/10"}
+              ${
+                activeCategory === category.id
+                  ? 'bg-gradient-to-r from-[#6D28D9] to-[#7C3AED] text-white'
+                  : 'bg-white/5 text-gray-300 hover:bg-white/10'
+              }
               transition-all duration-300
             `}
             onClick={() => onSelectCategory(category.id)}

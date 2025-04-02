@@ -1,6 +1,6 @@
 # Trouble Shooting
 
-Starting from [v0.0.1-alpha.4](https://github.com/bytedance/UI-TARS-desktop/releases/tag/Agent-TARS-v1.0.0-alpha.4), we have introduced log-based error troubleshooting capabilities.  
+Starting from [v0.0.1-alpha.4](https://github.com/bytedance/UI-TARS-desktop/releases/tag/Agent-TARS-v1.0.0-alpha.4), we have introduced log-based error troubleshooting capabilities.
 
 ## Introduction
 
@@ -10,12 +10,12 @@ If after following this guide your problem persists, or if you encounter an erro
 
 ## Overview
 
-| No. | Scenario | Solution Approach |
-| --- | --- | --- |
-| #1 | No response from application | Use [Inspect Main Process](#inspect-main-process) to search for `[Error]` logs to identify potential LLM request errors. |
-| #2 | OpenAI API Key validation | See [Validate OpenAI API Key](#validate-openai-api-key) section. |
-| #3 | Anthropic API Key validation | See [Validate Anthropic API Key](#validate-anthropic-api-key) section. |
-| #4 | Search functionality issues | See [Validate Search](#validate-search) section. |
+| No. | Scenario                     | Solution Approach                                                                                                        |
+| --- | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| #1  | No response from application | Use [Inspect Main Process](#inspect-main-process) to search for `[Error]` logs to identify potential LLM request errors. |
+| #2  | OpenAI API Key validation    | See [Validate OpenAI API Key](#validate-openai-api-key) section.                                                         |
+| #3  | Anthropic API Key validation | See [Validate Anthropic API Key](#validate-anthropic-api-key) section.                                                   |
+| #4  | Search functionality issues  | See [Validate Search](#validate-search) section.                                                                         |
 
 ## Guide
 
@@ -72,8 +72,7 @@ curl https://api.anthropic.com/v1/messages \
 
 A successful response indicates that your API key is working correctly.
 
-> [!TIP]
-> **See more**: https://docs.anthropic.com/en/api/getting-started
+> [!TIP] > **See more**: https://docs.anthropic.com/en/api/getting-started
 
 ---
 
@@ -98,8 +97,7 @@ curl "https://api.openai.com/v1/chat/completions" \
 
 A successful response confirms your API key is valid.
 
-> [!TIP]
-> **See more**: https://platform.openai.com/docs/quickstart
+> [!TIP] > **See more**: https://platform.openai.com/docs/quickstart
 
 ---
 
@@ -118,8 +116,7 @@ curl -X POST https://api.tavily.com/search \
 }'
 ```
 
-> [!TIP]
-> **See more**: https://tavily.com/
+> [!TIP] > **See more**: https://tavily.com/
 
 ---
 
@@ -135,8 +132,8 @@ curl -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, li
   "https://duckduckgo.com/?q=hello+world&format=json"
 ```
 
-> [!TIP]
-> **See more**: 
+> [!TIP] > **See more**:
+>
 > - https://github.com/Snazzah/duck-duck-scrape
 > - https://duck-duck-scrape.js.org
 

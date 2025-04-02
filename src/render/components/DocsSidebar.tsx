@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
-import { getDocsByCategory } from "../../docs";
-import { motion, AnimatePresence } from "framer-motion";
-import { Button } from "@nextui-org/react";
-import { FiMenu, FiX, FiChevronRight, FiChevronDown } from "react-icons/fi";
-import { getDocDetailRoute } from "../../constants/routes";
+import React, { useState, useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { getDocsByCategory } from '../../docs';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Button } from '@nextui-org/react';
+import { FiMenu, FiX, FiChevronRight, FiChevronDown } from 'react-icons/fi';
+import { getDocDetailRoute } from '../../constants/routes';
 
 export const DocsSidebar: React.FC = () => {
   const { docId } = useParams();
@@ -12,14 +12,12 @@ export const DocsSidebar: React.FC = () => {
     // 初始化时根据窗口宽度判断
     return window.innerWidth >= 768;
   });
-  const [expandedCategories, setExpandedCategories] = useState<
-    Record<string, boolean>
-  >({});
+  const [expandedCategories, setExpandedCategories] = useState<Record<string, boolean>>({});
   const [isMobile, setIsMobile] = useState(() => {
     // 初始化时根据窗口宽度判断
     return window.innerWidth < 768;
   });
-  const currentDocId = docId || "quick-start";
+  const currentDocId = docId || 'quick-start';
   const docsByCategory = getDocsByCategory();
 
   // Check if mobile view
@@ -29,10 +27,10 @@ export const DocsSidebar: React.FC = () => {
     };
 
     checkMobile();
-    window.addEventListener("resize", checkMobile);
+    window.addEventListener('resize', checkMobile);
 
     return () => {
-      window.removeEventListener("resize", checkMobile);
+      window.removeEventListener('resize', checkMobile);
     };
   }, []);
 
@@ -40,29 +38,29 @@ export const DocsSidebar: React.FC = () => {
   useEffect(() => {
     const categories = Object.keys(docsByCategory);
     const newExpandedCategories: Record<string, boolean> = {};
-    
+
     categories.forEach(category => {
       newExpandedCategories[category] = true;
     });
-    
+
     setExpandedCategories(newExpandedCategories);
   }, []);
 
-    // Auto-expand the category containing the current doc
-    useEffect(() => {
-      const newExpandedCategories = { ...expandedCategories };
-  
-      Object.entries(docsByCategory).forEach(([category, docs]) => {
-        if (docs.some((doc) => doc.id === currentDocId)) {
-          newExpandedCategories[category] = true;
-        }
-      });
-  
-      setExpandedCategories(newExpandedCategories);
-    }, [currentDocId]);
+  // Auto-expand the category containing the current doc
+  useEffect(() => {
+    const newExpandedCategories = { ...expandedCategories };
+
+    Object.entries(docsByCategory).forEach(([category, docs]) => {
+      if (docs.some(doc => doc.id === currentDocId)) {
+        newExpandedCategories[category] = true;
+      }
+    });
+
+    setExpandedCategories(newExpandedCategories);
+  }, [currentDocId]);
 
   const toggleCategory = (category: string) => {
-    setExpandedCategories((prev) => ({
+    setExpandedCategories(prev => ({
       ...prev,
       [category]: !prev[category],
     }));
@@ -90,7 +88,7 @@ export const DocsSidebar: React.FC = () => {
           <Button
             isIconOnly
             className="bg-purple-600/20 text-purple-400 hover:bg-purple-600/30 mb-8"
-            onClick={(e) => {
+            onClick={e => {
               e.stopPropagation();
               setIsOpen(true);
             }}
@@ -112,21 +110,15 @@ export const DocsSidebar: React.FC = () => {
       <AnimatePresence>
         {(isOpen || !isMobile) && (
           <motion.div
-            initial={isMobile ? { x: -300 } : { width: "64px" }}
-            animate={
-              isOpen
-                ? { x: 0, width: "256px" }
-                : isMobile
-                ? { x: -300 }
-                : { width: "64px" }
-            }
-            exit={isMobile ? { x: -300 } : { width: "64px" }}
-            transition={{ type: "spring", bounce: 0.1, duration: 0.5 }}
+            initial={isMobile ? { x: -300 } : { width: '64px' }}
+            animate={isOpen ? { x: 0, width: '256px' } : isMobile ? { x: -300 } : { width: '64px' }}
+            exit={isMobile ? { x: -300 } : { width: '64px' }}
+            transition={{ type: 'spring', bounce: 0.1, duration: 0.5 }}
             className={`${
-              isMobile ? "fixed left-0 top-16 bottom-0 z-30" : "relative"
+              isMobile ? 'fixed left-0 top-16 bottom-0 z-30' : 'relative'
             } border-r border-white/10 h-full overflow-y-auto bg-black/30`}
           >
-            <div className={`p-4 ${isOpen ? "" : "items-center"}`}>
+            <div className={`p-4 ${isOpen ? '' : 'items-center'}`}>
               {isOpen && (
                 <div className="flex justify-between items-center mb-4">
                   {/* <h3 className="font-medium text-white/90">Documentation</h3> */}
@@ -165,12 +157,12 @@ export const DocsSidebar: React.FC = () => {
                         {expandedCategories[category] && (
                           <motion.ul
                             initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: "auto", opacity: 1 }}
+                            animate={{ height: 'auto', opacity: 1 }}
                             exit={{ height: 0, opacity: 0 }}
                             transition={{ duration: 0.3 }}
                             className="overflow-hidden"
                           >
-                            {docs.map((doc) => (
+                            {docs.map(doc => (
                               <li key={doc.id}>
                                 <Link
                                   to={getDocDetailRoute(doc.id)}
@@ -178,8 +170,8 @@ export const DocsSidebar: React.FC = () => {
                                     block px-3 py-2 rounded-md transition-colors text-sm
                                     ${
                                       currentDocId === doc.id
-                                        ? "bg-purple-500/20 text-white font-medium"
-                                        : "text-gray-400 hover:bg-white/5 hover:text-white"
+                                        ? 'bg-purple-500/20 text-white font-medium'
+                                        : 'text-gray-400 hover:bg-white/5 hover:text-white'
                                     }
                                   `}
                                   onClick={() => isMobile && setIsOpen(false)}

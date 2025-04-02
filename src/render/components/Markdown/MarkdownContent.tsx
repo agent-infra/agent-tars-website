@@ -1,9 +1,9 @@
-import React from "react";
-import { motion } from "framer-motion";
-import { Spinner, Button } from "@nextui-org/react";
-import { MarkdownRenderer } from "./MarkdownRenderer";
-import { TableOfContents } from "./TableOfContents";
-import { FiGithub } from "react-icons/fi";
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Spinner, Button } from '@nextui-org/react';
+import { MarkdownRenderer } from './MarkdownRenderer';
+import { TableOfContents } from './TableOfContents';
+import { FiGithub } from 'react-icons/fi';
 
 interface MarkdownContentProps {
   markdown: string;
@@ -21,7 +21,7 @@ export const MarkdownContent: React.FC<MarkdownContentProps> = ({
   contentKey,
   publishDate,
   author,
-  className = "prose-lg prose-invert max-w-none",
+  className = 'prose-lg prose-invert max-w-none',
   githubEditUrl,
 }) => {
   return (

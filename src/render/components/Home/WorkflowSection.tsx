@@ -1,6 +1,6 @@
-import React from "react";
-import { motion } from "framer-motion";
-import { WorkflowNodes } from "../WorkflowNodes";
+import React from 'react';
+import { motion } from 'framer-motion';
+import { WorkflowNodes } from '../WorkflowNodes';
 
 export const WorkflowSection: React.FC = () => {
   return (
@@ -16,9 +16,8 @@ export const WorkflowSection: React.FC = () => {
             Agentic Workflow
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Experience the power of autonomous agent-driven workflow
-            integration. Our intelligent agent continuously learns and adapts
-            to optimize your development process.
+            Experience the power of autonomous agent-driven workflow integration. Our intelligent
+            agent continuously learns and adapts to optimize your development process.
           </p>
         </motion.div>
 

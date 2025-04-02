@@ -1,14 +1,14 @@
-import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Navbar } from "./components/Navbar";
-import Home from "./pages/Home";
-import Blog from "./pages/Blog";
-import Showcase from "./pages/Showcase";
-import ShowcaseDetail from "./pages/ShowcaseDetail";
-import Docs from "./pages/Docs";
-import { TwitterCardMeta } from "./components/TwitterCardMeta";
-import { HelmetProvider } from "react-helmet-async";
-import { ETopRoute } from "../constants/routes";
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Navbar } from './components/Navbar';
+import Home from './pages/Home';
+import Blog from './pages/Blog';
+import Showcase from './pages/Showcase';
+import ShowcaseDetail from './pages/ShowcaseDetail';
+import Docs from './pages/Docs';
+import { TwitterCardMeta } from './components/TwitterCardMeta';
+import { HelmetProvider } from 'react-helmet-async';
+import { ETopRoute } from '../constants/routes';
 
 const App: React.FC = () => {
   return (

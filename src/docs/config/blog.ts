@@ -12,24 +12,23 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
-    id: "announcing-agent-tars-app",
-    title: "Announcing Agent TARS App (Preview)",
-    slug: "announcing-agent-tars-app",
-    date: "2025-03-18",
-    author: "Agent TARS Team",
+    id: 'announcing-agent-tars-app',
+    title: 'Announcing Agent TARS App (Preview)',
+    slug: 'announcing-agent-tars-app',
+    date: '2025-03-18',
+    author: 'Agent TARS Team',
     excerpt:
       "We're excited to announce the preview release of Agent TARS, an open-source multimodal agent designed to revolutionize GUI interaction.",
-    tags: ["announcement", "release"],
+    tags: ['announcement', 'release'],
   },
   {
-    id: "mcp-brings-a-new-paradigm-to-layered-ai-app-development",
-    title: "MCP Brings a New Paradigm to Layered AI Application Development",
-    slug: "mcp-brings-a-new-paradigm-to-layered-ai-app-development",
-    date: "2025-03-25",
-    author: "ycjcl868",
-    excerpt:
-      "MCP's role in transforming development paradigms and expanding tool ecosystems.",
-    tags: ["development", "paradigm", "tooling"],
+    id: 'mcp-brings-a-new-paradigm-to-layered-ai-app-development',
+    title: 'MCP Brings a New Paradigm to Layered AI Application Development',
+    slug: 'mcp-brings-a-new-paradigm-to-layered-ai-app-development',
+    date: '2025-03-25',
+    author: 'ycjcl868',
+    excerpt: "MCP's role in transforming development paradigms and expanding tool ecosystems.",
+    tags: ['development', 'paradigm', 'tooling'],
   },
 ];
 
@@ -37,15 +36,15 @@ export const blogPosts: BlogPost[] = [
 export const getBlogPermalink = (post: BlogPost): string => {
   const date = new Date(post.date);
   const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, "0");
-  const day = String(date.getDate()).padStart(2, "0");
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
 
   return `/${year}/${month}/${day}/${post.slug}`;
 };
 
 // Parse permalink to extract date and slug
 export const parsePermalink = (
-  permalink: string
+  permalink: string,
 ): { year: string; month: string; day: string; slug: string } | null => {
   const regex = /\/(\d{4})\/(\d{2})\/(\d{2})\/([^\/]+)/;
   const match = permalink.match(regex);
@@ -63,9 +62,7 @@ export const parsePermalink = (
 };
 
 // Get blog post by permalink
-export const getBlogPostByPermalink = (
-  permalink: string
-): BlogPost | undefined => {
+export const getBlogPostByPermalink = (permalink: string): BlogPost | undefined => {
   const parsed = parsePermalink(permalink);
 
   if (!parsed) return undefined;
@@ -73,12 +70,10 @@ export const getBlogPostByPermalink = (
   const { year, month, day, slug } = parsed;
   const dateStr = `${year}-${month}-${day}`;
 
-  return blogPosts.find((post) => post.date === dateStr && post.slug === slug);
+  return blogPosts.find(post => post.date === dateStr && post.slug === slug);
 };
 
 // Get all blog posts sorted by date (newest first)
 export const getSortedBlogPosts = (): BlogPost[] => {
-  return [...blogPosts].sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-  );
+  return [...blogPosts].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 };

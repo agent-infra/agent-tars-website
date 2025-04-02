@@ -1,10 +1,10 @@
-import React, { useState, useRef, useCallback, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Button, Spinner } from "@nextui-org/react";
-import { SiGithub } from "react-icons/si";
-import { FiBookOpen } from "react-icons/fi";
-import { FaPlay } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import React, { useState, useRef, useCallback, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Button, Spinner } from '@nextui-org/react';
+import { SiGithub } from 'react-icons/si';
+import { FiBookOpen } from 'react-icons/fi';
+import { FaPlay } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 interface HeroSectionProps {
   onOpenVideo: () => void;
@@ -13,7 +13,7 @@ interface HeroSectionProps {
 export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenVideo }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [thumbnailUrl, setThumbnailUrl] = useState<string>("");
+  const [thumbnailUrl, setThumbnailUrl] = useState<string>('');
   const [isVideoLoading, setIsVideoLoading] = useState(true);
   const [isVideoReady, setIsVideoReady] = useState(false);
 
@@ -22,12 +22,12 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenVideo }) => {
     const canvas = canvasRef.current;
 
     if (video && canvas) {
-      const context = canvas.getContext("2d");
+      const context = canvas.getContext('2d');
       if (context) {
         canvas.width = video.videoWidth;
         canvas.height = video.videoHeight;
         context.drawImage(video, 0, 0, canvas.width, canvas.height);
-        const thumbnailUrl = canvas.toDataURL("image/jpeg");
+        const thumbnailUrl = canvas.toDataURL('image/jpeg');
         setThumbnailUrl(thumbnailUrl);
       }
     }
@@ -44,7 +44,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenVideo }) => {
     const video = videoRef.current;
     if (video && video.currentTime === 0) {
       generateThumbnail();
-      video.removeEventListener("timeupdate", handleTimeUpdate);
+      video.removeEventListener('timeupdate', handleTimeUpdate);
     }
   }, [generateThumbnail]);
 
@@ -56,9 +56,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenVideo }) => {
   useEffect(() => {
     const video = videoRef.current;
     if (video) {
-      video.addEventListener("timeupdate", handleTimeUpdate);
+      video.addEventListener('timeupdate', handleTimeUpdate);
       return () => {
-        video.removeEventListener("timeupdate", handleTimeUpdate);
+        video.removeEventListener('timeupdate', handleTimeUpdate);
       };
     }
   }, [handleTimeUpdate]);
@@ -117,7 +117,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenVideo }) => {
                 <motion.div
                   initial={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  transition={{ duration: 0.5, ease: "easeInOut" }}
+                  transition={{ duration: 0.5, ease: 'easeInOut' }}
                   className="absolute inset-0 bg-gray-900 flex items-center justify-center z-20"
                 >
                   <Spinner size="lg" className="opacity-50" />

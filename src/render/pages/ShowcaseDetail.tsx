@@ -1,32 +1,14 @@
-import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
-import {
-  Button,
-  Spinner,
-  Chip,
-  Tooltip,
-  Avatar,
-  Link,
-} from "@nextui-org/react";
-import {
-  FiArrowLeft,
-  FiShare2,
-  FiX,
-  FiInfo,
-  FiGithub,
-  FiMaximize2,
-} from "react-icons/fi";
-import { FaCode } from "react-icons/fa";
-import {
-  showcaseItems,
-  ShowcaseItem,
-  isRecentlyPublished,
-} from "../../data/showcaseData";
-import { BrowserShell } from "../components/BrowserShell";
-import { ShareModal } from "../components/ShareModal";
-import { TwitterCardMeta } from "../components/TwitterCardMeta";
-import { ETopRoute } from "../../constants/routes";
+import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Button, Spinner, Chip, Tooltip, Avatar, Link } from '@nextui-org/react';
+import { FiArrowLeft, FiShare2, FiX, FiInfo, FiGithub, FiMaximize2 } from 'react-icons/fi';
+import { FaCode } from 'react-icons/fa';
+import { showcaseItems, ShowcaseItem, isRecentlyPublished } from '../../data/showcaseData';
+import { BrowserShell } from '../components/BrowserShell';
+import { ShareModal } from '../components/ShareModal';
+import { TwitterCardMeta } from '../components/TwitterCardMeta';
+import { ETopRoute } from '../../constants/routes';
 
 const ShowcaseDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -38,7 +20,7 @@ const ShowcaseDetail: React.FC = () => {
 
   useEffect(() => {
     // Find the showcase item by ID
-    const showcaseItem = showcaseItems.find((item) => item.id === id);
+    const showcaseItem = showcaseItems.find(item => item.id === id);
 
     if (showcaseItem) {
       setItem(showcaseItem);
@@ -99,13 +81,11 @@ const ShowcaseDetail: React.FC = () => {
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.8, opacity: 0 }}
-                transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
                 className="w-[90%] h-[90%] max-w-7xl"
               >
                 <div className="flex justify-between items-center mb-4">
-                  <h2 className="text-xl font-semibold text-white">
-                    {item.title}
-                  </h2>
+                  <h2 className="text-xl font-semibold text-white">{item.title}</h2>
                   <Button
                     isIconOnly
                     size="sm"
@@ -131,8 +111,8 @@ const ShowcaseDetail: React.FC = () => {
                       title={item.title}
                       frameBorder="0"
                       style={{
-                        borderRadius: "0 0 12px 12px",
-                        backgroundColor: "#fff",
+                        borderRadius: '0 0 12px 12px',
+                        backgroundColor: '#fff',
                       }}
                       onLoad={() => setIsLoading(false)}
                     />
@@ -178,8 +158,8 @@ const ShowcaseDetail: React.FC = () => {
                   title={item.title}
                   frameBorder="0"
                   style={{
-                    borderRadius: "0 0 12px 12px",
-                    backgroundColor: "#fff",
+                    borderRadius: '0 0 12px 12px',
+                    backgroundColor: '#fff',
                   }}
                   onLoad={() => setIsLoading(false)}
                 />
@@ -197,9 +177,7 @@ const ShowcaseDetail: React.FC = () => {
                 {/* Author section - Now prominently displayed at the top */}
                 {item.author && (
                   <div className="border-b border-white/10 pb-5">
-                    <h3 className="text-xs uppercase text-gray-500 mb-3">
-                      Created by
-                    </h3>
+                    <h3 className="text-xs uppercase text-gray-500 mb-3">Created by</h3>
                     <div className="flex items-center gap-4">
                       <Avatar
                         src={`https://github.com/${item.author.github}.png`}
@@ -208,9 +186,7 @@ const ShowcaseDetail: React.FC = () => {
                         showFallback
                       />
                       <div>
-                        <p className="text-white text-lg font-medium">
-                          {item.author.name}
-                        </p>
+                        <p className="text-white text-lg font-medium">{item.author.name}</p>
                         <a
                           href={`https://github.com/${item.author.github}`}
                           target="_blank"
@@ -234,28 +210,21 @@ const ShowcaseDetail: React.FC = () => {
                     )}
                   </h1>
 
-                  <p className="text-gray-400 mb-5 text-sm">
-                    {item.description}
-                  </p>
+                  <p className="text-gray-400 mb-5 text-sm">{item.description}</p>
                 </div>
 
                 <div className="space-y-5">
                   <div className="flex flex-wrap gap-2 items-center">
                     <span className="text-sm px-3 py-1 rounded-full bg-white/10 text-purple-300">
-                      {item.category.charAt(0).toUpperCase() +
-                        item.category.slice(1)}
+                      {item.category.charAt(0).toUpperCase() + item.category.slice(1)}
                     </span>
 
-                    {item.date && (
-                      <span className="text-xs text-gray-400">{item.date}</span>
-                    )}
+                    {item.date && <span className="text-xs text-gray-400">{item.date}</span>}
                   </div>
 
                   {item.tags && item.tags.length > 0 && (
                     <div>
-                      <h3 className="text-xs uppercase text-gray-500 mb-2">
-                        Tags
-                      </h3>
+                      <h3 className="text-xs uppercase text-gray-500 mb-2">Tags</h3>
                       <div className="flex flex-wrap gap-1">
                         {item.tags.map((tag, i) => (
                           <span
@@ -299,8 +268,8 @@ const ShowcaseDetail: React.FC = () => {
                       Contribute Your Own
                     </h3>
                     <p className="text-sm text-gray-300 mb-3">
-                      Have an interesting Agent TARS report to showcase? We'd
-                      love to feature your work in our gallery!
+                      Have an interesting Agent TARS report to showcase? We'd love to feature your
+                      work in our gallery!
                     </p>
                     <Button
                       as={Link}

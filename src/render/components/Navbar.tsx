@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { Button } from "@nextui-org/react";
-import { FiDownload, FiMenu, FiX } from "react-icons/fi";
-import { FaDiscord } from "react-icons/fa";
-import { motion, AnimatePresence } from "framer-motion";
-import Icon from "./icon.png";
-import { ETopRoute } from "../../constants/routes";
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { Button } from '@nextui-org/react';
+import { FiDownload, FiMenu, FiX } from 'react-icons/fi';
+import { FaDiscord } from 'react-icons/fa';
+import { motion, AnimatePresence } from 'framer-motion';
+import Icon from './icon.png';
+import { ETopRoute } from '../../constants/routes';
 
 export const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -16,10 +16,10 @@ export const Navbar: React.FC = () => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
-    
+
     checkMobile();
     window.addEventListener('resize', checkMobile);
-    
+
     return () => {
       window.removeEventListener('resize', checkMobile);
     };
@@ -39,7 +39,7 @@ export const Navbar: React.FC = () => {
     } else {
       document.body.style.overflow = '';
     }
-    
+
     return () => {
       document.body.style.overflow = '';
     };
@@ -154,13 +154,13 @@ export const Navbar: React.FC = () => {
               className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm"
               onClick={closeMobileMenu}
             />
-            
+
             {/* Sidebar */}
             <motion.div
-              initial={{ x: "-100%" }}
+              initial={{ x: '-100%' }}
               animate={{ x: 0 }}
-              exit={{ x: "-100%" }}
-              transition={{ type: "spring", bounce: 0.1, duration: 0.4 }}
+              exit={{ x: '-100%' }}
+              transition={{ type: 'spring', bounce: 0.1, duration: 0.4 }}
               className="fixed left-0 top-0 bottom-0 z-50 w-64 bg-black/80 backdrop-blur-md border-r border-white/10 pt-20 px-6"
             >
               <div className="flex flex-col gap-8">
@@ -185,7 +185,7 @@ export const Navbar: React.FC = () => {
                 >
                   Showcase
                 </Link>
-                
+
                 <div className="mt-8 pt-8 border-t border-white/10">
                   <Button
                     as="a"

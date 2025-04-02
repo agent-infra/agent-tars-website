@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 interface HeaderAnchorProps {
   id: string;
@@ -20,12 +20,12 @@ export const HeaderAnchor: React.FC<HeaderAnchorProps> = ({ id }) => {
     e.preventDefault();
 
     // Update URL without page reload
-    window.history.pushState(null, "", `#${id}`);
+    window.history.pushState(null, '', `#${id}`);
 
     // Scroll to target element
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      element.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -43,7 +43,7 @@ export const HeaderAnchor: React.FC<HeaderAnchorProps> = ({ id }) => {
         height="16"
         fill="currentColor"
         viewBox="0 0 16 16"
-        onClick={(e) => {
+        onClick={e => {
           e.preventDefault();
           handleCopyLink();
         }}

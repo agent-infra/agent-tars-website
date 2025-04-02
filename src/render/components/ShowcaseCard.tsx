@@ -1,9 +1,9 @@
-import React from "react";
-import { motion } from "framer-motion";
-import { Card, Button } from "@nextui-org/react";
-import { ShowcaseItem, isRecentlyPublished } from "../../data/showcaseData";
-import { FiShare2 } from "react-icons/fi";
-import { FaPlay } from "react-icons/fa";
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Card, Button } from '@nextui-org/react';
+import { ShowcaseItem, isRecentlyPublished } from '../../data/showcaseData';
+import { FiShare2 } from 'react-icons/fi';
+import { FaPlay } from 'react-icons/fa';
 
 interface ShowcaseCardProps {
   item: ShowcaseItem;
@@ -82,17 +82,13 @@ export const ShowcaseCard: React.FC<ShowcaseCardProps> = ({
             <span className="text-xs px-2 py-1 rounded-full bg-white/10 text-purple-300">
               {item.category.charAt(0).toUpperCase() + item.category.slice(1)}
             </span>
-            {item.date && (
-              <span className="ml-2 text-xs text-gray-400">{item.date}</span>
-            )}
+            {item.date && <span className="ml-2 text-xs text-gray-400">{item.date}</span>}
           </div>
 
           <h3 className="text-lg text-left font-semibold text-white mb-1 line-clamp-2">
             {item.title}
           </h3>
-          <p className="text-sm text-left text-gray-400 line-clamp-2 mb-3">
-            {item.description}
-          </p>
+          <p className="text-sm text-left text-gray-400 line-clamp-2 mb-3">{item.description}</p>
 
           <div className="mt-auto">
             {item.languages && item.languages.length > 0 && (

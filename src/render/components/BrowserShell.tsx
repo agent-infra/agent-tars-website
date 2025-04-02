@@ -1,7 +1,7 @@
-import styled from "@emotion/styled";
-import { CircularProgress, IconButton, Tooltip } from "@mui/material";
-import { Refresh, Security, Close, Share, Fullscreen } from "@mui/icons-material";
-import React from "react";
+import styled from '@emotion/styled';
+import { CircularProgress, IconButton, Tooltip } from '@mui/material';
+import { Refresh, Security, Close, Share, Fullscreen } from '@mui/icons-material';
+import React from 'react';
 
 const Shell = styled.div`
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -29,7 +29,7 @@ const Circle = styled.div<{ color: string }>`
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background-color: ${(props) => props.color};
+  background-color: ${props => props.color};
 `;
 
 const AddressBar = styled.div`
@@ -58,7 +58,7 @@ const Content = styled.div<{ $loading?: boolean }>`
   background: #fff;
   position: relative;
 
-  ${(props) =>
+  ${props =>
     props.$loading &&
     `
     &::after {
@@ -115,28 +115,28 @@ interface BrowserShellProps {
   loading?: boolean;
   children: React.ReactNode;
   onUrlChange?: (url: string) => void;
-  onNavigate?: (type: "back" | "forward" | "refresh") => void;
+  onNavigate?: (type: 'back' | 'forward' | 'refresh') => void;
   onClose?: () => void;
   onShare?: () => void;
-  onExpand?: () => void;  // 新增 onExpand 回调
+  onExpand?: () => void; // 新增 onExpand 回调
   title?: string;
 }
 
 export function BrowserShell({
-  url = "about:blank",
+  url = 'about:blank',
   loading,
   children,
   onUrlChange,
   onNavigate,
   onClose,
   onShare,
-  onExpand,  // 新增 onExpand 参数
+  onExpand, // 新增 onExpand 参数
   title,
 }: BrowserShellProps) {
-  const isSecure = url.startsWith("https://");
+  const isSecure = url.startsWith('https://');
 
   const openInNewTab = () => {
-    window.open(url, "_blank");
+    window.open(url, '_blank');
   };
 
   return (
@@ -154,19 +154,19 @@ export function BrowserShell({
                 Secure
               </SecureIndicator>
             )}
-            
+
             <Tooltip title="Refresh">
               <IconButton
                 size="small"
-                onClick={() => onNavigate?.("refresh")}
-                sx={{ color: "rgba(255, 255, 255, 0.7)" }}
+                onClick={() => onNavigate?.('refresh')}
+                sx={{ color: 'rgba(255, 255, 255, 0.7)' }}
               >
                 <Refresh fontSize="small" />
               </IconButton>
             </Tooltip>
           </NavigationControls>
 
-          <TitleDisplay>{title || "Secure Content"}</TitleDisplay>
+          <TitleDisplay>{title || 'Secure Content'}</TitleDisplay>
 
           <ActionControls>
             {onExpand && (
@@ -174,13 +174,13 @@ export function BrowserShell({
                 <IconButton
                   size="small"
                   onClick={onExpand}
-                  sx={{ color: "rgba(255, 255, 255, 0.7)" }}
+                  sx={{ color: 'rgba(255, 255, 255, 0.7)' }}
                 >
                   <Fullscreen fontSize="small" />
                 </IconButton>
               </Tooltip>
             )}
-            
+
             {/* {onShare && (
               <Tooltip title="Share">
                 <IconButton
@@ -198,7 +198,7 @@ export function BrowserShell({
                 <IconButton
                   size="small"
                   onClick={onClose}
-                  sx={{ color: "rgba(255, 255, 255, 0.7)" }}
+                  sx={{ color: 'rgba(255, 255, 255, 0.7)' }}
                 >
                   <Close fontSize="small" />
                 </IconButton>
