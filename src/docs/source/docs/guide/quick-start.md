@@ -2,7 +2,7 @@
 
 ## Introduction
 
-**[Agent TARS](https://github.com/bytedance/UI-TARS-desktop)** is an open-source multimodal agent designed to revolutionize GUI interaction by visually interpreting web pages and seamlessly integrating with command lines and file systems, for more informations, please head our [inotroduction blog](/2025/03/18/announcing-agent-tars-app).
+[Agent TARS](https://github.com/bytedance/UI-TARS-desktop) is an open-source multimodal agent designed to revolutionize GUI interaction by visually interpreting web pages and seamlessly integrating with command lines and file systems.
 
 <p align="center">
   <img width="800" src="https://sf16-sg.tiktokcdn.com/obj/eden-sg/psvhouloj/agent-tars-docs/agent-tars-welcome-screen.png">
