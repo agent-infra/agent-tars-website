@@ -16,7 +16,7 @@ export const availableDocs: DocItem[] = [
     id: 'quick-start',
     title: 'Quick Start',
     category: 'Introduction',
-    publishDate: '2025-03-18',
+    publishDate: '2025-04-06',
   },
   {
     id: 'mcp',
