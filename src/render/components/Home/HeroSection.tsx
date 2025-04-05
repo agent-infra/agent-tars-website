@@ -1,10 +1,10 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button, Spinner } from '@nextui-org/react';
-import { SiGithub } from 'react-icons/si';
 import { FiBookOpen } from 'react-icons/fi';
 import { FaPlay } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { ETopRoute } from '../../../constants/routes';
 
 interface HeroSectionProps {
   onOpenVideo: () => void;
@@ -81,13 +81,12 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenVideo }) => {
           </p>
           <div className="flex gap-4 justify-center mb-12">
             <Button
-              as="a"
-              href="https://github.com/bytedance/UI-TARS-desktop/blob/main/apps/agent-tars/README.md"
-              target="_blank"
+              as={Link}
+              to={ETopRoute.DOC}
               className="bg-white text-black hover:bg-gray-200"
-              startContent={<SiGithub />}
+              startContent={<FiBookOpen />}
             >
-              GitHub
+              Get Started
             </Button>
             <Button
               as={Link}

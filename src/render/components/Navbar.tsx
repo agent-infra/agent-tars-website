@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@nextui-org/react';
 import { FiDownload, FiMenu, FiX } from 'react-icons/fi';
-import { FaDiscord } from 'react-icons/fa';
+import { FaDiscord, FaGithub } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 import Icon from './icon.png';
 import { ETopRoute } from '../../constants/routes';
@@ -105,6 +105,17 @@ export const Navbar: React.FC = () => {
 
             <Button
               as="a"
+              href="https://github.com/bytedance/UI-TARS-desktop"
+              target="_blank"
+              className="min-w-[36px] w-[36px] h-[36px] p-0 bg-transparent border border-white/20 hover:bg-white/10"
+              isIconOnly
+              size="md"
+            >
+              <FaGithub className="text-white" />
+            </Button>
+
+            <Button
+              as="a"
               href="https://discord.gg/NAeJMKk4"
               target="_blank"
               className="min-w-[36px] w-[36px] h-[36px] p-0 bg-transparent border border-white/20 hover:bg-white/10"
@@ -186,7 +197,17 @@ export const Navbar: React.FC = () => {
                   Showcase
                 </Link>
 
-                <div className="mt-8 pt-8 border-t border-white/10">
+                <div className="mt-8 pt-8 border-t border-white/10 flex flex-col gap-4">
+                  <Button
+                    as="a"
+                    href="https://github.com/bytedance/UI-TARS-desktop"
+                    target="_blank"
+                    size="md"
+                    className="w-full bg-white/10 text-white"
+                    startContent={<FaGithub />}
+                  >
+                    GitHub
+                  </Button>
                   <Button
                     as="a"
                     href="https://github.com/bytedance/UI-TARS-desktop/releases?q=Agent-TARS&expanded=true"
