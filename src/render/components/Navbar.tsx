@@ -116,7 +116,7 @@ export const Navbar: React.FC = () => {
 
             <Button
               as="a"
-              href="https://discord.gg/NAeJMKk4"
+              href="https://discord.com/invite/HnKcSBgTVx"
               target="_blank"
               className="min-w-[36px] w-[36px] h-[36px] p-0 bg-transparent border border-white/20 hover:bg-white/10"
               isIconOnly
