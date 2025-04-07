@@ -87,7 +87,7 @@ The comparison of search providers is as follows:
 | ------------------------------ | ------------- | ----------- |
 | Local Browser Search (Default) | NO            | Slow        |
 | Tavily                         | YES           | Fast        |
-| Bing Search                    | NO            | Fast        |
+| Bing Search                    | YES           | Fast        |
 | SearXNG Search                 | NO            | ❓Unknown   |
 | Duckduckgo Search              | NO            | ⚠️ Unstable |
 
