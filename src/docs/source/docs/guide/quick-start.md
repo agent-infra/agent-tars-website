@@ -69,6 +69,30 @@ To reflect this, we’ve added reminders in the settings for clarity. Other mode
 
 ---
 
+#### Test Model Provider
+
+> [!TIP]
+> From [v0.0.1-alpha.8](https://github.com/bytedance/UI-TARS-desktop/releases/tag/Agent-TARS-v1.0.0-alpha.8).
+
+You can click **Test Model Provider** button to check if current model setting is available:
+
+<p align="center">
+  <img width="800" src="https://sf16-sg.tiktokcdn.com/obj/eden-sg/psvhouloj/agent-tars-docs/agent-tars-setting-test-model-provider-success.png">
+</p>
+
+Some common mistakes:
+
+| Error                   | Snapshot                                                                                                                                     |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| Invalid API Key         | <img width="700" src="https://sf16-sg.tiktokcdn.com/obj/eden-sg/psvhouloj/agent-tars-docs/agent-tars-setting-test-model-provider-no-ak.png"> |
+| Not support tools       | <img width="700" src="https://sf16-sg.tiktokcdn.com/obj/eden-sg/psvhouloj/agent-tars-docs/agent-tars-setting-test-model-provider.png">       |
+| Not respond tool_calls | <img width="700" src="https://sf16-sg.tiktokcdn.com/obj/eden-sg/psvhouloj/agent-tars-docs/agent-tars-setting-test-model-provider.png">       |
+
+> [!TIP]
+> For more informations, please check [Trouble Shooting](/doc/trouble-shooting) guide.
+
+---
+
 ### Config Search Provider
 
 For search config, you can set the search provider:
