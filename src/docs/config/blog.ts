@@ -30,6 +30,16 @@ export const blogPosts: BlogPost[] = [
     excerpt: "MCP's role in transforming development paradigms and expanding tool ecosystems.",
     tags: ['development', 'paradigm', 'tooling'],
   },
+  {
+    id: 'difference-between-ui-tars-desktop-and-agent-tars-app',
+    title: 'Difference Between UI TARS Desktop and Agent TARS App',
+    slug: 'difference-between-ui-tars-desktop-and-agent-tars-app',
+    date: '2025-04-11',
+    author: 'Agent TARS Team',
+    excerpt:
+      'Introducing the differences between UI TARS Desktop and Agent TARS App - their features, use cases, model compatibility, and future plans.',
+    tags: ['notice'],
+  },
 ];
 
 // Get permalink for a blog post
