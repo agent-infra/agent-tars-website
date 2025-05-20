@@ -1,13 +1,16 @@
-# Ignore artifacts
+# Ignore artifacts:
 build
-dist
-node_modules
 coverage
+.codebase
+.vscode
+functions
 
-# Ignore lock files
-package-lock.json
-yarn.lock
-pnpm-lock.yaml
+# Ignore all HTML files:
+*.html
 
-# Ignore misc
-.github
+# Ignore all YAML files:
+*.yaml
+
+CHANGELOG.md
+*.json
+*.yml
