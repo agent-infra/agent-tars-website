@@ -1,5 +1,6 @@
 node_modules
-dist
-.vercel
-.DS_Store
-.aicorules
+**/lib
+**/dist
+results
+.nyc_output
+*.tsbuildinfo
