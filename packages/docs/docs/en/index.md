@@ -2,13 +2,13 @@
 pageType: home
 
 hero:
-  name: My Site
-  text: A cool website!
+  name: Agent TARS
+  text: An open-source multimodal AI agent
   tagline: This is the tagline
   actions:
     - theme: brand
       text: Quick Start
-      link: /guide/
+      link: /guide/get-started/quick-start
     - theme: alt
       text: GitHub
       link: https://github.com/web-infra-dev/rspress
